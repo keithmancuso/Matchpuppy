@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Playdate:</b>
+  <%= @playdate_guest.playdate_id %>
+</p>
+
+<p>
+  <b>Dog:</b>
+  <%= @playdate_guest.dog_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_playdate_guest_path(@playdate_guest) %> |
+<%= link_to 'Back', playdate_guests_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Play date:</b>
+  <%= @playdate.play_date %>
+</p>
+
+<p>
+  <b>Park:</b>
+  <%= @playdate.park_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @playdate.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_playdate_path(@playdate) %> |
+<%= link_to 'Back', playdates_path %>
+
+
+<hr/>
+<h3>Which Dogs would you want to invite?</h3>
+<table>
+	<% @park.dogs.each do |dog| %>
+  <tr>
+    <td><%= dog.name %>
+	<input type="checkbox">
+	</td>
+  </tr>
+<% end %>
+</table>
+
+<input type="button" value="Invite Dogs" class="btn primary">

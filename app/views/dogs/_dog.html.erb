@@ -1,0 +1,17 @@
+<% @user.dogs.each do |dog| %>
+  
+  <%= image_tag dog.avatar.url %>
+  <%= image_tag dog.avatar.url(:medium) %>
+  <%= image_tag dog.avatar.url(:thumb) %>
+  
+  
+   <h4>
+    <%= dog.name %></h4>
+ 
+ 
+  <ul>
+    <li><b>Size:</b>
+    <%= dog.size %></li>
+	<li><%= dog.picture_url %></li>
+  </ul>
+<% end %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @park.name %>
+</p>
+
+<p>
+  <b>Borough:</b>
+  <%= @park.borough %>
+</p>
+
+
+<%= link_to 'Edit', edit_park_path(@park) %> |
+<%= link_to 'Back', parks_path %>
+
+<hr/>
+<table>
+	<% @dogs.each do |dog| %>
+  <tr>
+    <td><%= dog.name %></td>
+   
+  </tr>
+<% end %>
+</table>

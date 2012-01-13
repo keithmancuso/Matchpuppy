@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+
+<h3>Your Dogs</h3>
+<% @user.dogs.each do |dog| %>
+  
+
+  <%= image_tag dog.avatar.url(:thumb) %>
+  
+  
+   <h4>
+    <%= dog.name %></h4>
+ 
+ 
+  <ul>
+    <li><b>Size:</b>
+    <%= dog.size %></li>
+	<li><%= dog.picture_url %></li>
+  </ul>
+<% end %>
+
+
+
+
+
+    <h3>Tell us about <% flash[:dogs_name] %></h3>
+
+
+<%= render "dogs/form" %>
+
+<!-- <%= form_for([@user, @user.dogs.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :size %><br />
+    <%= f.text_field :size %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %> -->
+

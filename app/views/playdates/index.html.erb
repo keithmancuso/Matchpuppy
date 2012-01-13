@@ -1,0 +1,27 @@
+<h1>Listing playdates</h1>
+
+<table>
+  <tr>
+    <th>Play date</th>
+    <th>Park</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @playdates.each do |playdate| %>
+  <tr>
+    <td><%= playdate.play_date %></td>
+    <td><%= playdate.park_id %></td>
+    <td><%= playdate.user_id %></td>
+    <td><%= link_to 'Show', playdate %></td>
+    <td><%= link_to 'Edit', edit_playdate_path(playdate) %></td>
+    <td><%= link_to 'Destroy', playdate, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Playdate', new_playdate_path %>

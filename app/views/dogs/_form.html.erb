@@ -1,0 +1,36 @@
+<%= form_for([@user, @dog]) do |f| %>
+<p>
+<strong>Tell us more about <%= @dog.name %></strong>
+</p>
+  <div class="clearfix">
+    <%= f.label :size %>
+	<div class="input">
+	<%= f.select(:breed, options_for_select([['Small'], ['Medium'], ['Large']])) %>
+	
+	</div>
+  </div>
+  <div class="clearfix">
+    <%= f.label :breed %>
+  	<div class="input">
+		<%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
+	</div>
+  </div>
+  <div class="clearfix">
+    <%= f.label :gender %>
+	<div class="input">
+   
+	<%= f.select(:breed, options_for_select([['Male'], ['Female']])) %>
+	
+	</div>
+  </div>
+   <div class="clearfix">
+      <%= f.label :avatar %>
+  	<div class="input">
+  		
+		 <%= f.file_field :avatar %>
+  	</div>
+    </div> 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

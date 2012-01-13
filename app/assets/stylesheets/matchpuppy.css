@@ -1,0 +1,46 @@
+
+
+header {
+	background: url('/images/header.png') repeat-x;
+	height: 89px;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	width: 100%;
+	padding-left: 30px;
+	left: 0;
+
+}
+
+header img {
+	padding-top:10px;
+
+}
+
+body {
+	margin-top:120px;
+	/* background: url('/images/coming-soon.png') no-repeat; */
+	
+	background-color:#409683;
+	
+	
+}
+
+.container {
+	
+	padding-top:15px;
+}
+
+h1 {
+	color: white;
+	background: url('/images/countdown-header.png') no-repeat;
+	padding:15px;
+}
+
+#login_nav a {
+	position:absolute;
+	top:15;
+	left:1000;
+	color:white;
+	
+}

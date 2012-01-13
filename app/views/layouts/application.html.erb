@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Matchpuppy</title>
+  <%= stylesheet_link_tag    :bootstrap %>
+  <%= stylesheet_link_tag    :matchpuppy %>
+  
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  
+  <meta name="description" content="Welcome to MatchPuppy! A brand new place where you and your dog can connect and share with friends.">
+  
+</head>
+<body>
+	
+	<header>
+		<a href="/"><img src="/images/logo.png"></a>
+		
+		<div id ="login_nav"> 
+			<a href="#">Login</a>
+		</div>
+	</header>
+<div class="container">
+
+<%= yield %>
+</div>
+</body>
+</html>
