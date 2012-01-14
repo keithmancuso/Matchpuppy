@@ -21,7 +21,7 @@ end
 
 gem 'jquery-rails'
 
-#gem 'carrierwave'
+gem 'carrierwave'
 
 gem 'authlogic'
 
