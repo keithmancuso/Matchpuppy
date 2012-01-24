@@ -29,6 +29,6 @@ production:
   encoding: unicode
   database: matchpuppy_production
   pool: 5
-  username: matchpuppy
-  password:
+  username: postgres
+  password: freddie123
 
