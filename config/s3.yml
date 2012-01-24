@@ -1,0 +1,12 @@
+development:
+  bucket: matchpuppy-dev
+  access_key_id: 017YBYNZGR3HVZ600X02
+  secret_access_key: qxbQK061zbEB2dFws7WOYtrqU6rYOuUyCnM0T9hY
+test:
+  bucket: matchpuppy-test
+  access_key_id: 017YBYNZGR3HVZ600X02
+  secret_access_key: qxbQK061zbEB2dFws7WOYtrqU6rYOuUyCnM0T9hY
+production:
+  bucket: matchpuppy-pro
+  access_key_id: 017YBYNZGR3HVZ600X02
+  secret_access_key: qxbQK061zbEB2dFws7WOYtrqU6rYOuUyCnM0T9hY

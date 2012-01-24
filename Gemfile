@@ -38,5 +38,8 @@ gem "paperclip", "~> 2.0"
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+# gem 'ruby-debug
+
+gem 'aws-s3'
+gem 'aws-sdk'
 

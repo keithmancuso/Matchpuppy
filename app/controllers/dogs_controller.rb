@@ -48,7 +48,7 @@ class DogsController < ApplicationController
     @user = User.find(params[:user_id])
     @dog = @user.dogs.create(params[:dog])
     
-     redirect_to user_path(@user)
+    redirect_to @user
     
     
   end
@@ -62,7 +62,7 @@ class DogsController < ApplicationController
     
      respond_to do |format|
            if @dog.update_attributes(params[:dog])
-             format.html { redirect_to user_dog_path(@user, @dog), :notice => 'Dog was successfully updated.' }
+             format.html { redirect_to @user, :notice => 'Dog was successfully updated.' }
              format.json { head :ok }
            else
              format.html { render :action => "edit" }

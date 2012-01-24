@@ -24,6 +24,9 @@ Favorite Park: <%= link_to @user.park.name, @user.park %></p>
 	<li><b>Gender:</b><%= dog.gender %></li>
   </ul>
 <% end %>
+<%= link_to "Add a Dog", new_user_dog_path(@user), :class=>"btn primary" %>
+<hr/>
+
 
 <%= link_to "Edit Profile", 'account/edit', :class=>"btn" %>
 
