@@ -1,25 +1,19 @@
-<%= form_for(@playdate_guest) do |f| %>
-  <% if @playdate_guest.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@playdate_guest.errors.count, "error") %> prohibited this playdate_guest from being saved:</h2>
 
-      <ul>
-      <% @playdate_guest.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :playdate_id %><br />
-    <%= f.number_field :playdate_id %>
-  </div>
-  <div class="field">
-    <%= f.label :dog_id %><br />
-    <%= f.number_field :dog_id %>
-  </div>
-  <div class="actions">
+	
+<div class="thumb">
+
+
+<%= form_for([@playdate, guest]) do |f| %>
+
+
+ <h5><%= playdate_guest.dog.id %></h5>
+
+    <%= f.label "Which Dog" %><br />
+ 	<%= f.text_field :dog_id  %>
+
     <%= f.submit %>
-  </div>
+  
 <% end %>
+</div>
+

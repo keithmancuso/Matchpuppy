@@ -15,6 +15,20 @@ class PlaydatesController < ApplicationController
   def show
     @playdate = Playdate.find(params[:id])
     @park = Park.find(@playdate.park_id)
+    
+    if @playdate.dogs
+      @dogs = Dog.joins(:park).where( :parks => { :id => @park.id }).where("dogs.id not IN (?)", @playdate.dogs )
+    else
+      @dogs = Dog.joins(:park).where( :parks => { :id => @park.id })
+    end
+    
+    @guests = Array.new
+    
+    @dogs.each do |dog| 
+      
+      @guests << PlaydateGuest.new(:dog_id => dog.id)
+      
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +40,10 @@ class PlaydatesController < ApplicationController
   # GET /playdates/new.json
   def new
     @playdate = Playdate.new
-
+    @playdate.user_id = current_user.id
+    @playdate.park_id = current_user.park_id
+    
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @playdate }
@@ -42,6 +59,9 @@ class PlaydatesController < ApplicationController
   # POST /playdates.json
   def create
     @playdate = Playdate.new(params[:playdate])
+    @playdate.user_id = current_user.id
+    @playdate.park_id = current_user.park_id
+     
 
     respond_to do |format|
       if @playdate.save
@@ -77,7 +97,7 @@ class PlaydatesController < ApplicationController
     @playdate.destroy
 
     respond_to do |format|
-      format.html { redirect_to playdates_url }
+      format.html { redirect_to root_path }
       format.json { head :ok }
     end
   end

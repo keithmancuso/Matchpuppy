@@ -1,13 +1,18 @@
 Matchpuppy::Application.routes.draw do
-
+  
+ match 'account' => 'users#show'
+ match 'account/edit' => 'users#edit'
+ 
+  
   resources :user_sessions
 
-  #match 'login' => 'user_sessions#new'
-  #match 'logout' => 'user_sessions#destroy'
+  match 'login' => 'user_sessions#new'
+  match 'logout' => 'user_sessions#destroy'
   
+  resources :playdates do
+    resources :playdate_guests
+  end
   
-  resources :playdate_guests
-  resources :playdates
   resources :parks
   resources :posts
 

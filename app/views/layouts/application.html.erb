@@ -16,8 +16,16 @@
 	<header>
 		<a href="/"><img src="/images/logo.png"></a>
 		
-		<div id ="login_nav"> 
-			<a href="#">Login</a>
+		<div class="pull-right" style="margin-right:100px"> 
+			<% if current_user %>
+		Logged in as <%= link_to current_user.name, user_path(current_user) %>,
+			<%= link_to "Logout", '/logout'%>
+			
+		| Park:	<%= current_user.park_id %>
+			<% else %>
+			<a href="/login">Login</a>
+			
+			<% end %>
 		</div>
 	</header>
 <div class="container">

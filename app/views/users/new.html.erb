@@ -1,3 +1,28 @@
+
+<div class="row">
+
+<div class="span8">
+	<h2>Dogs looking for playdates</h2>
+	
+	<% @dogs.each do |dog| %>
+<div style="float:left; margin-right:10px">
+	  
+	  <%= link_to ((image_tag dog.avatar.url(:thumb)), user_dog_path(dog.user, dog)) %>
+
+  </div>
+
+<% end %>
+
+</div>
+<div class="span8">
 <h1>Sign-up</h1>
+<% if notice %>
+<div class="alert-message error">
+<p id="notice"><%= notice %></p>
+</div>
+<% end %>
+
 <%= render 'form' %>
+</div>
+</div>
 

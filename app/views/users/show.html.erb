@@ -1,42 +1,36 @@
+<% if notice %>
+<div class="alert-message info">
 <p id="notice"><%= notice %></p>
+</div>
+<% end %>
 
-<p>
-  <b>Name:</b>
+<h1>
   <%= @user.name %>
-</p>
+</h1>
 
 <p>
-  <b>Email:</b>
-  <%= @user.email %>
+Favorite Park: <%= link_to @user.park.name, @user.park %></p>
 </p>
-
-
-<h3>Your Dogs</h3>
+<h3>Dogs</h3>
 <% @user.dogs.each do |dog| %>
   
+<h4><%= link_to dog.name, user_dog_path(@user, dog) %></h4>
 
-  <%= image_tag dog.avatar.url(:thumb) %>
-  
-  
-   <h4>
-    <%= dog.name %></h4>
- 
- 
+  <%= image_tag dog.avatar.url(:medium), :options =>  
+{:align=>"right", :style=>"padding-right: 10px; padding-top: 5px;"} %>
   <ul>
-    <li><b>Size:</b>
-    <%= dog.size %></li>
-	<li><%= dog.picture_url %></li>
+    <li><b>Size:</b><%= dog.size %></li>
+	<li><b>Breed:</b><%= dog.breed %></li>
+	<li><b>Gender:</b><%= dog.gender %></li>
   </ul>
 <% end %>
 
+<%= link_to "Edit Profile", 'account/edit', :class=>"btn" %>
+
+<%= link_to "Schedule Playdate", 'playdates/new', :class=>"btn primary" %>
 
 
 
-
-    <h3>Tell us about <% flash[:dogs_name] %></h3>
-
-
-<%= render "dogs/form" %>
 
 <!-- <%= form_for([@user, @user.dogs.build]) do |f| %>
   <div class="field">

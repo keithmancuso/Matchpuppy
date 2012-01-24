@@ -41,13 +41,16 @@ class PlaydateGuestsController < ApplicationController
   # POST /playdate_guests.json
   def create
     @playdate_guest = PlaydateGuest.new(params[:playdate_guest])
+    
+    @playdate = Playdate.find(params[:playdate_id])
+    @playdate_guest = @playdate.playdate_guests.new(params[:playdate_guest])
 
     respond_to do |format|
       if @playdate_guest.save
-        format.html { redirect_to @playdate_guest, :notice => 'Playdate guest was successfully created.' }
+        format.html { redirect_to @playdate, :notice => 'Playdate guest was successfully created.' }
         format.json { render :json => @playdate_guest, :status => :created, :location => @playdate_guest }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to @playdate, :notice => 'ERROR - Playdate guest was not invited .' }
         format.json { render :json => @playdate_guest.errors, :status => :unprocessable_entity }
       end
     end
@@ -57,10 +60,11 @@ class PlaydateGuestsController < ApplicationController
   # PUT /playdate_guests/1.json
   def update
     @playdate_guest = PlaydateGuest.find(params[:id])
-
+    @playdate = Playdate.find(params[:playdate_id])
+    
     respond_to do |format|
       if @playdate_guest.update_attributes(params[:playdate_guest])
-        format.html { redirect_to @playdate_guest, :notice => 'Playdate guest was successfully updated.' }
+        format.html { redirect_to @playdate, :notice => 'Playdate guest was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

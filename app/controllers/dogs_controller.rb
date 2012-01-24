@@ -29,7 +29,8 @@ class DogsController < ApplicationController
   # GET /dogs/new.json
   def new
     @dog = Dog.new
-
+    @dog.user_id = current_user.id
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @dog }
@@ -45,15 +46,7 @@ class DogsController < ApplicationController
   # POST /dogs.json
   def create
     @user = User.find(params[:user_id])
-    # uploaded_io = params[:dog][:picture_url]
-    # file_path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
-    
-    # File.open(file_path, 'w') do |file|
-    #    file.write(uploaded_io.read)
-    #  end
-    # params[:dog][:picture_url] = file_path
-    
-     @dog = @user.dogs.create(params[:dog])
+    @dog = @user.dogs.create(params[:dog])
     
      redirect_to user_path(@user)
     
@@ -63,30 +56,19 @@ class DogsController < ApplicationController
   # PUT /dogs/1
   # PUT /dogs/1.json
   def update
-    
     @user = User.find(params[:user_id])
     
-    # uploaded_io = params[:dog][:picture_url]
-    #  file_path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
-    #  
-    #  File.open(file_path, 'w') do |file|
-    #      file.write(uploaded_io.read)
-    #    end
-    #  params[:dog][:picture_url] = file_path
+    @dog = Dog.find(params[:id])
     
-    @dog = @user.dogs.create(params[:dog])
-   
-    redirect_to user_path(@user)
-
-    # respond_to do |format|
-    #       if @dog.update_attributes(params[:dog])
-    #         format.html { redirect_to @dog, :notice => 'Dog was successfully updated.' }
-    #         format.json { head :ok }
-    #       else
-    #         format.html { render :action => "edit" }
-    #         format.json { render :json => @dog.errors, :status => :unprocessable_entity }
-    #       end
-    #     end
+     respond_to do |format|
+           if @dog.update_attributes(params[:dog])
+             format.html { redirect_to user_dog_path(@user, @dog), :notice => 'Dog was successfully updated.' }
+             format.json { head :ok }
+           else
+             format.html { render :action => "edit" }
+             format.json { render :json => @dog.errors, :status => :unprocessable_entity }
+           end
+    end
   end
 
   # DELETE /dogs/1

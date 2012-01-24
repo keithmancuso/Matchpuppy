@@ -44,3 +44,15 @@ h1 {
 	color:white;
 	
 }
+
+.thumb {
+	float:left;
+	margin:10px;
+	
+	
+}
+
+hr {
+	clear:left;
+	
+}

@@ -10,16 +10,41 @@
   <%= @park.borough %>
 </p>
 
-
-<%= link_to 'Edit', edit_park_path(@park) %> |
-<%= link_to 'Back', parks_path %>
+<p>this is an api test 
+<%= @citypark %>
+</p>
 
 <hr/>
-<table>
+<h3>Dogs who love this park</h3>
+
 	<% @dogs.each do |dog| %>
-  <tr>
-    <td><%= dog.name %></td>
+<div style="float:left; margin-right:10px">
+	  
+	  <%= link_to ((image_tag dog.avatar.url(:thumb)), user_dog_path(dog.user, dog)) %>
+
+    <h3><%= dog.name %></h3>
    
-  </tr>
+  </div>
+
 <% end %>
-</table>
+
+<hr class="clearfix" style="clear:left;"/>
+
+<h3>Playdates scheduled at this park</h3>
+
+	<% @park.playdates.each do |playdate| %>
+<div style="float:left; margin-right:10px">
+	  
+	  
+
+    <h3><%= link_to ((l playdate.play_date, :format => :short), playdate)  %></h3>
+
+
+   
+  </div>
+
+<% end %>
+<hr style="clear:left;" />
+<%= link_to "Schedule a playdate here", "#", :class => "btn primary large"%>
+
+

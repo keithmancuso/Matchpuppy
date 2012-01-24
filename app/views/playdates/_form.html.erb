@@ -13,16 +13,10 @@
 
   <div class="field">
     <%= f.label :play_date %><br />
-    <%= f.datetime_select :play_date %>
+    <%= f.datetime_select :play_date, :class=>"span2" %>
   </div>
-  <div class="field">
-    <%= f.label :park_id %><br />
-    <%= f.number_field :park_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
+
+  
   <div class="actions">
     <%= f.submit %>
   </div>

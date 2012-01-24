@@ -1,35 +1,81 @@
+<% if notice %>
+<div class="alert-message info">
 <p id="notice"><%= notice %></p>
+</div>
+<% end %>
 
 <p>
   <b>Play date:</b>
-  <%= @playdate.play_date %>
+  <%= l @playdate.play_date, :format => :short %>
 </p>
 
 <p>
   <b>Park:</b>
-  <%= @playdate.park_id %>
+  <%= @playdate.park.name %>
 </p>
 
 <p>
-  <b>User:</b>
-  <%= @playdate.user_id %>
+  <b>Organizer:</b>
+  <%= @playdate.user.name %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @playdate.status %>
 </p>
 
 
-<%= link_to 'Edit', edit_playdate_path(@playdate) %> |
-<%= link_to 'Back', playdates_path %>
+<!-- <%= link_to 'Edit', edit_playdate_path(@playdate) %> |
+<%= link_to 'Back', playdates_path %> -->
 
 
 <hr/>
-<h3>Which Dogs would you want to invite?</h3>
-<table>
-	<% @park.dogs.each do |dog| %>
-  <tr>
-    <td><%= dog.name %>
-	<input type="checkbox">
-	</td>
-  </tr>
-<% end %>
-</table>
+<h2>Invited Dogs</h2>
+<% @playdate.playdate_guests.each do |guest| %>
+ <div class="thumb">
+	<%= image_tag guest.dog.avatar.url(:thumb) %>
+	<h4><%= guest.dog.name %></h4>
+	<p><%= guest.user.email %></p>
+	
+<!-- 	<%= form_for([@playdate, guest]) do |f| %>
 
-<input type="button" value="Invite Dogs" class="btn primary">
+	 	<%= f.hidden_field :dog_id  %>
+
+	    <%= f.submit "Invite this dog", :class=>"btn" %>
+
+	<% end %> -->
+ </div>
+  
+<% end %>
+<% if !@playdate.status %>
+<hr/>
+<h2>Other Dogs who love this park</h2>
+<% @guests.each do |guest| %>
+ <div class="thumb">
+	<%= image_tag guest.dog.avatar.url(:medium) %>
+	<h4><%= guest.dog.name %></h4>
+	
+	<%= form_for([@playdate, guest]) do |f| %>
+
+	 	<%= f.hidden_field :dog_id  %>
+
+	    <%= f.submit "Invite this dog", :class=>"btn" %>
+
+	<% end %>
+ </div>
+  
+<% end %>
+
+
+
+<hr/>
+
+
+<%= form_for(@playdate) do |f| %>
+
+ 	<%= f.hidden_field :status, :value=>"sent"  %>
+
+    <%= f.submit "Finalize Playdate and Invite Guests", :class=>"btn primary" %>
+
+<% end %>
+<% end %>

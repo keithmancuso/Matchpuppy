@@ -14,9 +14,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-    @dogs = @user.dogs.all
-    @dog = Dog.new
+    @user = current_user
+   
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,18 +26,24 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
-    @dog = Dog.new
-    @parks = Park.all
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @user }
+    if current_user
+      redirect_to '/account'
+    else
+      @user = User.new
+      @dog = Dog.new
+      @parks = Park.all
+      @dogs = Dog.find(:all, :conditions => 'avatar_file_name IS NOT NULL')
+    
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render :json => @user }
+      end
     end
   end
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
     @parks = Park.all
     
   end
