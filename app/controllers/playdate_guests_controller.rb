@@ -14,11 +14,19 @@ class PlaydateGuestsController < ApplicationController
   # GET /playdate_guests/1.json
   def show
     @playdate_guest = PlaydateGuest.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @playdate_guest }
+    @playdate = @playdate_guest.playdate
+    
+    if @playdate_guest.user == current_user
+      redirect_to edit_playdate_playdate_guest_path(@playdate, @playdate_guest)
+    else 
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render :json => @playdate_guest }
+      end
     end
+    
+    
+    
   end
 
   # GET /playdate_guests/new
@@ -35,6 +43,7 @@ class PlaydateGuestsController < ApplicationController
   # GET /playdate_guests/1/edit
   def edit
     @playdate_guest = PlaydateGuest.find(params[:id])
+    @playdate = Playdate.find(params[:playdate_id])
   end
 
   # POST /playdate_guests
@@ -49,6 +58,7 @@ class PlaydateGuestsController < ApplicationController
       if @playdate_guest.save
         format.html { redirect_to @playdate, :notice => 'Playdate guest was successfully created.' }
         format.json { render :json => @playdate_guest, :status => :created, :location => @playdate_guest }
+        format.js
       else
         format.html { redirect_to @playdate, :notice => 'ERROR - Playdate guest was not invited .' }
         format.json { render :json => @playdate_guest.errors, :status => :unprocessable_entity }

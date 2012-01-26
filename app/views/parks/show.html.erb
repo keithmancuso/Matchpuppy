@@ -1,50 +1,84 @@
+<% if notice %>
+<div class="alert-message info">
 <p id="notice"><%= notice %></p>
+</div>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @park.name %>
-</p>
+<div class="page-header">
+<h1><%= @park.name %></h1>
+</div>
+
+<div class="row">
+<div class="span8">
+
 
 <p>
   <b>Borough:</b>
   <%= @park.borough %>
 </p>
 
-<p>this is an api test 
-<%= @citypark %>
+<p>
+  <b>Type:</b>
+  <%= @park.park_type %>
 </p>
 
+<p>
+  <b>address:</b>
+  <%= @park.address %>
+</p>
+
+
+
+<iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= @park.name %>,<%= @park.borough %>&amp;aq=&amp;vpsrc=0&amp;t=m&amp;ie=UTF8&amp;hq=<%= @park.name %>,<%= @park.borough %>&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+<br/><br/>
+<p>
+  <%= @park.description %>
+</p>
 <hr/>
-<h3>Dogs who love this park</h3>
-
-	<% @dogs.each do |dog| %>
-<div style="float:left; margin-right:10px">
-	  
-	  <%= link_to ((image_tag dog.avatar.url(:thumb)), user_dog_path(dog.user, dog)) %>
-
-    <h3><%= dog.name %></h3>
-   
-  </div>
-
-<% end %>
-
+<h3><%= @dogs.count %> dogs love this park</h3>
+<ul class='thumbnails'>
+<%= render @dogs %>
+</ul>
 <hr class="clearfix" style="clear:left;"/>
 
-<h3>Playdates scheduled at this park</h3>
-
-	<% @park.playdates.each do |playdate| %>
-<div style="float:left; margin-right:10px">
-	  
-	  
-
-    <h3><%= link_to ((l playdate.play_date, :format => :short), playdate)  %></h3>
 
 
-   
-  </div>
+</div>
 
+<div class="span4">
+<% if current_user %>
+<% if @loved.count == 0 %>
+		
+	<%= form_for(@park_love) do |f| %>
+
+		<%= f.hidden_field :park_id  %>
+
+		<%= f.submit "I love this park", :class=>"btn info" %>
+		<span class="help-block">You can schedule playdates at parks that you love</span>
+	<% end %>
+	
+	
+<% else %>
+	<h3>Join a playdate here:</h3>
+
+	<%= render @park.playdates %>
+	<p>
+		- or -
+	</p>
+	<%= link_to "Schedule a new playdate", "/playdates/new", :class => "btn primary"%>
+	
 <% end %>
-<hr style="clear:left;" />
-<%= link_to "Schedule a playdate here", "#", :class => "btn primary large"%>
+<% end %>
+<br/><br/>
+<h3>Other dog parks in <%= @park.borough %></h3>
 
+<% @other_parks.each do |park| %>
+	<%= link_to park.name, park %><br/>
+<% end %><br/>
+<p>
+<%= link_to "« view all parks", parks_path(), :class=>"btn small" %>
+</p><br/>
+
+</div>
+</div>
 

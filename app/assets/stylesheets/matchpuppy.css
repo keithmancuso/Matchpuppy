@@ -7,7 +7,7 @@ header {
 	z-index: 2;
 	top: 0;
 	width: 100%;
-	padding-left: 30px;
+
 	left: 0;
 
 }
@@ -17,8 +17,14 @@ header img {
 
 }
 
+footer .container {
+	color: white;
+	background-color:#07324A;
+	padding:15px 20px 0 20px;
+}
+
 body {
-	margin-top:120px;
+	margin-top:50px;
 	/* background: url('/images/coming-soon.png') no-repeat; */
 	
 	background-color:#409683;
@@ -28,13 +34,31 @@ body {
 
 .container {
 	
-	padding-top:15px;
+	
+	
+	padding:0px;
+	
+}
+
+.main-container {
+	padding:20px;
+	padding-top:45px;
+	background-color:white;
+}
+
+.page-header {
+	margin: 18px 0;
+	border-bottom: 1px solid #EEE;
+}
+
+.page-header h1 {
+	margin-bottom: 17px;
+	line-height: 1;
 }
 
 h1 {
-	color: white;
-	background: url('/images/countdown-header.png') no-repeat;
-	padding:15px;
+	color: #FB0086;
+	
 }
 
 #login_nav a {
@@ -55,4 +79,24 @@ h1 {
 hr {
 	clear:left;
 	
+}
+
+
+/* Top Menu */
+
+.menu-nav {
+	
+	margin-top:20px;
+}
+
+#account-menu {
+	
+	color:white;
+	font-weight:bold;
+	
+}
+
+#account-menu a, #account-menu a:hover, #account-menu a:visited, #account-menu a:link {
+	color:white;
+	text-decoration:underline;
 }

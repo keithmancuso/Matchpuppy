@@ -39,6 +39,7 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
+    @user = User.find(params[:user_id])
     @dog = Dog.find(params[:id])
   end
 
@@ -48,7 +49,7 @@ class DogsController < ApplicationController
     @user = User.find(params[:user_id])
     @dog = @user.dogs.create(params[:dog])
     
-    redirect_to @user
+    redirect_to parks_path
     
     
   end

@@ -1,0 +1,5 @@
+
+<p>
+<%= @guest.dog.name %> was invited to a playdate at <%= @guest.park.name %> on  <%= l @guest.playdate.play_date, :format => :short %> by <%= @guest.playdate.user.name %>
+</p>
+<%= link_to "RSVP", playdate_url(@playdate, :host =>"matchpuppy.dev") %>

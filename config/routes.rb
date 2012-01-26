@@ -1,5 +1,9 @@
 Matchpuppy::Application.routes.draw do
   
+  
+
+  resources :park_loves
+
  match 'account' => 'users#show'
  match 'account/edit' => 'users#edit'
  
@@ -14,6 +18,8 @@ Matchpuppy::Application.routes.draw do
   end
   
   resources :parks
+  
+  
   resources :posts
 
   # The priority is based upon order of creation:

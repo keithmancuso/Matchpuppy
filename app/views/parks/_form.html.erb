@@ -11,16 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :borough %><br />
-	<%= f.select(:borough, options_for_select([['Manhattan'], ['Brooklyn'], ['Queens'], ['Bronx'], ['Staten Island']])) %>
-    
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<div class="clearfix">
+    	<%= f.label :name %>
+		<div class="input">
+			<%= f.text_field :name %>
+		</div>
+  	</div>
+
+
+  	<div class="clearfix">
+    	<%= f.label :borough %>
+		<div class="input">
+			<%= f.select(:borough, options_for_select([['Manhattan'], ['Brooklyn'], ['Queens'], ['Bronx'], ['Staten Island']])) %>
+		</div>
+  	</div>
+
+	<div class="clearfix">
+    	<%= f.label :park_type %>
+		<div class="input">
+    		<%= f.select(:park_type, options_for_select([['Run'], ['Off-Leash']])) %>
+		</div>
+  	</div>
+
+	<div class="clearfix">
+   		<%= f.label :address %>
+		<div class="input">
+    		<%= f.text_field :address %>
+		</div>
+ 	</div>
+
+	<div class="clearfix">
+	    <%= f.label :description %><br />
+		<div class="input">
+	    	<%= f.text_area :description, :style=>"height:50px" %>
+		</div>
+	</div>
+
+ 	<div class="actions">
+    	<%= f.submit %>
+  	</div>
 <% end %>

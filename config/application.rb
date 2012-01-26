@@ -44,5 +44,10 @@ module Matchpuppy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    #postmark mailer
+    config.action_mailer.delivery_method   = :postmark
+    config.action_mailer.postmark_settings = { :api_key => "278619f1-f816-45ff-a272-63a55a1ea3e8" }
+    
   end
 end

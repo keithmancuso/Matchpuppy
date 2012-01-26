@@ -1,0 +1,4 @@
+$('ul#invited').append("<%= escape_javascript(render @playdate_guest) %>");
+//$('div#<%= dom_id(@playdate_guest) %>').effect("highlight");
+
+$('div#invitee<%= @playdate_guest.dog.id %>').hide();

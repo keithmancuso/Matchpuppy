@@ -1,32 +1,56 @@
-<h1>Listing parks</h1>
 
-<table>
-  <tr>
+<div class="page-header">
+<% if current_user %>
+	<h4>Step 3</h4>
+<h1>Find dog parks that <%= current_user.dogs.first.name %> love's</h1>
+<% else %>
+<h1>Dog parks</h1>
+
+<% end %>
+</div>
+
+<div class="row">
+
+<div class="span2">
+	
+	<ul class="nav list">
+		<li class="nav-header">Borough</li>
+	  	<li class="active"><a href="#">Manhattan</a></li>
+		<li><a href="#">Brooklyn</a></li>
+	  	<li><a href="#">Queens</a></li>
+		<li><a href="#">Bronx</a></li>
+		<li><a href="#">Staten Island</a></li>
+	</ul>
+
+</div>
+
+<div class="span9">
+<table class="table-striped table table-condensed">
+<thead>  
+<tr>
     <th>Name</th>
     <th>Borough</th>
-    <th></th>
-    <th></th>
-    <th></th>
+	<th>Type</th>
+    <th>Address</th>
+    
   </tr>
-
+</thead>
+<tbody>
 <% @parks.each do |park| %>
   <tr>
-    <td><%= park.name %></td>
+    <td><%= link_to park.name, park %></td>
     <td><%= park.borough %></td>
-    <td><%= link_to 'Show', park %></td>
-    <td><%= link_to 'Edit', edit_park_path(park) %></td>
-    <td><%= link_to 'Destroy', park, :confirm => 'Are you sure?', :method => :delete %></td>
+	<td><%= park.park_type %></td>
+    <td><%= park.address %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 
+</div>
+</div>
 
 
-<br />
 
-<%= link_to 'New Park', new_park_path %>
-
-
-<%= select(:selected_park, "id", @parks.map {|u| [u.name,u.id]}) %>
 

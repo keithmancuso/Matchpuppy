@@ -1,6 +1,8 @@
 class PlaydatesController < ApplicationController
   # GET /playdates
   # GET /playdates.json
+  before_filter :require_user
+  
   def index
     @playdates = Playdate.all
 
@@ -14,20 +16,28 @@ class PlaydatesController < ApplicationController
   # GET /playdates/1.json
   def show
     @playdate = Playdate.find(params[:id])
-    @park = Park.find(@playdate.park_id)
     
-    if @playdate.dogs
-      @dogs = Dog.joins(:park).where( :parks => { :id => @park.id }).where("dogs.id not IN (?)", @playdate.dogs )
-    else
-      @dogs = Dog.joins(:park).where( :parks => { :id => @park.id })
-    end
+    @playdate_guests = @playdate.playdate_guests
+  
+    @park = Park.find(@playdate.park_id)
     
     @guests = Array.new
     
-    @dogs.each do |dog| 
-      
-      @guests << PlaydateGuest.new(:dog_id => dog.id)
-      
+    if current_user == @playdate.user
+      if @playdate.dogs.empty?
+        @dogs = @playdate.park.dogs
+      else
+        @dogs = @playdate.park.dogs.where("dogs.id not IN (?)", @playdate.dogs )
+      end
+    
+      @dogs.each do |dog| 
+        @guests << PlaydateGuest.new(:dog_id => dog.id)
+      end
+    
+    else
+      current_user.dogs.each do |dog|
+        @guests << PlaydateGuest.new(:dog_id => dog.id)
+      end
     end
 
     respond_to do |format|
@@ -42,6 +52,8 @@ class PlaydatesController < ApplicationController
     @playdate = Playdate.new
     @playdate.user_id = current_user.id
     @playdate.park_id = current_user.park_id
+    @parks = Park.all
+    
     
     
     respond_to do |format|
@@ -60,8 +72,12 @@ class PlaydatesController < ApplicationController
   def create
     @playdate = Playdate.new(params[:playdate])
     @playdate.user_id = current_user.id
-    @playdate.park_id = current_user.park_id
+    current_user.dogs.each do |dog|
+      @playdate.playdate_guests.new(:dog_id => dog.id, :rsvp=>"Yes") 
      
+    end
+    
+    
 
     respond_to do |format|
       if @playdate.save
@@ -101,4 +117,7 @@ class PlaydatesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+ 
+  
 end

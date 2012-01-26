@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123182903) do
+ActiveRecord::Schema.define(:version => 20120125230338) do
 
   create_table "dogs", :force => true do |t|
     t.string   "name"
@@ -27,11 +27,24 @@ ActiveRecord::Schema.define(:version => 20120123182903) do
     t.string   "avatar_file_name"
   end
 
+  create_table "park_loves", :force => true do |t|
+    t.integer  "park_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "park_loves", ["park_id"], :name => "index_park_loves_on_park_id"
+  add_index "park_loves", ["user_id"], :name => "index_park_loves_on_user_id"
+
   create_table "parks", :force => true do |t|
     t.string   "name"
     t.string   "borough"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "park_type"
+    t.string   "address"
+    t.text     "description"
   end
 
   create_table "playdate_guests", :force => true do |t|
@@ -39,17 +52,20 @@ ActiveRecord::Schema.define(:version => 20120123182903) do
     t.integer  "dog_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "rsvp"
   end
 
   add_index "playdate_guests", ["dog_id"], :name => "index_playdate_guests_on_dog_id"
 
   create_table "playdates", :force => true do |t|
-    t.datetime "play_date"
     t.integer  "park_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.date     "play_date"
+    t.time     "play_time"
+    t.text     "description"
   end
 
   add_index "playdates", ["park_id"], :name => "index_playdates_on_park_id"

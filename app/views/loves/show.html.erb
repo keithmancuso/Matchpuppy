@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Park:</b>
+  <%= @love.park_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @love.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_love_path(@love) %> |
+<%= link_to 'Back', loves_path %>

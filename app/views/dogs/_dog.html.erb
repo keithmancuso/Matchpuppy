@@ -1,17 +1,18 @@
-<% @user.dogs.each do |dog| %>
-  
-  <%= image_tag dog.avatar.url %>
-  <%= image_tag dog.avatar.url(:medium) %>
-  <%= image_tag dog.avatar.url(:thumb) %>
-  
-  
-   <h4>
-    <%= dog.name %></h4>
- 
- 
-  <ul>
-    <li><b>Size:</b>
-    <%= dog.size %></li>
-	<li><%= dog.picture_url %></li>
+<li class="span2">
+<div class="thumbnail">
+
+
+
+
+
+<a href="<%= user_dog_path(dog.user, dog) %>" rel="popover" data-original-title="<%= dog.name %>" data-content="
+	<ul class='unstyled'>
+    <li><b>Size:</b> <%= dog.size %></li>
+	<li><b>Breed:</b> <%= dog.breed %></li>
+	<li><b>Gender:</b> <%= dog.gender %></li>
   </ul>
-<% end %>
+	" data-html="true"><%= image_tag dog.avatar.url(:medium) %></a>
+
+
+</div>
+</li>

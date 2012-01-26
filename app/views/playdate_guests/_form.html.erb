@@ -4,16 +4,21 @@
 <div class="thumb">
 
 
-<%= form_for([@playdate, guest]) do |f| %>
+<%= form_for([@playdate, @playdate_guest]) do |f| %>
 
 
- <h5><%= playdate_guest.dog.id %></h5>
+ <h5><%= @playdate_guest.dog.name %></h5>
 
-    <%= f.label "Which Dog" %><br />
- 	<%= f.text_field :dog_id  %>
+   <div class="clearfix">
+    <%= f.label "RSVP?" %>
+  	<div class="input">
+		<%= f.select(:rsvp, options_for_select([['Yes'], ['Maybe'], ['No']])) %>
+	</div>
+  </div>
 
+<div class="actions">
     <%= f.submit %>
-  
+  </div>
 <% end %>
 </div>
 

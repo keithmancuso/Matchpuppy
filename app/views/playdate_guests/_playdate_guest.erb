@@ -1,0 +1,18 @@
+<li class="span2">
+<div class="thumbnail">
+	
+	<a href="<%= user_dog_path(playdate_guest.dog.user, playdate_guest.dog) %>" rel="popover" data-original-title="<%= playdate_guest.dog.name %>" data-content="
+		<ul>
+	    <li><b>Size:</b> <%= playdate_guest.dog.size %></li>
+		<li><b>Breed:</b> <%= playdate_guest.dog.breed %></li>
+		<li><b>Gender:</b> <%= playdate_guest.dog.gender %></li>
+	  </ul>
+		" data-html="true">
+	<%= image_tag playdate_guest.dog.avatar.url(:medium) %>
+	
+	</a>
+	
+	<h4><%= link_to playdate_guest.dog.name, playdate_playdate_guest_path(@playdate, playdate_guest) %></h4>
+	<p><%= playdate_guest.rsvp %></p>
+</div>
+</li>

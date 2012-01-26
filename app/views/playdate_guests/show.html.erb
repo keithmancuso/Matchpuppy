@@ -1,15 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+
+
+
+
+<h2>
+  <b>Play date:</b>
+  <%= l @playdate_guest.playdate.play_date, :format => :short %>
+</h2>
+
+<h3>
+  
+  <%= @playdate_guest.dog.name %>
+</h3>
+
 <p>
-  <b>Playdate:</b>
-  <%= @playdate_guest.playdate_id %>
+  <b>Park:</b>
+  <%= @playdate_guest.playdate.park.name %>
 </p>
 
 <p>
-  <b>Dog:</b>
-  <%= @playdate_guest.dog_id %>
+  <b>Organizer:</b>
+  <%= @playdate_guest.playdate.user.name %>
 </p>
 
+<p>
+	<b>Owner</b>
+	<%= @playdate_guest.user.name %>
+</p>
+<p>
+  <b>RSVP:</b>
+  <%= @playdate_guest.rsvp %>
+</p>
 
-<%= link_to 'Edit', edit_playdate_guest_path(@playdate_guest) %> |
-<%= link_to 'Back', playdate_guests_path %>
+<%= link_to "Back to Playdate", @playdate %>
+
+

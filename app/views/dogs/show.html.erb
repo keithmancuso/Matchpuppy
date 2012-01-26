@@ -5,29 +5,35 @@
 </div>
 <% end %>
 
-
+<div class="page-header">
 <h1><%= @dog.name %></h1>
+</div>
 
 <div class="row">
 	
-	<div class="span6">
-
+	<div class="span3">
+<a href="#" class="thumbnail">
 <%= image_tag @dog.avatar.url(:medium), :options =>  
 {:align=>"right", :style=>"padding-right: 10px; padding-top: 5px;"} %>
+</a>
 </div>
 
-<div class="span5">
+<div class="span4">
 
-<ul>
+<ul class="unstyled">
   <li><b>Size:</b> <%= @dog.size %></li>
 
-  <li><b>Breed:</b><%= @dog.breed %></li>
+  <li><b>Breed:</b> <%= @dog.breed %></li>
 
-  <li><b>Gender:</b><%= @dog.gender %></li>
+  <li><b>Gender:</b> <%= @dog.gender %></li>
 </ul>
+
+<h3>Dog Parks Loved</h3>
+
+<%= render @dog.user.park_loves %>
 </div>
 <div class="span5">
-	<p>Favorite Park: <%= link_to @dog.user.park.name, @dog.user.park %></p>
+	
 	<p>Owner: <%= link_to @dog.user.name, @dog.user %>
 </div>
 </div>
@@ -35,10 +41,20 @@
 
 
 
+<% if @dog.user == current_user %>
 
-
-<div class="actions">
-	<%= link_to 'Edit ' + @dog.name, edit_user_dog_path(@user,@dog), :class=>"btn" %>
+<div class="form-actions">	
+	<a href="<%= edit_user_dog_path(@user,@dog) %>" class="btn">
+			<i class="icon pencil"></i> Edit <%= @dog.name %>
+		</a>
+		
+		<a href="<%= user_dog_path(@user,@dog) %>" class="btn danger">
+				<i class="icon remove"></i> Delete <%= @dog.name %>
+			</a>
 	
-<%= link_to 'Schedule a playdate for ' + @dog.name , new_playdate_path(), :class=>"btn primary" %>
+	
+				<a href="<%= user_path(@dog.user) %>" class="btn info">
+						<i class="icon user"></i> View Owner: <%= @dog.user.name %>
+					</a>
 </div>
+<% end %>

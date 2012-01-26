@@ -11,10 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :play_date %><br />
-    <%= f.datetime_select :play_date, :class=>"span2" %>
+
+ <div class="clearfix">
+    <%= f.label "Which Park?" %><br />
+	<div class="input">
+    <%= f.select(:park_id, @parks.map {|u| [u.name,u.id]}) %>
+	</div>
   </div>
+
+  <div class="clearfix">
+    <%= f.label "What Day?" %><br />
+	<div class="input">
+    <%= f.date_select :play_date, :class=>"span2", :order => [:month,:day, :year], :use_month_numbers =>true %>
+	</div>
+  </div>
+<div class="clearfix">
+    <%= f.label "What Time?" %><br />
+	<div class="input">
+    <%= f.time_select :play_date, :class=>"span2", :ignore_date => true, :ampm => true, :time_separator => ':', :minute_step => 30 %>
+	</div>
+  </div>
+
+
+<div class="clearfix">
+    <%= f.label "Where in the park?" %><br />
+	<div class="input">
+    <%= f.text_area :description, :style=>"height:50px" %>
+	</div>
+  </div>
+
+
+
+
+
 
   
   <div class="actions">

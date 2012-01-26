@@ -1,26 +1,37 @@
+<% if notice %>
+<div class="alert">
+<%= notice %>
+</div>
+<% end %>
+
+
+<div class="page-header">
+<h1>It's a Dog Meet Dog World!</h1>
+</div>
 
 <div class="row">
 
 <div class="span8">
+	
+	
 	<h2>Dogs looking for playdates</h2>
 	
+	<ul class="thumbnails">
 	<% @dogs.each do |dog| %>
-<div style="float:left; margin-right:10px">
+
 	  
-	  <%= link_to ((image_tag dog.avatar.url(:thumb)), user_dog_path(dog.user, dog)) %>
+	<li class="thumbnail">
+	  <%= link_to ((image_tag dog.avatar.url(:thumb)), user_dog_path(dog.user, dog) ) %>
+	</li>
 
-  </div>
 
 <% end %>
+</ul>
 
 </div>
-<div class="span8">
-<h1>Sign-up</h1>
-<% if notice %>
-<div class="alert-message error">
-<p id="notice"><%= notice %></p>
-</div>
-<% end %>
+<div class="span4">
+<h2>Sign-up</h2>
+
 
 <%= render 'form' %>
 </div>

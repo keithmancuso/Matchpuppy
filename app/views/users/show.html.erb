@@ -1,51 +1,83 @@
 <% if notice %>
-<div class="alert-message info">
-<p id="notice"><%= notice %></p>
+<div class="alert">
+<%= notice %>
 </div>
 <% end %>
 
+<div class="page-header">
 <h1>
   <%= @user.name %>
 </h1>
+</div>
+<div class="row">
 
-<p>
-Favorite Park: <%= link_to @user.park.name, @user.park %></p>
-</p>
+<div class="span2">
+	
+	<ul class="nav list">
+		<li class="nav-header">Profile</li>
+	    <li class="active"><a href="#"><i class="icon home"></i> Home</a></li>
+	    <li><a href="#"><i class="icon asterisk"></i> Dogs</a></li>
+	    <li><a href="#"><i class="icon map-marker"></i> Parks</a></li>
+		<li><a href="#"><i class="icon time"></i> Playdates</a></li>
+		<li><a href="#"><i class="icon user"></i> Edit Profile</a></li>
+	 </ul>
+	</div>
+
+<div class="span3 ">
 <h3>Dogs</h3>
-<% @user.dogs.each do |dog| %>
-  
-<h4><%= link_to dog.name, user_dog_path(@user, dog) %></h4>
+<ul class="thumbnails">
+<%= render @user.dogs %>
+</ul>
 
-  <%= image_tag dog.avatar.url(:medium), :options =>  
-{:align=>"right", :style=>"padding-right: 10px; padding-top: 5px;"} %>
-  <ul>
-    <li><b>Size:</b><%= dog.size %></li>
-	<li><b>Breed:</b><%= dog.breed %></li>
-	<li><b>Gender:</b><%= dog.gender %></li>
-  </ul>
+<% if @user == current_user %>
+<div style="clear:left">
+
+
+
+
+</div>
 <% end %>
-<%= link_to "Add a Dog", new_user_dog_path(@user), :class=>"btn primary" %>
-<hr/>
+</div>
+<div class="span3">
+<h3>Parks Loved</h3>
 
+<%= render @user.park_loves %>
 
-<%= link_to "Edit Profile", 'account/edit', :class=>"btn" %>
+<% if @user.park_loves.count  == 0 %>
+<div class="help-block">
+	<A href="<%= parks_path %>">Find some dog parks</a> you love 
+	</div>
+<% end %>
 
-<%= link_to "Schedule Playdate", 'playdates/new', :class=>"btn primary" %>
+</div>
 
+<div class="span3">
+<h3>Upcoming Playdates</h3>
 
+<%= render @user.playdates %>
 
+<% if @user.playdates.count  == 0 %>
+<div class="help-block">
+	<A href="<%= parks_path %>">Find some dog parks</a> you love to schedule playdates there
+	</div>
+<% end %>
+</div>
+</div>
 
-<!-- <%= form_for([@user, @user.dogs.build]) do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :size %><br />
-    <%= f.text_field :size %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %> -->
+<% if @user == current_user %>
+
+	<div class="form-actions">
+
+	
+
+		<a href="<%= new_user_dog_path(@user) %>" class="btn class">
+		<i class="icon plus"></i>	Add another dog
+		</a>
+		<a href="<%= parks_path %>" class="btn primary">
+				<i class="icon search"></i> Find a Dog Park
+			</a>
+
+	</div>
+<% end %>
+
 

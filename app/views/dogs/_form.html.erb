@@ -1,53 +1,45 @@
 <%= form_for([@user, @dog]) do |f| %>
-<h3>
-Tell us more about <%= @dog.name %></strong>
-</h3>
-<div class="clearfix">
-	<h5>How big is your puppy?</h5>
-</div>
-	<div class="row" >
-	<div class="span4" style="height:250px"><img src="/images/small.png"><br/>
-		<%= f.label :small %><%= f.radio_button( :size, "small") %>
+
+
+<%= f.label "What's your dog's Name" %>
+<%= f.text_field(:name) %>
+
+	<label>How big?</label>
+
+	<div class="row" style="height:270px;" >
+		<div class="span3" >
+			<label for="smalldog">
+			<img src="/images/small.png" style="margin-top:80px;;"><br/>
+			Small (0-20lbs)
+			</label>
+			<%= f.radio_button( :size, "small", :id => "smalldog") %>
 		</div>
-	<div class="span4" style="height:250px"><img src="/images/medium.png"><br/>
-	<%= f.label :medium %>	<%= f.radio_button( :size, "small") %>
-		</div>
-	<div class="span4" style="height:250px"><img src="/images/large.png"><br/>
-		<%= f.label :large %><%= f.radio_button( :size, "small") %>
-		</div>
-	
-		
-			
+	<div class="span3" >
+		<label for="mediumdog">
+		<img src="/images/medium.png" style="margin-top:25px;"><br/>
+		Medium (21-50lbs)
+		</label>
+		<%= f.radio_button( :size, "medium", :id => "mediumdog") %>
+	</div>
+	<div class="span3" >
+		<label for="largedog">
+			<img src="/images/large.png"><br/>
+			Large (51lbs+)
+		</label>
+		<%= f.radio_button( :size, "large", :id=>"largedog") %>
+	</div>	
  </div>
 
-<div class="clearfix">
-    <%= f.label :name %>
-  	<div class="input">
-		<%= f.text_field(:name) %>
-	</div>
-  </div>
-  <div class="clearfix">
-    <%= f.label "What breed?" %>
-  	<div class="input">
-		<%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
-	</div>
-  </div>
-  <div class="clearfix">
-    <%= f.label :gender %>
-	<div class="input">
-   
-	<%= f.select(:gender, options_for_select([['Male'], ['Female']])) %>
-	
-	</div>
-  </div>
-   <div class="clearfix">
-      <%= f.label :Photo %>
-  	<div class="input">
-  		
-		 <%= f.file_field :avatar %>
-  	</div>
-    </div> 
-  <div class="actions">
-    <%= f.submit %>
+<%= f.label "What breed?" %>
+<%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
+
+<%= f.label :gender %>
+<%= f.select(:gender, options_for_select([['Male'], ['Female']])) %>
+
+<%= f.label :Photo %>
+<%= f.file_field :avatar %>
+  	
+  <div class="form-actions">
+    <%= f.submit nil, :class=>"btn primary" %>
   </div>
 <% end %>

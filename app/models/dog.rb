@@ -4,7 +4,8 @@ class Dog < ActiveRecord::Base
       :s3_credentials => {
         :access_key_id => '017YBYNZGR3HVZ600X02',
         :secret_access_key => 'qxbQK061zbEB2dFws7WOYtrqU6rYOuUyCnM0T9hY'
-      }
+      }, 
+      :default_url => '/images/default-dog.png'
   
   belongs_to :user
   has_many :playdate_guests

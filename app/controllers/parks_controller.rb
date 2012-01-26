@@ -15,6 +15,18 @@ class ParksController < ApplicationController
   def show
     @park = Park.find(params[:id])
     @dogs = @park.dogs
+    @other_parks = Park.where("id != ?", @park.id).where(:borough => @park.borough)
+    
+    if current_user
+      @loved = ParkLove.where(:user_id => current_user.id, :park_id => @park.id)
+      if @loved.count == 0
+        @park_love = ParkLove.new
+        @park_love.park_id = @park.id
+      end
+    end
+    
+    
+    
     
     respond_to do |format|
       format.html # show.html.erb
