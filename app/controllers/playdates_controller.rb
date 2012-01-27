@@ -1,7 +1,7 @@
 class PlaydatesController < ApplicationController
   # GET /playdates
   # GET /playdates.json
-  before_filter :require_user
+  before_filter :require_user, :except => :index
   
   def index
     @playdates = Playdate.all
@@ -65,6 +65,8 @@ class PlaydatesController < ApplicationController
   # GET /playdates/1/edit
   def edit
     @playdate = Playdate.find(params[:id])
+    @parks = Park.all
+    
   end
 
   # POST /playdates

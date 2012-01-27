@@ -44,20 +44,27 @@
 
 <% if !@playdate.status && @playdate.user == current_user %>
 	<hr/>
-	<h2>Other Dogs who love this park</h2>
-	<% @guests.each do |playdate_guest| %>
-	<div id="invitee<%= playdate_guest.dog.id %>" class="thumb">
-		<%= image_tag playdate_guest.dog.avatar.url(:medium) %>
-		<h4><%= playdate_guest.dog.name %></h4>
+	<h3>Other Dogs who love this park</h3>
+	
+	
+	<% if @guests.count > 0 %>
+		
+		<% @guests.each do |playdate_guest| %>
+		<div id="invitee<%= playdate_guest.dog.id %>" class="thumb">
+			<%= image_tag playdate_guest.dog.avatar.url(:medium) %>
+			<h4><%= playdate_guest.dog.name %></h4>
 
-		<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
+			<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
 
-		 	<%= f.hidden_field :dog_id  %>
+			 	<%= f.hidden_field :dog_id  %>
 
-		    <%= f.submit "Invite this dog", :class=>"btn" %>
+			    <%= f.submit "Invite this dog", :class=>"btn" %>
 
+			<% end %>
+		 </div>
 		<% end %>
-	 </div>
+	<% else %>
+	<div class="help-block">No other dogs love this park right now.  Help spread the word about matchpuppy, share it on facebook and twitter</div>
 	<% end %>
 	
 	
@@ -66,12 +73,18 @@
 
 
 	<%= form_for(@playdate) do |f| %>
+	
+	
+	<div class="form-actions">
+	<%= link_to "Edit Playdate", edit_playdate_path(@playdate), :class=>"btn" %>
+	
 
 	 	<%= f.hidden_field :status, :value=>"sent"  %>
 
 	    <%= f.submit "Finalize Playdate and Invite Guests", :class=>"btn primary" %>
-
+	</div>
 	<% end %>
+
 	
 <% else %>
 

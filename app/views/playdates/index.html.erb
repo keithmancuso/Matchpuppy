@@ -1,29 +1,44 @@
-<h1>Listing playdates</h1>
+<div class="page-header">
+<h1>Scheduled playdates</h1>
+</div>
 
-<table>
-  <tr>
-    <th>Play date</th>
-    <th>Park</th>
-    <th>User</th>
-<th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @playdates.each do |playdate| %>
-  <tr>
-    <td><%= playdate.play_date %></td>
-    <td><%= playdate.park.name %></td>
-    <td><%= playdate.user.name %></td>
-<td><%= playdate.status %></td>
-    <td><%= link_to 'Show', playdate %></td>
-    <td><%= link_to 'Edit', edit_playdate_path(playdate) %></td>
-    <td><%= link_to 'Destroy', playdate, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+<table style="width:100%" class="table table-bordered">
+	
+	
+	<tr> 
+		<td><h4>22</h4></td>
+		<td><h4>23</h4></td>
+		<td><h4>24</h4></td>
+		<td><h4>25</h4></td>
+		<td><h4>Today - Thu Jan 26</h4>
+		<ul class="unstyled">
+		<% @playdates.each do |playdate| %>
+			<li><%= link_to playdate.play_date, playdate %> - <%= playdate.park.name %> (<%= playdate.dogs.count %> dogs coming)</li>
+		<% end %>	
+		</ul>
+		</td>
+		<td><h4>27</h4></td>
+		<td><h4>28</h4></td>
+	</tr>
+	<tr>
+		<td><h4>29</h4></td>
+		<td><h4>30</h4></td>
+		<td><h4>31</h4></td>
+		<td><h4>1</h4></td>
+		<td><h4>2</h4></td>
+		<td><h4>3</h4></td>
+		<td><h4>4</h4></td>
+	</tr>
+
 </table>
+
+
+
 
 <br />
 
-<%= link_to 'New Playdate', new_playdate_path %>
+<div class="form-actions">
+
+<%= link_to 'Schedule a New Playdate', new_playdate_path, :class => "btn primary" %>
+</div>

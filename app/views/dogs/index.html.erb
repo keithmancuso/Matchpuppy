@@ -1,31 +1,38 @@
-<h1>Listing dogs</h1>
+<div class="page-header">
+<h1>Dogs</h1>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Size</th>
-    <th>Breed</th>
-    <th>Gender</th>
-    <th>Picture url</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @dogs.each do |dog| %>
-  <tr>
-    <td><%= dog.name %></td>
-    <td><%= dog.size %></td>
-    <td><%= dog.breed %></td>
-    <td><%= dog.gender %></td>
-    <td><%= dog.picture_url %></td>
-    <td><%= link_to 'Show', user_dog_path %></td>
-    <td><%= link_to 'Edit', edit_user_dog_path(@user, dog) %></td>
-    <td><%= link_to 'Destroy', dog, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div class="row">
 
-<br />
+<div class="span3">
 
-<%= link_to 'New Dog', new_user_dog_path(@user, @dog) %>
+	<ul class="nav list">
+		<li class="nav-header">Breed</li>
+	  	<li ><a href="#">Beagle</a></li>
+		<li><a href="#">Boxer</a></li>
+	  	<li class="active"><a href="#">Bulldog</a></li>
+		<li><a href="#">Chihuahua</a></li>
+		<li><a href="#">Golden Retriver</a></li>
+		<li class="nav-header">Size</li>
+	  	<li class="active"><a href="#">Small</a></li>
+		<li><a href="#">Medium</a></li>
+	  	<li><a href="#">Large</a></li>
+		
+		<li class="nav-header">Gender</li>
+	  	<li><a href="#">Male</a></li>
+		<li><a href="#">Female</a></li>
+	  
+	</ul>
+
+</div>
+
+<div class="span9">
+<ul class="thumbnails">
+<%= render @dogs %>
+</ul>
+
+</div>
+</div>
+
+

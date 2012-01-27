@@ -83,4 +83,6 @@ Matchpuppy::Application.routes.draw do
     resources :dogs
   end
   
+  match 'dogs' => 'dogs#index'
+  
 end

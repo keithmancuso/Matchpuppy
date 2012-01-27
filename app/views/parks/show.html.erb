@@ -35,10 +35,22 @@
   <%= @park.description %>
 </p>
 <hr/>
+
+<% if @dogs.count > 0 %>
+
 <h3><%= @dogs.count %> dogs love this park</h3>
 <ul class='thumbnails'>
 <%= render @dogs %>
 </ul>
+
+<% else %>
+
+<h3>No dogs love this park, yet</h3>
+
+<div class="help-block">No other dogs love this park right now.  Help spread the word about Matchpuppy, <A href="#">share it on facebook and twitter</a></div>
+
+<% end %>
+
 <hr class="clearfix" style="clear:left;"/>
 
 

@@ -1,8 +1,8 @@
 
 
 header {
-	background: url('/images/header.png') repeat-x;
-	height: 89px;
+	background: url('/assets/header.png') repeat-x;
+	height: 65px;
 	position: fixed;
 	z-index: 2;
 	top: 0;
@@ -24,10 +24,14 @@ footer .container {
 }
 
 body {
-	margin-top:50px;
-	/* background: url('/images/coming-soon.png') no-repeat; */
+	margin-top:10px;
 	
-	background-color:#409683;
+	
+	background: #43B69A url("/assets/background.png");
+	background-repeat: repeat-x;
+
+	background-color:#00BC9D;
+	height:100%;
 	
 	
 }
@@ -44,6 +48,8 @@ body {
 	padding:20px;
 	padding-top:45px;
 	background-color:white;
+	background: url("/assets/translucent.png");
+	
 }
 
 .page-header {
@@ -86,17 +92,14 @@ hr {
 
 .menu-nav {
 	
-	margin-top:20px;
+	margin-top:10px;
 }
 
 #account-menu {
 	
-	color:white;
-	font-weight:bold;
 	
 }
 
 #account-menu a, #account-menu a:hover, #account-menu a:visited, #account-menu a:link {
-	color:white;
-	text-decoration:underline;
+
 }

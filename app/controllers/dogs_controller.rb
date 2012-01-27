@@ -1,17 +1,13 @@
 class DogsController < ApplicationController
   
-  before_filter :get_user
+  before_filter :get_user, :except => :index
+  
   
   # GET /dogs
   # GET /dogs.json
   def index
     @dogs = Dog.all
-    @user = User.find(params[:user_id])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @dogs }
-    end
+    
   end
 
   # GET /dogs/1
