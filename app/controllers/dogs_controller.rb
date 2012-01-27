@@ -6,7 +6,10 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
+    @title = "Dogs"
+    
     @dogs = Dog.all
+    
     
   end
 
@@ -15,6 +18,8 @@ class DogsController < ApplicationController
   def show
     @dog = Dog.find(params[:id])
     @user = @dog.user
+    
+    @title = @dog.name
     
     respond_to do |format|
       format.html # show.html.erb

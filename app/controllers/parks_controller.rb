@@ -2,6 +2,7 @@ class ParksController < ApplicationController
   # GET /parks
   # GET /parks.json
   def index
+     @title = "Parks"
     @parks = Park.all
 
     respond_to do |format|
@@ -16,6 +17,8 @@ class ParksController < ApplicationController
     @park = Park.find(params[:id])
     @dogs = @park.dogs
     @other_parks = Park.where("id != ?", @park.id).where(:borough => @park.borough)
+    
+    @title = @park.name
     
     if current_user
       @loved = ParkLove.where(:user_id => current_user.id, :park_id => @park.id)

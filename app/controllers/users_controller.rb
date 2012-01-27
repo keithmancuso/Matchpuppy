@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       @user = current_user
     end
    
+    @title = @user.name
 
     respond_to do |format|
       format.html # show.html.erb
