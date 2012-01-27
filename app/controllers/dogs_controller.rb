@@ -65,7 +65,7 @@ class DogsController < ApplicationController
     
      respond_to do |format|
            if @dog.update_attributes(params[:dog])
-             format.html { redirect_to @user, :notice => 'Dog was successfully updated.' }
+             format.html { redirect_to parks_path, :notice => 'Dog was successfully updated.' }
              format.json { head :ok }
            else
              format.html { render :action => "edit" }
