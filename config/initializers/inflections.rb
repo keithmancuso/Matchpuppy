@@ -10,5 +10,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.uncountable %w( fish sheep )
 
 inflect.irregular 'love', 'loves'
+inflect.irregular 'park_love', 'park_loves'
+
 
 end
