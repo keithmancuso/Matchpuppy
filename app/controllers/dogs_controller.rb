@@ -14,7 +14,8 @@ class DogsController < ApplicationController
   # GET /dogs/1.json
   def show
     @dog = Dog.find(params[:id])
-
+    @user = @dog.user
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @dog }
