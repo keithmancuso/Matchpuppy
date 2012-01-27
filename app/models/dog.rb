@@ -1,9 +1,9 @@
 class Dog < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :storage => :s3,
-      :bucket => 'matchpuppy-dev',
+      :bucket => 'MatchPuppy',
       :s3_credentials => {
-        :access_key_id => '017YBYNZGR3HVZ600X02',
-        :secret_access_key => 'qxbQK061zbEB2dFws7WOYtrqU6rYOuUyCnM0T9hY'
+        :access_key_id => 'AKIAJYTNN7664YXLY5KA',
+        :secret_access_key => '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'
       }, 
       :default_url => '/images/default-dog.png'
   
