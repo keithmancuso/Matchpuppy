@@ -11,6 +11,6 @@ class Dog < ActiveRecord::Base
   has_many :playdate_guests
   has_one :park, :through => :user
   has_many :playdates, :through => :playdate_guests
-  
+  has_many :park_loves, :through => :user
   
 end
