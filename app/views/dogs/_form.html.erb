@@ -34,7 +34,23 @@
 <%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
 
 <%= f.label :gender %>
-<%= f.select(:gender, options_for_select([['Male'], ['Female']])) %>
+<div class = "row">
+	<div class = "span2">
+		<label for = "male">
+			<%= image_tag 'male-paw.png' %> Male
+			<%= f.radio_button( :gender, "Male", :id => "male") %>
+			
+		</label>
+	</div>
+	<div class = "span2">
+		<label for = "female">
+			<%= image_tag 'female-paw.png' %> Female
+			<%= f.radio_button( :gender, "Female", :id => "female") %>
+			
+		</label>
+	</div>
+</div>
+
 
 <%= f.label :Photo %>
 <%= f.file_field :avatar %>

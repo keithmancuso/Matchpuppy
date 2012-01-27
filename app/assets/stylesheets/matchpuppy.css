@@ -1,7 +1,7 @@
 
 
 header {
-	background: url('/assets/header.png') repeat-x;
+	background: url('/assets/header_background.png') repeat-x;
 	height: 65px;
 	position: fixed;
 	z-index: 2;
@@ -92,7 +92,7 @@ hr {
 
 .menu-nav {
 	
-	margin-top:10px;
+	margin-top:15px;
 }
 
 #account-menu {
