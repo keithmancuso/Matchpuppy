@@ -6,7 +6,7 @@
 
 <div class="page-header">
 <h1>
-  <%= @user.name %>
+  Your Profile
 </h1>
 </div>
 <div class="row">
@@ -14,7 +14,7 @@
 
 
 <div class="span3 ">
-<h3>Dogs</h3>
+<h3>Your Dogs</h3>
 <ul class="thumbnails">
 <%= render @user.dogs %>
 </ul>
@@ -29,7 +29,7 @@
 <% end %>
 </div>
 <div class="span3">
-<h3>Parks Loved</h3>
+<h3>Parks you Love</h3>
 
 <%= render @user.park_loves %>
 

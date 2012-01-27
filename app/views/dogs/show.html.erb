@@ -26,15 +26,22 @@
   <li><b>Breed:</b> <%= @dog.breed %></li>
 
   <li><b>Gender:</b> <%= @dog.gender %></li>
+	<li><b>Owner:</b> <%= link_to @dog.user.name, @dog.user %></li>
 </ul>
 
-<h3>Dog Parks Loved</h3>
+<p>
+<b>Favorite Thing:</b>
 
-<%= render @user.park_loves %>
+<%= @dog.favorite %>
+</p>
+
+
 </div>
 <div class="span5">
 	
-	<p>Owner: <%= link_to @dog.user.name, @dog.user %>
+	<h3>Dog Parks Loved</h3>
+
+	<%= render @user.park_loves %>
 </div>
 </div>
 

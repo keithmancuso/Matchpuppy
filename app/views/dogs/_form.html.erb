@@ -1,60 +1,69 @@
 <%= form_for([@user, @dog]) do |f| %>
 
+<div class="control-group">
 
 <%= f.label "What's your dog's Name" %>
 <%= f.text_field(:name) %>
-
+</div>
+<div class="control-group">
 	<label>How big?</label>
 
-	<div class="row" style="height:270px;" >
-		<div class="span3" >
+	<div class="row" style="height:260px;" >
+		<div class="span2" >
 			<label for="smalldog">
 			<img src="/images/small.png" style="margin-top:80px;;"><br/>
-			Small (0-20lbs)
+			<%= f.radio_button( :size, "small", :id => "smalldog") %> Small (0-20lbs)
 			</label>
-			<%= f.radio_button( :size, "small", :id => "smalldog") %>
+			
 		</div>
 	<div class="span3" >
 		<label for="mediumdog">
 		<img src="/images/medium.png" style="margin-top:25px;"><br/>
-		Medium (21-50lbs)
+		<%= f.radio_button( :size, "medium", :id => "mediumdog") %> Medium (21-50lbs)
 		</label>
-		<%= f.radio_button( :size, "medium", :id => "mediumdog") %>
+		
 	</div>
 	<div class="span3" >
 		<label for="largedog">
 			<img src="/images/large.png"><br/>
-			Large (51lbs+)
+			<%= f.radio_button( :size, "large", :id=>"largedog") %> Large (51lbs+)
 		</label>
-		<%= f.radio_button( :size, "large", :id=>"largedog") %>
+		
 	</div>	
  </div>
-
+</div>
+<div class="control-group">
 <%= f.label "What breed?" %>
 <%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
-
+</div>
+<div class="control-group">
 <%= f.label :gender %>
 <div class = "row">
 	<div class = "span2">
 		<label for = "male">
-			<%= image_tag 'male-paw.png' %> Male
+			<%= image_tag 'male-paw.png' %> 
 			<%= f.radio_button( :gender, "Male", :id => "male") %>
-			
+			Mail
 		</label>
 	</div>
 	<div class = "span2">
 		<label for = "female">
-			<%= image_tag 'female-paw.png' %> Female
+			<%= image_tag 'female-paw.png' %> 
 			<%= f.radio_button( :gender, "Female", :id => "female") %>
-			
+			Female
 		</label>
 	</div>
 </div>
 
-
+</div>
+<div class="control-group">
 <%= f.label :Photo %>
 <%= f.file_field :avatar %>
-  	
+ </div>
+<%= f.label "What's your favorite thing about your dog?" %>
+ <%= f.text_area :favorite, :style=>"height:50px" %>
+	
+
   <div class="form-actions">
     <%= f.submit nil, :class=>"btn primary" %>
   </div>

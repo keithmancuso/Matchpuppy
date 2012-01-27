@@ -27,6 +27,20 @@ class UsersController < ApplicationController
       format.json { render :json => @user }
     end
   end
+  
+  
+  # GET /users/1
+  # GET /users/1.json
+  def profile
+    
+    @user = current_user
+    @title = @user.name
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @user }
+    end
+  end
 
   # GET /users/new
   # GET /users/new.json

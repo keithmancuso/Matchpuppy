@@ -103,3 +103,15 @@ hr {
 #account-menu a, #account-menu a:hover, #account-menu a:visited, #account-menu a:link {
 
 }
+
+/* Forms */
+
+label {
+	
+	font-weight:bold;
+}
+
+input[type="radio"] {
+	display:inline;
+	
+}

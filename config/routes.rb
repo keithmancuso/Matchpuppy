@@ -4,7 +4,7 @@ Matchpuppy::Application.routes.draw do
 
   resources :park_loves
 
- match 'account' => 'users#show'
+ match 'account' => 'users#profile'
  match 'account/edit' => 'users#edit'
  
   

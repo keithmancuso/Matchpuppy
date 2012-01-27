@@ -48,7 +48,7 @@
 				</div>
 				<div class = "span2 menu-nav" id="account-menu"  > 
 					<% if current_user %>
-					 <%= link_to "Profile", user_path(current_user), :class =>"btn" %> 
+					 <%= link_to "Profile", account_path, :class =>"btn" %> 
 						<%= link_to "Logout", '/logout', :class=>"btn"%>
 					<% else %>
 						<a href = "/login" class="btn" >Login</a>

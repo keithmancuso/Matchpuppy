@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120125230338) do
+ActiveRecord::Schema.define(:version => 20120127172832) do
 
   create_table "dogs", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120125230338) do
     t.integer  "avatar_file_size"
     t.string   "avatar_content_type"
     t.string   "avatar_file_name"
+    t.text     "favorite"
   end
 
   create_table "park_loves", :force => true do |t|
