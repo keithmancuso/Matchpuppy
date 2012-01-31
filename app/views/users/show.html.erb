@@ -13,7 +13,7 @@
 
 
 
-<div class="span3 ">
+<div class="span4 ">
 <h3>Dogs</h3>
 <ul class="thumbnails">
 <%= render @user.dogs %>
@@ -58,9 +58,9 @@
 
 	<div class="form-actions">
 
-	
-
-		<a href="<%= new_user_dog_path(@user) %>" class="btn class">
+		<%= link_to "Edit Profile", "/account/edit", :class=>"btn" %>
+		
+		<a href="<%= new_user_dog_path(@user) %>" class="btn ">
 		<i class="icon plus"></i>	Add another dog
 		</a>
 		<a href="<%= parks_path %>" class="btn primary">

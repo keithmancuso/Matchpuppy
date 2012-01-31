@@ -17,12 +17,11 @@ class PlaydatesController < ApplicationController
   # GET /playdates/1.json
   def show
     @playdate = Playdate.find(params[:id])
-    
     @playdate_guests = @playdate.playdate_guests
-  
+    @comments = @playdate.comments
     @park = Park.find(@playdate.park_id)
-    
     @guests = Array.new
+    @new_comment = @playdate.comments.new(:user_id => current_user.id)
     
     if current_user == @playdate.user
       if @playdate.dogs.empty?

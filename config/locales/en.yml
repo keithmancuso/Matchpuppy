@@ -3,3 +3,12 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      playdatetime: "%A, %B %d at %I:%M %p"
+      playdate: "%A, %B %d"
+      playtime: "%I:%M %p"
+  time:
+    formats:
+      long:"%A, %B %d at %I:%M %p"
+      short: "%I:%M %p"

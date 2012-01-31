@@ -3,7 +3,11 @@ class ParksController < ApplicationController
   # GET /parks.json
   def index
      @title = "Parks"
-    @parks = Park.all
+     
+    params[:borough] ||= "%"
+    params[:park_type] ||= "%"
+    @parks = Park.where('borough like ? and park_type like ?', params[:borough], params[:park_type] )
+       
 
     respond_to do |format|
       format.html # index.html.erb

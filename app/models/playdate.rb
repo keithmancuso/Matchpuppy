@@ -3,6 +3,7 @@ class Playdate < ActiveRecord::Base
   belongs_to :park
   has_many :playdate_guests, :dependent => :destroy
   has_many :dogs, :through => :playdate_guests
+  has_many :comments
   
   #after_save :invite_guests
   

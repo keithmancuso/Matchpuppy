@@ -1,6 +1,6 @@
 
 
-<%= form_for(@user, :html => {:class=>"well"}) do |f| %>
+<%= form_for(@user, :html => {}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -21,8 +21,8 @@
     <%= f.label "Your Email" %>
 
     	<%= f.text_field :email %>
-	
-  <%= fields_for :dog do |d| %>
+	<% if f.object.new_record? %>
+  <%=  fields_for :dog do |d| %>
  
     <%= d.label("Your dog's name:") %>
     
@@ -30,9 +30,9 @@
     	<%= d.text_field :name %>
 
   <% end %> 
- 
+ <% end %>
   
-      <%= f.label :password %>
+      <%= f.label :password, f.object.new_record? ? nil : "Change password" %>
     	  <%= f.password_field :password %>
     
      <%= f.label :password_confirmation %>
@@ -42,8 +42,15 @@
   
   
   <div class="actions">
-    <%= f.submit("Sign-up", :class=>'btn primary') %>
-    <%= link_to "Have an account? Login", :login %>
+	
+	<% if f.object.new_record? %>
+    <%= f.submit("Sign-up" , :class=>'btn primary') %>
+<%= link_to "Have an account? Login", :login %>
+	<% else %>
+		<%= link_to "Cancel", :account, :class =>"btn" %>
+		
+    	<%= f.submit("Edit Account" , :class=>'btn primary') %>
+	<% end %>
 
   </div>
 <% end %>

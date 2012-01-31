@@ -2,13 +2,25 @@ Matchpuppy::Application.routes.draw do
   
   
 
+  
+  #static pages
+  match 'privacy' => 'pages#privacy'
+  match 'terms' => 'pages#terms'
+  
+  
+  get "pages/terms"
+
   resources :park_loves
+  resources :comments
+  
 
  match 'account' => 'users#profile'
  match 'account/edit' => 'users#edit'
  
   
   resources :user_sessions
+  
+   resources :password_resets
 
   match 'login' => 'user_sessions#new'
   match 'logout' => 'user_sessions#destroy'
@@ -17,7 +29,11 @@ Matchpuppy::Application.routes.draw do
     resources :playdate_guests
   end
   
+  
+  #match 'parks/:borough/:park_type' => 'parks#index'
+  
   resources :parks
+  
   
   
   resources :posts

@@ -24,14 +24,23 @@
 
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 	
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<header>
 		<div class="container">
 			<div class="row">
-				<div class="span4">
+				<div class="span3">
 					<a href="/"><img src="/assets/logo.png"></a>
 				</div>
-				<div class = "span6 menu-nav">
+				<div class = "span4 menu-nav">
 					<div >
 							<A href  = "/dogs" class="btn info">
 								Dogs
@@ -46,10 +55,11 @@
 							</a>
 						</div>
 				</div>
-				<div class = "span2 menu-nav" id="account-menu"  > 
+				<div class = "span5 menu-nav" id="account-menu"  align="right"  > 
 					<% if current_user %>
-					 <%= link_to "Profile", account_path, :class =>"btn" %> 
-						<%= link_to "Logout", '/logout', :class=>"btn"%>
+				
+					 <%= link_to "Your Profile", account_path, :class =>"btn small" %> 
+						<%= link_to "Logout", '/logout', :class=>"btn small"%>
 					<% else %>
 						<a href = "/login" class="btn" >Login</a>
 					<% end %>
@@ -64,7 +74,7 @@
 
 <footer class="footer">
         <div class="container">
-        <p>&copy; 2012 Matchpuppy.com - <a href="#">Twitter</a> | <a href="#">Tumblr</a> | <a href="#">Privacy Policy</a></p>
+        <p>&copy; 2012 Matchpuppy.com - <a href="#">Twitter</a> | <a href="#">Tumblr</a> | <a href="/privacy">Privacy Policy</a>| <a href="/terms">Terms of Use</a></p>
 	</div>
       </footer>
 
