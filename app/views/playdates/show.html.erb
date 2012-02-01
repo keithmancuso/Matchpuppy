@@ -1,13 +1,15 @@
 <% if notice %>
-<div class="alert-message info">
-<p id="notice"><%= notice %></p>
+<div class="alert info">
+<%= notice %>
 </div>
 <% end %>
 
 <div class="page-header">
 	<div class="row">
 		<div class="span8">
-			<h1>Playdate for <%= l @playdate.play_date, :format => :playdate %></h1>
+			<h1>
+				<% if @playdate.user == current_user %>Your <% end %>playdate for <%= l @playdate.play_date, :format => :playdate %>
+			</h1>
 		</div>
 		<Div class="span4">
 			<div class="fb-like" data-send="true" data-width="100" data-show-faces="false"></div>
@@ -17,161 +19,152 @@
 
 <div class="row">
 
-<div class="span3">
-	<h3>Instigator</h3>
-	
-	<%= image_tag @playdate.user.dogs.last.avatar.url(:medium) %>
-	<h4><%= link_to @playdate.user.dogs.last.name, user_dog_path(@playdate.user, @playdate.user.dogs.last) %> </h4>
-	<ul class="unstyled">
-		<li>Breed: <%= @playdate.user.dogs.last.breed %> </li>
-		<li>Gender: <%= @playdate.user.dogs.last.gender%> </li>
-		<li>Owner: <%= link_to @playdate.user.name, @playdate.user %> </li>
-	
-	</ul>
-	
+	<div class="span3">
+		<h3>Instigator</h3>
+
+		<%= image_tag @playdate.user.dogs.first.avatar.url(:medium) %>
+		<h4><%= link_to @playdate.user.dogs.first.name, user_dog_path(@playdate.user, @playdate.user.dogs.last) %> </h4>
+		<ul class="unstyled">
+			<li>Breed: <%= @playdate.user.dogs.first.breed %> </li>
+			<li>Gender: <%= @playdate.user.dogs.first.gender%> </li>
+			<li>Owner: <%= link_to @playdate.user.name, @playdate.user %> </li>
+
+		</ul>
+		<% if @playdate.user == current_user %>
+		<%= link_to "Edit Playdate", edit_playdate_path(@playdate)%>
+		
+		<% end %>
 	</ul>
 </div>
 
-<div class="span6">
 
-
-<ul class="unstyled">
-<li>
-<b>Starts at:</b> <%= l @playdate.play_date, :format => :playtime %>	
-</li>
-
-
-</ul>
-
-<h3>Share</h3>
-
-<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
-<br/>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
-
-	<%= render @playdate.park %>
-<p>
-<%= @playdate.description %>
-<p>
-
-
-
-
-
-
-<% if !@playdate.status && @playdate.user == current_user %>
-	<hr/>
-	<h3>Other Dogs who love this park</h3>
 	
+		<div class="span6">
 	
-	<% if @guests.count > 0 %>
+	<% if !@playdate.status && @playdate.user == current_user %>
 		
-		<% @guests.each do |playdate_guest| %>
-		<div id="invitee<%= playdate_guest.dog.id %>" class="thumb">
-			<%= image_tag playdate_guest.dog.avatar.url(:medium) %>
-			<h4><%= playdate_guest.dog.name %></h4>
+		
+		<h3>Invite dogs who love this park</h3>
 
-			<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
 
-			 	<%= f.hidden_field :dog_id  %>
+		<% if @guests.count > 0 %>
+		<ul class="thumbnails">
+			<% @guests.each do |playdate_guest| %>
+				<li id="invitee<%= playdate_guest.dog.id %>" class="thumbnail">
+					<%= image_tag playdate_guest.dog.avatar.url(:medium) %>
+					
 
-			    <%= f.submit "Invite this dog", :class=>"btn" %>
+					<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
 
+						<%= f.hidden_field :dog_id  %>
+						<%= f.submit "Invite "+playdate_guest.dog.name, :class=>"btn" %>
+
+					<% end %>
+				</li>
 			<% end %>
-		 </div>
+			</ul>
+			
+			
+		<% else %>
+			<div class="help-block">No other dogs love this park right now.  Help spread the word about matchpuppy, share it on facebook and twitter</div>
 		<% end %>
+		
+		<div class="form-actions">
+			
+			<%= form_for(@playdate) do |f| %>
+				<%= f.hidden_field :status  %>
+			<%= f.submit "Finalize Playdate and Invite Guests", :class=>"btn btn-primary" %>
+				
+			<% end %>
+		
+		</div>
 	<% else %>
-	<div class="help-block">No other dogs love this park right now.  Help spread the word about matchpuppy, share it on facebook and twitter</div>
-	<% end %>
-	
-	
-<hr/>
 
 
+		<ul class="unstyled">
+			<li>
+				<b>Starts at:</b> <%= l @playdate.play_date, :format => :playtime %>	
+			</li>
+		</ul>
 
-	<%= form_for(@playdate) do |f| %>
-	
-	
-	<div class="form-actions">
-	<%= link_to "Edit Playdate", edit_playdate_path(@playdate), :class=>"btn" %>
-	
+		<h3>Share</h3>
 
-	 	<%= f.hidden_field :status, :value=>"sent"  %>
+		<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
+		<br/>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
 
-	    <%= f.submit "Finalize Playdate and Invite Guests", :class=>"btn primary" %>
-	</div>
-	<% end %>
+		<%= render @playdate.park %>
+		<p>
+			<%= @playdate.description %>
+		</p>
+		<hr/>
+		
 
-	
-<% else %>
+		<h4>Comments</h4>
 
+		<%= render @comments %>
 
-<div class="actions">
-	
-	
-	
-	
-	
-</div>	
-
-<h4>Comments</h4>
-
-<%= render @comments %>
-
-	<%= form_for(@new_comment) do |f| %>
-		<%= f.label "New Comment" %>
-	 	<%= f.text_area :body  %>
-		<div class="clearfix">
-		<%= f.hidden_field :playdate_id%>
-		</div>
-		<div class="actions">
-	    <%= f.submit "Comment", :class=>"btn primary" %>
-		</div>
-	<% end %>
-
-
-
-<% end %></div>
-<div class="span3">
-	
-	<% @guests.each do |guest| %>
-
-	
-	
-		<%= form_for([@playdate, guest]) do |f| %>
-		 	<%= f.hidden_field :dog_id  %>
-		    <%= f.submit "Have "+guest.dog.name+" Join this playdate", :class=>"btn primary" %>
-
+		<%= form_for(@new_comment) do |f| %>
+			<%= f.label "New Comment" %>
+			<%= f.text_area :body  %>
+			<div class="clearfix">
+				<%= f.hidden_field :playdate_id%>
+			</div>
+			<div class="actions">
+				<%= f.submit "Comment", :class=>"btn primary" %>
+			</div>
 		<% end %>
+			<% end %>
+	</div>
+	<div class="span3">
 
-  
+	<!-- User Actions -->
+
+	<% if @playdate.user != current_user && @active_guests.length > 0  %>
+		<h3>Your RSVP?</h3>
+
+		<div class="btn-group">
+			<a class="btn info <% if @active_guests.first.rsvp =="Yes" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/Yes">Yes</a>
+			<a class="btn info <% if @active_guests.first.rsvp =="Maybe" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/Maybe">Maybe</a>
+			<a class="btn info <% if @active_guests.first.rsvp =="No" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/No">No</a>
+		</div>
+		<br/>
+	<% elsif @playdate.user != current_user %>
+		<a href="/playdates/<%= @playdate.id %>/join" class="btn primary large">Join this playdate</a>
+		<br/>
 	<% end %>
+	
+	
+	<% if @playdate.status %>
+
 	<h3>RSVPs</h3>
 	<ul class="unstyled">
 		<li>
-	<b><i class="icon ok"></i> Yes:</b>
-	<%= @playdate.playdate_guests.yes.count %>	
-	</li>
-	<li>
-	<b>Maybe:</b>
-	<%= @playdate.playdate_guests.maybe.count %>	
-	</li>
+			<b><i class="icon ok"></i> Yes:</b>
+			<%= @playdate.playdate_guests.yes.count %>	
+		</li>
+		<li>
+			<b>Maybe:</b>
+			<%= @playdate.playdate_guests.maybe.count %>	
+		</li>
 
-	<li>
-	<b><i class="icon remove"></i> No:</b>
-	<%= @playdate.playdate_guests.no.count %>	
-	</li>
+		<li>
+			<b><i class="icon remove"></i> No:</b>
+			<%= @playdate.playdate_guests.no.count %>	
+		</li>
 	</ul>
 	
-	
-	
-	
-	
+	<% end %>
+
+
+
+
+
 	<h3>Invited Dogs</h3>
 	<ul id="invited" class="thumbnails">
-	<%= render @playdate.playdate_guests %>
+		<%= render @playdate.playdate_guests %>
 	</ul>
-	
+
 
 </div>
 

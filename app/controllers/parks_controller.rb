@@ -6,8 +6,9 @@ class ParksController < ApplicationController
      
     params[:borough] ||= "%"
     params[:park_type] ||= "%"
+    
     @parks = Park.where('borough like ? and park_type like ?', params[:borough], params[:park_type] )
-       
+    # @parks = Park.find(params[:park])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -96,7 +97,7 @@ class ParksController < ApplicationController
     @park.destroy
 
     respond_to do |format|
-      format.html { redirect_to parks_url }
+      format.html { redirect_to '/admin/parks', :notice => "Park Deleted" }
       format.json { head :ok }
     end
   end

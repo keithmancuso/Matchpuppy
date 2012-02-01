@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   helper :all
-   helper_method :current_user_session, :current_user
+   helper_method :current_user_session, :current_user, :current_step
   
    private
      def current_user_session
@@ -13,6 +13,24 @@ class ApplicationController < ActionController::Base
      def current_user
        return @current_user if defined?(@current_user)
        @current_user = current_user_session && current_user_session.record
+     end
+     
+     def current_step
+       
+       if current_user
+         if current_user.dogs.first.size == nil
+           return 1
+         elsif current_user.park_loves.count == 0
+           return 2
+         else
+
+           @playdates = Playdate.joins(:users).where("users.id" => current_user.id)
+           if @playdates.count == 0
+             return 3
+           end
+
+         end
+       end
      end
     
      def require_user

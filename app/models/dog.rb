@@ -8,7 +8,7 @@ class Dog < ActiveRecord::Base
       :default_url => '/images/default-dog.png'
   
   belongs_to :user
-  has_many :playdate_guests
+  has_many :playdate_guests, :dependent => :destroy
   has_one :park, :through => :user
   has_many :playdates, :through => :playdate_guests
   has_many :park_loves, :through => :user

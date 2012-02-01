@@ -1,0 +1,37 @@
+<% if notice %>
+<div class="alert alert-info">
+<%= notice %>
+</div>
+<% end %>
+
+<h1>Listing comments</h1>
+
+<table class="table-striped table table-condensed">
+  <tr>
+    <th>User</th>
+    <th>Playdate at</th>
+
+    <th>Comment</th>
+	<th>Posted on</th>
+
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= link_to comment.user.name, comment.user %></td>
+    <td></td>
+    <td><%= comment.body %></td>
+
+	<td><%= l comment.created_at, :format => :long %></td>
+	
+  
+    <td><%= link_to 'Edit', edit_comment_path(comment), :class=>"btn btn-info" %></td>
+    <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete , :class=>"btn btn-danger" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

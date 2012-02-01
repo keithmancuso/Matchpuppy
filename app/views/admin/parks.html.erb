@@ -1,0 +1,52 @@
+<% if notice %>
+<div class="alert alert-info">
+<%= notice %>
+</div>
+<% end %>
+
+<div class="page-header">
+
+<h1>Dog parks</h1>
+
+</div>
+
+<table class="table-striped table table-condensed">
+<thead>  
+<tr>
+    <th>Name</th>
+    <th>Borough</th>
+	<th>Type</th>
+    <th></th>
+    
+  </tr>
+</thead>
+<tbody>
+<% @parks.each do |park| %>
+  <tr>
+    <td><%= link_to park.name, park %></td>
+    <td><%= park.borough %></td>
+	<td><%= park.park_type %></td>
+    <td><%= park.park_loves.count %> dogs love this park</td>
+
+	<td><%= link_to "edit", edit_park_path(park), :class=>"btn btn-info"%></td>
+	
+	<td>
+		
+		
+		<%= link_to "Delete", park, :method=>'delete', :confirm => 'Are you sure?', :class=>"btn btn-danger"%>
+		
+		
+	</td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<%= link_to "New Park", new_park_path,  :class=>"btn btn-primary"%>
+
+
+
+
+
+
+

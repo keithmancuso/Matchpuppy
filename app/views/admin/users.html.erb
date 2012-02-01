@@ -1,0 +1,36 @@
+<% if notice %>
+<div class="alert alert-info">
+<%= notice %>
+</div>
+<% end %>
+
+<h1>Listing users</h1>
+
+<table class="table-striped table table-condensed">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+
+	<th>Type</th>
+
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to user.name, user %></td>
+    <td><%= user.email %></td>
+
+	<td><%= user.user_type %></td>
+	
+  
+    <td><%= link_to 'Edit', edit_user_path(user), :class=>"btn btn-info" %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete , :class=>"btn btn-danger" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_user_path, :class=> "btn btn-primary" %>

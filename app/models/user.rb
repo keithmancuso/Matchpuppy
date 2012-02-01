@@ -7,7 +7,10 @@ class User < ActiveRecord::Base
   has_many :comments
   belongs_to :park
   
-  after_save :signup_email
+
+  
+  
+  after_create :signup_email
   
   def deliver_password_reset_instructions!  
     reset_perishable_token!  

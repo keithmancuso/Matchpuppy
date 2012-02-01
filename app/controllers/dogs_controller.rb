@@ -21,6 +21,8 @@ class DogsController < ApplicationController
     
     @title = @dog.name
     
+     @playdates = Playdate.joins(:dogs).where("dogs.id" => @dog.id).where("play_date > ?", Time.now)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @dog }
@@ -63,6 +65,9 @@ class DogsController < ApplicationController
     
     @dog = Dog.find(params[:id])
     
+   
+    
+    
      respond_to do |format|
            if @dog.update_attributes(params[:dog])
              format.html { redirect_to parks_path, :notice => 'Dog was successfully updated.' }
@@ -78,12 +83,14 @@ class DogsController < ApplicationController
   # DELETE /dogs/1.json
   def destroy
     @dog = Dog.find(params[:id])
-    @dog.destroy
-
-    respond_to do |format|
-      format.html { redirect_to dogs_url }
-      format.json { head :ok }
+    
+    if current_user.user_type == "admin" or current_user = @dog.user
+      @dog.destroy
+    else 
+      redirect_to root_path, :notice => "Not allowed to delete someone elses dog!"
     end
+    redirect_to account_path 
+     
   end
   
  

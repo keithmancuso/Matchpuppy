@@ -31,7 +31,17 @@
 
   <% end %> 
  <% end %>
-  
+  	 
+<% if current_user %>
+<% if current_user.user_type == "admin" %>
+<%= f.label :user_type %>
+		<%= f.select(:user_type, options_for_select([['normal'], ['admin']])) %>
+
+<% end %>
+<% end %>
+
+	
+
       <%= f.label :password, f.object.new_record? ? nil : "Change password" %>
     	  <%= f.password_field :password %>
     
@@ -39,17 +49,19 @@
     	  <%= f.password_field :password_confirmation %>
     	
   
-  
+  			<label class="checkbox">
+			          <%= f.check_box(:subscribe) %> Keep me up to date on the lasted MatchPuppy.com News
+			        </label>
   
   <div class="actions">
 	
 	<% if f.object.new_record? %>
-    <%= f.submit("Sign-up" , :class=>'btn primary') %>
+    <%= f.submit("Sign-up" , :class=>'btn btn-primary') %>
 <%= link_to "Have an account? Login", :login %>
 	<% else %>
 		<%= link_to "Cancel", :account, :class =>"btn" %>
 		
-    	<%= f.submit("Edit Account" , :class=>'btn primary') %>
+    	<%= f.submit("Edit Account" , :class=>'btn btn-primary') %>
 	<% end %>
 
   </div>

@@ -1,49 +1,56 @@
-<%= form_for([@user, @dog]) do |f| %>
+<%= form_for([@user, @dog], :html => { :class=>"form-horizontal"}) do |f| %>
 
 <div class="control-group">
 
-<%= f.label "What's your dog's Name" %>
+<%= f.label "Your dog's name" %>
+<div class="controls">
+
 <%= f.text_field(:name) %>
+</div>
 </div>
 <div class="control-group">
 	<label>How big?</label>
-
-	<div class="row" style="height:260px;" >
-		<div class="span2" >
-			<label for="smalldog">
-			<img src="/images/small.png" style="margin-top:80px;;"><br/>
-			<%= f.radio_button( :size, "small", :id => "smalldog") %> Small (0-20lbs)
-			</label>
+	<div class="controls">
+		<div class="row" style="height:260px;" >
+			<div class="span2" >
+				<label for="smalldog">
+				<img src="/images/small.png" style="margin-top:80px;;"><br/>
+				<%= f.radio_button( :size, "small", :id => "smalldog") %> Small (0-20lbs)
+				</label>
 			
+			</div>
+		<div class="span3" >
+			<label for="mediumdog">
+			<img src="/images/medium.png" style="margin-top:25px;"><br/>
+			<%= f.radio_button( :size, "medium", :id => "mediumdog") %> Medium (21-50lbs)
+			</label>
+		
 		</div>
-	<div class="span3" >
-		<label for="mediumdog">
-		<img src="/images/medium.png" style="margin-top:25px;"><br/>
-		<%= f.radio_button( :size, "medium", :id => "mediumdog") %> Medium (21-50lbs)
-		</label>
+		<div class="span3" >
+			<label for="largedog">
+				<img src="/images/large.png"><br/>
+				<%= f.radio_button( :size, "large", :id=>"largedog") %> Large (51lbs+)
+			</label>
 		
+		</div>	
 	</div>
-	<div class="span3" >
-		<label for="largedog">
-			<img src="/images/large.png"><br/>
-			<%= f.radio_button( :size, "large", :id=>"largedog") %> Large (51lbs+)
-		</label>
-		
-	</div>	
  </div>
 </div>
 <div class="control-group">
 <%= f.label "What breed?" %>
+<div class="controls">
 <%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
+</div>
 </div>
 <div class="control-group">
 <%= f.label :gender %>
+<div class="controls">
 <div class = "row">
 	<div class = "span2">
 		<label for = "male">
 			<%= image_tag 'male-paw.png' %> 
 			<%= f.radio_button( :gender, "Male", :id => "male") %>
-			Mail
+			Male
 		</label>
 	</div>
 	<div class = "span2">
@@ -54,15 +61,79 @@
 		</label>
 	</div>
 </div>
+</div>
+
+</div>
+
+
+<div class="control-group">
+<%= f.label :energy, "Energy Level?"%>
+<div class="controls">
+<div class = "row">
+	<div class = "span2">
+		<label for = "Low">
+			<%= f.radio_button( :energy, "Low", :id => "male") %>
+			Low
+		</label>
+	</div>
+	<div class = "span2">
+		<label for = "Medium">
+			<%= f.radio_button( :energy, "Medium", :id => "female") %>
+			Medium
+		</label>
+	</div>
+	<div class = "span2">
+		<label for = "High">
+			<%= f.radio_button( :energy, "High", :id => "female") %>
+			High
+		</label>
+	</div>
+	</div>
+</div>
+
+<!--
+<div class="control-group">
+<%= f.label "Modivation Type?"%>
+<div class="controls">
+<div class = "row">
+	<div class = "span3">
+		<label for = "Low">
+		
+			<%= f.radio_button( :energy, "Internally", :id => "male") %>
+			Internally motivated <a href="#"  rel="popover" data-content="Socially Modivated Dogs blah blah blah" data-original-title="Internally motivated">?</a>
+		</label>
+	</div>
+	<div class = "span3">
+		<label for = "Medium">
+		
+			<%= f.radio_button( :energy, "Externally", :id => "female") %>
+			Externally motivated <a href="#"  rel="popover" data-content="Socially Modivated Dogs blah blah blah" data-original-title="Externally motivated">?</a>
+		</label>
+	</div>
+	<div class = "span3">
+		<label for = "High">
+		
+			<%= f.radio_button( :energy, "Socially", :id => "female") %>
+			Socially motivated <a href="#"  rel="popover" data-content="Socially Modivated Dogs blah blah blah" data-original-title="Socially motivated">?</a>
+		</label>
+	</div>
+	</div>
+</div>
+-->
 
 </div>
 <div class="control-group">
 <%= f.label :Photo %>
+<div class="controls">
 <%= f.file_field :avatar %>
+</div>
  </div>
+<div class="control-group">
 <%= f.label "What's your favorite thing about your dog?" %>
+<div class="controls">
  <%= f.text_area :favorite, :style=>"height:50px" %>
-	
+</div>
+</div>
 
   <div class="form-actions">
     <%= f.submit nil, :class=>"btn primary" %>

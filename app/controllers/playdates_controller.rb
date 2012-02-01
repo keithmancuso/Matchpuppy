@@ -22,6 +22,13 @@ class PlaydatesController < ApplicationController
     @park = Park.find(@playdate.park_id)
     @guests = Array.new
     @new_comment = @playdate.comments.new(:user_id => current_user.id)
+
+    
+    current_user.dogs.each do |dog|
+      @active_guests = @playdate.playdate_guests.where(:dog_id => dog.id)
+    end
+    
+    #@active_guest = @playdate_guests.joins(:dogs).where("user.id" => current_user.id)
     
     if current_user == @playdate.user
       if @playdate.dogs.empty?
@@ -52,7 +59,7 @@ class PlaydatesController < ApplicationController
     @playdate = Playdate.new
     @playdate.user_id = current_user.id
     @playdate.park_id = current_user.park_id
-    @parks = Park.all
+    @parks = Park.joins(:users).where("users.id" => current_user.id)
     
     
     
@@ -69,6 +76,29 @@ class PlaydatesController < ApplicationController
     
   end
 
+  def join
+    @playdate = Playdate.find(params[:id])
+    current_user.dogs.each do |dog|
+      @playdate.playdate_guests.create(:dog_id => dog.id, :rsvp=>"Yes") 
+      
+    end
+    
+    redirect_to @playdate, :notice => "You are not part of this playdate"
+  end
+  
+  def rsvp
+    @playdate = Playdate.find(params[:id])
+    
+    current_user.dogs.each do |dog|
+      @playdate_guest = @playdate.playdate_guests.where(:dog_id => dog.id)
+      @playdate_guest.first.update_attributes(:rsvp=>params[:rsvp])
+    end
+    
+    redirect_to @playdate, :notice => "RSVP Updated"
+    
+  end
+
+  
   # POST /playdates
   # POST /playdates.json
   def create

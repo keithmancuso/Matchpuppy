@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     end
    
     @title = @user.name
+    @playdates = Playdate.joins(:users).where("users.id" => current_user.id).where("play_date > ?", Time.now)
+    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,6 +37,8 @@ class UsersController < ApplicationController
     
     @user = current_user
     @title = @user.name
+    
+    @playdates = Playdate.joins(:users).where("users.id" => current_user.id).where("play_date > ?", Time.now)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -62,7 +66,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = current_user
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
     @parks = Park.all
     
   end
@@ -88,7 +96,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, :notice => 'Profile Editted' }
+        format.html { redirect_to '/account', :notice => 'Profile Editted' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

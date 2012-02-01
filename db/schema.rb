@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130231836) do
+ActiveRecord::Schema.define(:version => 20120201063246) do
 
   create_table "comments", :force => true do |t|
     t.integer  "playdate_id"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(:version => 20120130231836) do
     t.string   "avatar_content_type"
     t.string   "avatar_file_name"
     t.text     "favorite"
+    t.string   "energy"
+    t.string   "modivation"
   end
 
   create_table "park_loves", :force => true do |t|
@@ -89,7 +91,9 @@ ActiveRecord::Schema.define(:version => 20120130231836) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "perishable_token",  :default => "", :null => false
+    t.string   "perishable_token",  :default => "",       :null => false
+    t.string   "user_type",         :default => "normal"
+    t.boolean  "subscribe",         :default => true
   end
 
   add_index "users", ["park_id"], :name => "index_users_on_park_id"

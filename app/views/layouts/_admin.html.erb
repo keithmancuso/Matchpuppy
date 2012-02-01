@@ -1,0 +1,22 @@
+<% if current_user %>
+<% if current_user.user_type == 'admin' %>
+<strong>Admin Menu:</strong>
+<ul class="nav nav-pills">
+	
+	<li > 
+		<a href="/admin/dogs">Dogs</a>
+	</li>
+	<li >
+		<a href="/admin/parks">Parks</a>
+
+	</li>
+	<li >
+		<a href="/admin/users">Users</a>
+	</li>
+	<li >
+		<a href="/admin/comments">Comments</a>
+	</li>
+
+</ul>
+<% end %>
+<% end %>

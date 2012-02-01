@@ -1,0 +1,15 @@
+<% if current_step != nil %>
+
+<ul class="nav nav-pills">
+	<li <% if current_step == 1 %>class="active"<% end %>> 
+		<a href="#">Step 1. Tell us About your Dog</a>
+	</li>
+	<li <% if current_step == 2 %>class="active"<% end %>>
+		<a href="#">Step 2. Find dog parks you love</a>
+	</li>
+	<li <% if current_step == 3 %>class="active"<% end %>>
+		<a href="#">Step 3. Schedule or Join a Playdate</a>
+	</li>
+
+</ul>
+<% end %>

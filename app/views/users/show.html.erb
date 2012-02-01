@@ -54,20 +54,5 @@
 </div>
 </div>
 
-<% if @user == current_user %>
-
-	<div class="form-actions">
-
-		<%= link_to "Edit Profile", "/account/edit", :class=>"btn" %>
-		
-		<a href="<%= new_user_dog_path(@user) %>" class="btn ">
-		<i class="icon plus"></i>	Add another dog
-		</a>
-		<a href="<%= parks_path %>" class="btn primary">
-				<i class="icon search"></i> Find a Dog Park
-			</a>
-
-	</div>
-<% end %>
 
 

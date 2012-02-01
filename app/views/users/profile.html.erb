@@ -44,7 +44,7 @@
 <div class="span3">
 <h3>Upcoming Playdates</h3>
 
-<%= render @user.playdates %>
+<%= render @playdates %>
 
 <% if @user.playdates.count  == 0 %>
 <div class="help-block">
@@ -54,21 +54,24 @@
 </div>
 </div>
 
-<% if @user == current_user %>
+
 
 	<div class="form-actions">
 
-		<%= link_to "Edit Profile", "/account/edit", :class=>"btn" %>
+		<%= link_to "Edit Your Account", "/account/edit" %>
 	
 
-		<a href="<%= new_user_dog_path(@user) %>" class="btn class">
-		<i class="icon plus"></i>	Add another dog
+		<a href="<%= new_user_dog_path(@user) %>" class="btn">
+		<i class="icon-plus"></i>	Add another dog
 		</a>
-		<a href="<%= parks_path %>" class="btn primary">
-				<i class="icon search"></i> Find a Dog Park
+		<a href="<%= parks_path %>" class="btn btn-primary">
+				<i class="icon-search icon-white"></i> Find a Dog Park
 			</a>
-
+			<% if @user.park_loves.count > 0 %>
+				<a href="<%= new_playdate_path %>" class="btn btn-success">
+						<i class="icon-flag icon-white"></i> Schedule a Playdate
+					</a>
+			<% end %>
 	</div>
-<% end %>
 
 

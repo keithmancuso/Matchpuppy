@@ -29,12 +29,13 @@ Matchpuppy::Application.routes.draw do
     resources :playdate_guests
   end
   
+  match 'playdates/:id/join' => 'playdates#join'
+  match 'playdates/:id/rsvp/:rsvp' => 'playdates#rsvp'
   
-  #match 'parks/:borough/:park_type' => 'parks#index'
+  
+  
   
   resources :parks
-  
-  
   
   resources :posts
 
@@ -100,5 +101,7 @@ Matchpuppy::Application.routes.draw do
   end
   
   match 'dogs' => 'dogs#index'
+  
+  match 'admin/:action' => 'admin'
   
 end

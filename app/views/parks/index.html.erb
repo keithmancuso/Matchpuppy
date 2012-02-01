@@ -1,7 +1,8 @@
 
+
 <div class="page-header">
 <% if current_user %>
-	<h4>Step 3</h4>
+
 <h1>Find dog parks that <%= current_user.dogs.first.name %> love's</h1>
 <% else %>
 <h1>Dog parks</h1>
@@ -13,11 +14,11 @@
 
 <div class="span3">
 	
-	<ul class="nav list">
+	<ul class="nav nav-list">
 		
 		<li class="nav-header">Borough</li>
 		<li><a href="/parks/">All of NYC</a></li>
-	  	<li ><a href="/parks/Manhattan/all">Manhattan</a></li>
+	  	<li ><a href="?park[borough]=manhattan">Manhattan</a></li>
 		<li><a href="/parks/Brooklyn/all">Brooklyn</a></li>
 	  	<li class="active"><a href="/parks/Queens/all">Queens</a></li>
 		<li><a href="#">Bronx</a></li>
@@ -39,7 +40,7 @@
     <th>Name</th>
     <th>Borough</th>
 	<th>Type</th>
-    <th>Address</th>
+    <th></th>
     
   </tr>
 </thead>
@@ -49,7 +50,18 @@
     <td><%= link_to park.name, park %></td>
     <td><%= park.borough %></td>
 	<td><%= park.park_type %></td>
-    <td><%= park.address %></td>
+    <td><%= park.park_loves.count %> dogs love this park</td>
+
+	<td>
+		<%= form_for(park.park_loves.new) do |f| %>
+
+			<%= f.hidden_field :park_id  %>
+
+			<%= f.submit "LOVE", :class=>"btn info small" %>
+		<% end %>
+		
+		
+	</td>
   </tr>
 <% end %>
 </tbody>

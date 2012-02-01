@@ -4,7 +4,8 @@ class Playdate < ActiveRecord::Base
   has_many :playdate_guests, :dependent => :destroy
   has_many :dogs, :through => :playdate_guests
   has_many :comments
-  
+  has_many :users, :through => :dogs
+
   #after_save :invite_guests
   
   private 
