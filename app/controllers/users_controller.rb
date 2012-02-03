@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end
    
     @title = @user.name
-    @playdates = Playdate.joins(:users).where("users.id" => current_user.id).where("play_date > ?", Time.now)
+    @playdates = Playdate.joins(:users).where("users.id" => @user.id).where("play_date > ?", Time.now)
     
 
     respond_to do |format|
