@@ -9,6 +9,7 @@ header {
 	width: 100%;
 
 	left: 0;
+	z-index:20;
 
 }
 
@@ -17,40 +18,73 @@ header img {
 
 }
 
+footer {
+	background-color:#07324A;
+	position:fixed;
+	bottom:0px;
+	width:100% ;
+	z-index:20;
+	
+	
+}
+
 footer .container {
 	color: white;
-	background-color:#07324A;
+	
 	padding:15px 20px 0 20px;
 }
 
 body {
 	margin-top:20px;
-	
-	
-	background: #43B69A url("/assets/background.png");
-	background-repeat: repeat-x;
-
-	background-color:#00BC9D;
+	background-color:#66D3C5;
 	height:100%;
+	
+	background: #66D3C5 url("/assets/background_puppy.png");
+
+	background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
 	
 	
 }
 
+#balloon {
+	position:fixed;
+	z-index:-10;
+	top:-30%;
+
+	margin-left: auto;
+	margin-right: auto;
+	padding-left:400px;
+}
+
 .container {
 	
-	
-	
+	position:relative;
 	padding:0px;
+	height: 100%;
+	min-height: 100%;
+	
 	
 }
 
 .main-container {
 	padding:20px;
 	padding-top:45px;
+	z-index:10px;
 	background-color:white;
 	background: url("/assets/translucent.png");
 	
+	
 }
+
+div#bottom-section {
+
+	display: block;
+	height:250px;
+}
+
 
 .page-header {
 	margin: 18px 0;
@@ -78,6 +112,12 @@ h1 {
 .thumb {
 	float:left;
 	margin:10px;
+	
+	
+}
+
+.well {
+	background-color:white;
 	
 	
 }

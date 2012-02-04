@@ -10,30 +10,36 @@
 <% end %>
 </div>
 
+
+<form class="filter_form">
+	
+		<select name="borough">
+			<option value="%">All Boroughs</option>
+			<option value="Manhattan" <% if @borough == "Manhattan"%>selected<% end %>>Manhattan</option>
+			<option value="Brooklyn" <% if @borough == "Brooklyn"%>selected<% end %>>Brooklyn</option>
+			<option value="Queens" <% if @borough == "Queens"%>selected<% end %>>Queens</option>
+			<option value="Staten Island" <% if @borough == "Staten Island"%>selected<% end %>>Staten Island</option>
+			<option value="Bronx" <% if @borough == "Bronx"%>selected<% end %>>Bronx</option>
+			
+			
+		</select>
+		
+		<select name="park_type">
+			<option value="%">All Types</option>
+			<option value="Off-Leash" <% if @borough == "Off-Leash"%>selected<% end %>>Off-Leash</option>
+			<option value="Run" <% if @borough == "Run"%>selected<% end %>>Run</option>
+
+			
+		</select>
+
+    <input type="submit" value="Filter" />
+  </form>
+
+
+
 <div class="row">
 
-<div class="span3">
-	
-	<ul class="nav nav-list">
-		
-		<li class="nav-header">Borough</li>
-		<li><a href="/parks/">All of NYC</a></li>
-	  	<li ><a href="?park[borough]=manhattan">Manhattan</a></li>
-		<li><a href="/parks/Brooklyn/all">Brooklyn</a></li>
-	  	<li class="active"><a href="/parks/Queens/all">Queens</a></li>
-		<li><a href="#">Bronx</a></li>
-		<li><a href="#">Staten Island</a></li>
-		
-		<li class="nav-header">Type</li>
-		<li class="active"><a href="/parks/">All</a></li>
-	  	<li ><a href="#">Run</a></li>
-		<li><a href="#">Off-Leash</a></li>
-	  	
-	</ul>
-
-</div>
-
-<div class="span9">
+<div class="span12">
 <table class="table-striped table table-condensed">
 <thead>  
 <tr>

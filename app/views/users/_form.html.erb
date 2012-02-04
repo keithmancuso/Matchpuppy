@@ -13,41 +13,66 @@
     </div>
   <% end %>
 
- 
+ 	<div class="control-group">
     <%= f.label "Your Name" %>
+	<div class="controls">
 
    	 <%= f.text_field :name %>
+</div>
+	</div>
 
+	<div class="control-group">
     <%= f.label "Your Email" %>
 
+	<div class="controls">
+
     	<%= f.text_field :email %>
+</div>
+</div>
 	<% if f.object.new_record? %>
   <%=  fields_for :dog do |d| %>
- 
+ 	<div class="control-group">
+
     <%= d.label("Your dog's name:") %>
-    
+
+	<div class="controls">
 	
     	<%= d.text_field :name %>
-
+    </div>    </div>
   <% end %> 
  <% end %>
   	 
 <% if current_user %>
 <% if current_user.user_type == "admin" %>
+	<div class="control-group">
 <%= f.label :user_type %>
+<div class="controls">
+
 		<%= f.select(:user_type, options_for_select([['normal'], ['admin']])) %>
+		</div>
+		</div>
 
 <% end %>
 <% end %>
 
+	<div class="control-group">
 	
 
       <%= f.label :password, f.object.new_record? ? nil : "Change password" %>
+	<div class="controls">
+
     	  <%= f.password_field :password %>
-    
+
+		</div>
+		</div>
+    	<div class="control-group">
+	
      <%= f.label :password_confirmation %>
+	<div class="controls">
+
     	  <%= f.password_field :password_confirmation %>
-    	
+    	</div>
+		</div>
   
   			<label class="checkbox">
 			          <%= f.check_box(:subscribe) %> Keep me up to date on the lasted MatchPuppy.com News

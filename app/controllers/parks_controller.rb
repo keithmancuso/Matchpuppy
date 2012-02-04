@@ -4,8 +4,12 @@ class ParksController < ApplicationController
   def index
      @title = "Parks"
      
+    
     params[:borough] ||= "%"
     params[:park_type] ||= "%"
+    
+    @borough = params[:borough]
+    @park_type =  params[:park_type]
     
     @parks = Park.where('borough like ? and park_type like ?', params[:borough], params[:park_type] )
     # @parks = Park.find(params[:park])

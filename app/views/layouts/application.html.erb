@@ -79,13 +79,18 @@
 
 		</div>
 	</header>
-<div class="container main-container">
 	
 
-<%= render 'layouts/steps'%>
-<%= render 'layouts/admin'%>
+<div class="container main-container">
+	<div id="balloon">
+	<img src="assets/balloon.png" >
+	</div>
+	<%= render 'layouts/steps'%>
+	<%= render 'layouts/admin'%>
 
-<%= yield %>
+	<%= yield %>
+
+
 </div>
 
 <footer class="footer">
