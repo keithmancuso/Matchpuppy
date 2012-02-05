@@ -14,21 +14,16 @@
 
 
 <div class="span4 ">
+<div class="well">
 <h3>Your Dogs</h3>
+
 <ul class="thumbnails">
 <%= render @user.dogs %>
 </ul>
-
-<% if @user == current_user %>
-<div style="clear:left">
-
-
-
-
 </div>
-<% end %>
 </div>
 <div class="span4">
+<div class="well">
 <h3>Parks you Love</h3>
 
 <%= render @user.park_loves %>
@@ -38,19 +33,21 @@
 	<A href="<%= parks_path %>">Find some dog parks</a> you love 
 	</div>
 <% end %>
-
+</div>
 </div>
 
 <div class="span3">
+	<div class="well">
 <h3>Upcoming Playdates</h3>
 
 <%= render @playdates %>
 
-<% if @user.playdates.count  == 0 %>
+<% if @playdates.count  == 0 %>
 <div class="help-block">
 	<A href="<%= parks_path %>">Find some dog parks</a> you love to schedule playdates there
 	</div>
 <% end %>
+</div>
 </div>
 </div>
 

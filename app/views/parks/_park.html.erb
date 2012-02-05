@@ -1,2 +1,42 @@
-<h4><%= link_to park.name, park %></h4>
-<iframe width="100%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= park.name %>,<%= park.borough %>&amp;aq=&amp;vpsrc=0&amp;t=m&amp;ie=UTF8&amp;hq=<%= park.name %>,<%= park.borough %>&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+
+<script type="text/javascript">
+	 var geocoder;
+	  var map;
+	  function initialize() {
+	    geocoder = new google.maps.Geocoder();
+	    var latlng = new google.maps.LatLng(-34.397, 150.644);
+	    var myOptions = {
+	      zoom: 16,
+	      center: latlng,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    }
+	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		codeAddress('<%= park.name %>,<%= park.borough %>')
+	  }
+
+	  function codeAddress(address) {
+	    
+	    geocoder.geocode( { 'address': address}, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	        map.setCenter(results[0].geometry.location);
+	        var marker = new google.maps.Marker({
+	            map: map,
+	            position: results[0].geometry.location
+	        });
+	      } else {
+	        alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	  }
+	
+	$(function() {
+		initialize();
+	});
+	
+</script>
+
+
+
+<div id="map_canvas" style="width: 100%; height: 200px;"></div>
+
+<!-- <iframe width="100%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= park.name %>,<%= park.borough %>&amp;aq=&amp;vpsrc=0&amp;t=m&amp;ie=UTF8&amp;hq=<%= park.name %>,<%= park.borough %>&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe> -->

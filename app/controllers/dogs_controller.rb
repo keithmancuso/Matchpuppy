@@ -22,6 +22,8 @@ class DogsController < ApplicationController
     @title = @dog.name
     
      @playdates = Playdate.joins(:dogs).where("dogs.id" => @dog.id).where("play_date > ?", Time.now)
+     
+     @other_dogs = Dog.where(:breed =>@dog.breed).limit(3)
     
     respond_to do |format|
       format.html # show.html.erb

@@ -1,83 +1,105 @@
 
 <% if notice %>
-<div class="alert alert-info">
+<div class      = "alert alert-info">
 <%= notice %>
 </div>
 <% end %>
 
-<div class="page-header">
-	<div class="row">
-		<div class="span8">
+<div class      = "page-header">
+	<div class     = "row">
+		<div class    = "span8">
 			<h1><%= @dog.name %></h1>
 		</div>
-		<Div class="span4">
-			
+		<Div class    = "span4">
+
 		</div>
 	</div>
 </div>
 
-<div class="row">
-	
-	<div class="span3">
-<a href="#" class="thumbnail">
-<%= image_tag @dog.avatar.url(:medium), :options =>  
-{:align=>"right", :style=>"padding-right: 10px; padding-top: 5px;"} %>
-</a>
+<div class      = "row">
 
-
-
-
-</div>
-
-<div class="span4">
-<h3>About <%= @dog.name %></h3>
-<ul class="unstyled">
-  <li><b>Size:</b> <%= @dog.size %></li>
-
-  <li><b>Breed:</b> <%= @dog.breed %></li>
-
-  <li><b>Gender:</b> <%= @dog.gender %></li>
-	<li><b>Owner:</b> <%= link_to @dog.user.name, @dog.user %></li>
-</ul>
-
-<p>
-<b>Best Thing:</b>
-
-<%= @dog.favorite %>
-</p>
-
-<h3>Dog Parks Loved</h3>
-
-<%= render @user.park_loves %>
-
-<h3>Share</h3>
-
-<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
-<br/>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
-
-</div>
-<div class="span5">
-	<h3>Upcoming Playdates<h3>
-	<%= render @playdates %>
-</div>
-<p><A href="mailto:michael@matchpuppy.com?subject=report profile&body=please take down the dog at <%= user_dog_url(@dog.user, @dog) %>" class="small">Report this profile</a></p>
-</div>
-
-
-
-
-<% if @dog.user == current_user %>
-
-<div class="form-actions">	
-	<a href="<%= edit_user_dog_path(@user,@dog) %>" class="btn">
-			<i class="icon-pencil"></i> Edit <%= @dog.name %>
+	<div class     = "span6">
+		<a href       = "#" class="thumbnail">
+			<%= image_tag @dog.avatar.url(:large), :options =>  
+			{:align      =>"right", :style=>"padding-right: 10px; padding-top: 5px;"} %>
 		</a>
-		
-		<a href="<%= user_dog_path(@user,@dog) %>" data-method="delete" class="btn btn-danger">
-				<i class="icon-remove"></i> Delete <%= @dog.name %>
-			</a>
-	
-	
-</div>
-<% end %>
+
+		<p><A href    = "mailto:michael@matchpuppy.com?subject=report profile&body=please take down the dog at <%= user_dog_url(@dog.user, @dog) %>" class="small">Report this profile</a></p>
+		</div>
+
+		<div class    = "span6">
+			<div class   = "row">
+				<div class  = "span3">
+					<div class="well">
+					<h3>About <%= @dog.name %></h3>
+					<ul class  = "unstyled">
+						<li><b>Size:</b> <%= @dog.size %></li>
+
+						<li><b>Breed:</b> <%= @dog.breed %></li>
+
+						<li><b>Gender:</b> <%= @dog.gender %></li>
+						<li><b>Owner:</b> <%= link_to @dog.user.name, @dog.user %></li>
+					</ul>
+					<p>
+						<b>Best Thing:</b>
+
+						<%= @dog.favorite %>
+					</p>
+					</div>
+					
+					<div class="well">
+					<h3>Dog parks <% if @dog.gender == "Male" %>he<% else %>she<% end %> loves</h3>
+
+					<%= render @user.park_loves %>
+					</div>
+
+				
+
+				</div>
+				<div class  = "span3">
+					
+					<div class="well">
+							<h3>Share <%= @dog.name %></h3>
+
+							<div class = "fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
+							<br/>
+							<a href    = "https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
+					</div>
+					<div class="well">
+					<h3>Upcoming Playdates<h3>
+						<%= render @playdates %>
+					</div>
+					</div>
+				</div>
+			</div>
+
+			<div class   = "row">
+				<div class  = "span6">
+					<div class="well">
+					<h3>Other <%= @dog.breed %>s</h3>
+					<ul class  = "thumbnails">
+						<%= render @other_dogs%>
+					</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+	<% if @dog.user == current_user %>
+
+	<div class     = "form-actions">	
+		<a href       = "<%= edit_user_dog_path(@user,@dog) %>" class="btn">
+			<i class     = "icon-pencil"></i> Edit <%= @dog.name %>
+		</a>
+
+		<a href       = "<%= user_dog_path(@user,@dog) %>" data-method="delete" class="btn btn-danger">
+			<i class     = "icon-remove"></i> Delete <%= @dog.name %>
+		</a>
+
+
+	</div>
+	<% end %>

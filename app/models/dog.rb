@@ -1,5 +1,5 @@
 class Dog < ActiveRecord::Base
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :storage => :s3,
+  has_attached_file :avatar, :styles => { :large=> "600x600>",:medium => "300x300>", :thumb => "150x150>" }, :storage => :s3,
       :bucket => 'MatchPuppy',
       :s3_credentials => {
         :access_key_id => 'AKIAJYTNN7664YXLY5KA',

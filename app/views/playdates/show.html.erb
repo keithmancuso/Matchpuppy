@@ -19,7 +19,7 @@
 
 <div class="row">
 
-	<div class="span3">
+	<div class="span2" style=" ">
 		<h3>Instigator</h3>
 
 		<%= image_tag @playdate.user.dogs.first.avatar.url(:medium) %>
@@ -39,7 +39,7 @@
 
 
 	
-		<div class="span6">
+		<div class="span7">
 	
 	<% if !@playdate.status && @playdate.user == current_user %>
 		
@@ -51,7 +51,8 @@
 		<ul class="thumbnails">
 			<% @guests.each do |playdate_guest| %>
 				<li id="invitee<%= playdate_guest.dog.id %>" class="thumbnail">
-					<%= image_tag playdate_guest.dog.avatar.url(:medium) %>
+					<div class="thumbnail">
+					<%= image_tag playdate_guest.dog.avatar.url(:thumb) %>
 					
 
 					<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
@@ -60,6 +61,7 @@
 						<%= f.submit "Invite "+playdate_guest.dog.name, :class=>"btn" %>
 
 					<% end %>
+				</div>
 				</li>
 			<% end %>
 			</ul>
@@ -80,25 +82,23 @@
 		</div>
 	<% else %>
 
-
+		<div class="well">
 		<ul class="unstyled">
 			<li>
-				<b>Starts at:</b> <%= l @playdate.play_date, :format => :playtime %>	
+				<i class="icon-calendar"></i> <b>Starts at:</b> <%= l @playdate.play_date, :format => :playdatetime %>	
 			</li>
+			<li><i class="icon-leaf"></i> <%= link_to @playdate.park.name, @playdate.park %></li>
+			
 		</ul>
-
-		<h3>Share</h3>
-
-		<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
-		<br/>
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
-
-		<%= render @playdate.park %>
 		<p>
-			<%= @playdate.description %>
+			<%= @playdate.description %>	
 		</p>
-		<hr/>
 		
+		<%= render @playdate.park %>
+	</div>
+	
+		
+		<div class="well">
 
 		<h4>Comments</h4>
 
@@ -115,12 +115,14 @@
 			</div>
 		<% end %>
 			<% end %>
+			</div>
 	</div>
 	<div class="span3">
 
 	<!-- User Actions -->
 
 	<% if @playdate.user != current_user && @active_guests.length > 0  %>
+	<div class="well">
 		<h3>Your RSVP?</h3>
 
 		<div class="btn-group">
@@ -128,19 +130,21 @@
 			<a class="btn info <% if @active_guests.first.rsvp =="Maybe" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/Maybe">Maybe</a>
 			<a class="btn info <% if @active_guests.first.rsvp =="No" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/No">No</a>
 		</div>
-		<br/>
+	</div>
 	<% elsif @playdate.user != current_user %>
+	<div class="well">
 		<a href="/playdates/<%= @playdate.id %>/join" class="btn primary large">Join this playdate</a>
 		<br/>
+	</div>
 	<% end %>
 	
 	
 	<% if @playdate.status %>
-
+	<div class="well">
 	<h3>RSVPs</h3>
 	<ul class="unstyled">
 		<li>
-			<b><i class="icon ok"></i> Yes:</b>
+			<b><i class="icon-ok"></i> Yes:</b>
 			<%= @playdate.playdate_guests.yes.count %>	
 		</li>
 		<li>
@@ -149,22 +153,32 @@
 		</li>
 
 		<li>
-			<b><i class="icon remove"></i> No:</b>
+			<b><i class="icon-remove"></i> No:</b>
 			<%= @playdate.playdate_guests.no.count %>	
 		</li>
 	</ul>
-	
+	</div>
 	<% end %>
 
 
+		<div class="well">
+		<h3>Share this Playdate</h3>
+
+		<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
+		<br/>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
+
+		
+		</div>
 
 
 
+	<div class="well">
 	<h3>Invited Dogs</h3>
 	<ul id="invited" class="thumbnails">
 		<%= render @playdate.playdate_guests %>
 	</ul>
-
+	</div>
 
 </div>
 

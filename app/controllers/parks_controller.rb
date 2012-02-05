@@ -26,6 +26,7 @@ class ParksController < ApplicationController
     @park = Park.find(params[:id])
     @dogs = @park.dogs
     @other_parks = Park.where("id != ?", @park.id).where(:borough => @park.borough)
+    @playdates = Playdate.where("play_date > ?", Time.now)
     
     @title = @park.name
     

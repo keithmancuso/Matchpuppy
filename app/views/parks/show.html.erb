@@ -1,5 +1,44 @@
 
 
+
+<script type="text/javascript">
+	 var geocoder;
+	  var map;
+	  function initialize() {
+	    geocoder = new google.maps.Geocoder();
+	    var latlng = new google.maps.LatLng(-34.397, 150.644);
+	    var myOptions = {
+	      zoom: 16,
+	      center: latlng,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    }
+	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		codeAddress('<%= @park.name %>,<%= @park.borough %>')
+	  }
+
+	  function codeAddress(address) {
+	    
+	    geocoder.geocode( { 'address': address}, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	        map.setCenter(results[0].geometry.location);
+	        var marker = new google.maps.Marker({
+	            map: map,
+	            position: results[0].geometry.location
+	        });
+	      } else {
+	        alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	  }
+	
+	$(function() {
+		initialize();
+	});
+	
+</script>
+
+
+
 <% if notice %>
 <div class="alert-message info">
 <p id="notice"><%= notice %></p>
@@ -31,8 +70,11 @@
 </ul>
 
 
+<div>
 
-<iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= @park.name %>,<%= @park.borough %>&amp;aq=&amp;vpsrc=0&amp;t=m&amp;ie=UTF8&amp;hq=<%= @park.name %>,<%= @park.borough %>&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+<div id="map_canvas" style="width: 600px; height: 350px;"></div>
+ 
+<!-- <iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= @park.name %>,<%= @park.borough %>&amp;aq=&amp;vpsrc=0&amp;t=m&amp;ie=UTF8&amp;hq=<%= @park.name %>,<%= @park.borough %>&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe> -->
 <br/><br/>
 <p>
   <%= @park.description %>
@@ -74,27 +116,28 @@
 	
 	
 <% else %>
-
-	<% if @park.playdates.count > 0 %>
+	<div class="well">
+	<% if @playdates.count > 0 %>
 		<h3>Join a playdate here:</h3>
 
-		<%= render @park.playdates %>
+		<%= render @playdates %>
 		<p>
 			- or -
 		</p>
 	<% end %>
 	
 	<%= link_to "Schedule a new playdate", "/playdates/new", :class => "btn btn-primary"%>
-	
+	</div>
 <% end %>
 <% end %>
 
-<br/><br/>
+<div class="well">
+	<h3>Share <%= @park.name %></h3>
 <div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
 <br/>
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
-
-<br/><br/>
+</div>
+<div class="well">
 <h3>Other dog parks in <%= @park.borough %></h3>
 
 <% @other_parks.each do |park| %>
@@ -102,7 +145,8 @@
 <% end %><br/>
 <p>
 <%= link_to "« view all parks", parks_path(), :class=>"btn small" %>
-</p><br/>
+</p>
+</div>
 
 </div>
 </div>

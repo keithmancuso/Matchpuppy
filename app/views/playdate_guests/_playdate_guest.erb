@@ -1,5 +1,5 @@
-<li class="span2">
-<div class="thumbnail">
+<li class="span2" class="thumbnail">
+
 	
 	<a href="<%= user_dog_path(playdate_guest.dog.user, playdate_guest.dog) %>" rel="popover" data-original-title="<%= playdate_guest.dog.name %>" data-content="
 		<ul>
@@ -13,6 +13,6 @@
 	</a>
 	
 	<h4><%= link_to playdate_guest.dog.name, playdate_playdate_guest_path(@playdate, playdate_guest) %></h4>
-	<p><%= playdate_guest.rsvp %></p>
-</div>
+	<p><% if playdate_guest.rsvp = "Yes" %><i class="icon-ok"></i> <% elsif playdate_guest.rsvp = "No"  %><i class="icon-remove"></i> <% end%> <%= playdate_guest.rsvp %></p>
+
 </li>
