@@ -8,40 +8,38 @@
 
 
 
-	
+<div class="page-header">
+<h1>It's a Dog Meet Dog World!</h1>
+</div>
 
 <div class="row">
 
-<div class="span8">
-	
-	<h2>It's a Dog Meet Dog World!</h2>
+<div class="span9">
+
+
 	<p>
 		A brand new way for you and your dog to meet new friends in your neighborhood.
 	</p>
 	
 	
+	
 	<h3>Real dogs looking for playdates</h3>
+
 	
 	<ul class="thumbnails">
-	<% @dogs.each do |dog| %>
-
-	  
-	<li class="thumbnail">
-		<a href="<%= user_dog_path(dog.user, dog) %>"><%= image_tag dog.avatar.url(:thumb) %></a>
-	</li>
-
-
-<% end %>
-</ul>
+	
+		<%= render @dogs %>
+	</ul>
 
 
 
 
 </div>
-<div class="span4">
-<h2>Sign-up is free</h2>
+<div class="span3">
+
 
 <div class="well">
+	<h2>Sign-up is free</h2>
 <%= render 'form' %>
 </div>
 </div>

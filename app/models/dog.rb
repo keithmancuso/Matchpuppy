@@ -13,4 +13,6 @@ class Dog < ActiveRecord::Base
   has_many :playdates, :through => :playdate_guests
   has_many :park_loves, :through => :user
   
+  self.per_page = 5
+  
 end

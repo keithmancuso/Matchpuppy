@@ -11,9 +11,7 @@
 				<% if @playdate.user == current_user %>Your <% end %>playdate for <%= l @playdate.play_date, :format => :playdate %>
 			</h1>
 		</div>
-		<Div class="span4">
-			<div class="fb-like" data-send="true" data-width="100" data-show-faces="false"></div>
-		</div>
+	
 	</div>
 </div>
 
@@ -35,6 +33,8 @@
 		
 		<% end %>
 	</ul>
+	
+
 </div>
 
 
@@ -164,17 +164,28 @@
 		<div class="well">
 		<h3>Share this Playdate</h3>
 
-		<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
-		<br/>
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
+		<!-- <div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
+			<br/>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
 
-		
+			 -->
+			
+			<!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style ">
+				<a class="addthis_button_email" ></a>
+			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+			<a class="addthis_button_tweet"></a>
+			<a class="addthis_button_google_plusone" g:plusone:size="medium"></a><br/>
+			
+			</div>
+			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f2f3982703f4b12"></script>
+			<!-- AddThis Button END -->
 		</div>
 
 
 
 	<div class="well">
-	<h3>Invited Dogs</h3>
+	<h3>Players</h3>
 	<ul id="invited" class="thumbnails">
 		<%= render @playdate.playdate_guests %>
 	</ul>

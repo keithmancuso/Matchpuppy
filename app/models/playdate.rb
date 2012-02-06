@@ -8,6 +8,8 @@ class Playdate < ActiveRecord::Base
 
   #after_save :invite_guests
   
+  scope :upcoming, where("playdates.play_date > ?", Time.now)
+  
   private 
   
   def invite_guests

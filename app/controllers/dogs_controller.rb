@@ -7,9 +7,7 @@ class DogsController < ApplicationController
   # GET /dogs.json
   def index
     @title = "Dogs"
-    
-    @dogs = Dog.all
-    
+    @dogs = Dog.paginate :page => params[:page], :order => 'created_at DESC'
     
   end
 
@@ -18,17 +16,10 @@ class DogsController < ApplicationController
   def show
     @dog = Dog.find(params[:id])
     @user = @dog.user
-    
     @title = @dog.name
-    
-     @playdates = Playdate.joins(:dogs).where("dogs.id" => @dog.id).where("play_date > ?", Time.now)
-     
-     @other_dogs = Dog.where(:breed =>@dog.breed).limit(3)
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @dog }
-    end
+    @playdates = Playdate.joins(:dogs).where("dogs.id" => @dog.id).where("play_date > ?", Time.now)
+    @other_dogs = Dog.where("breed = ? and dogs.id <> ?", @dog.breed,@dog.id).limit(3).order("random()")
+  
   end
 
   # GET /dogs/new
@@ -36,11 +27,7 @@ class DogsController < ApplicationController
   def new
     @dog = Dog.new
     @dog.user_id = current_user.id
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @dog }
-    end
+
   end
 
   # GET /dogs/1/edit
@@ -56,28 +43,18 @@ class DogsController < ApplicationController
     @dog = @user.dogs.create(params[:dog])
     
     redirect_to parks_path
-    
-    
   end
 
   # PUT /dogs/1
   # PUT /dogs/1.json
   def update
     @user = User.find(params[:user_id])
-    
     @dog = Dog.find(params[:id])
-    
-   
-    
-    
-     respond_to do |format|
-           if @dog.update_attributes(params[:dog])
-             format.html { redirect_to parks_path, :notice => 'Dog was successfully updated.' }
-             format.json { head :ok }
-           else
-             format.html { render :action => "edit" }
-             format.json { render :json => @dog.errors, :status => :unprocessable_entity }
-           end
+
+    if @dog.update_attributes(params[:dog])
+      redirect_to parks_path, :notice => 'Dog was successfully updated.' 
+    else
+      render :action => "edit" 
     end
   end
 
@@ -88,17 +65,16 @@ class DogsController < ApplicationController
     
     if current_user.user_type == "admin" or current_user = @dog.user
       @dog.destroy
+      redirect_to account_path 
     else 
       redirect_to root_path, :notice => "Not allowed to delete someone elses dog!"
     end
-    redirect_to account_path 
      
   end
   
  
   def get_user
     @user = User.find(params[:user_id])
-    
   end
   
 end

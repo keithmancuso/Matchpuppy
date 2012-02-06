@@ -2,82 +2,82 @@
 
 
 <script type="text/javascript">
-	 var geocoder;
-	  var map;
-	  function initialize() {
-	    geocoder = new google.maps.Geocoder();
-	    var latlng = new google.maps.LatLng(-34.397, 150.644);
-	    var myOptions = {
-	      zoom: 16,
-	      center: latlng,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
-	    }
-	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		codeAddress('<%= @park.name %>,<%= @park.borough %>')
-	  }
+var geocoder;
+var map;
+function initialize() {
+	geocoder = new google.maps.Geocoder();
+	var latlng = new google.maps.LatLng(-34.397, 150.644);
+	var myOptions = {
+		zoom: 16,
+		center: latlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	codeAddress('<%= @park.name %>,<%= @park.borough %>')
+}
 
-	  function codeAddress(address) {
-	    
-	    geocoder.geocode( { 'address': address}, function(results, status) {
-	      if (status == google.maps.GeocoderStatus.OK) {
-	        map.setCenter(results[0].geometry.location);
-	        var marker = new google.maps.Marker({
-	            map: map,
-	            position: results[0].geometry.location
-	        });
-	      } else {
-	        alert("Geocode was not successful for the following reason: " + status);
-	      }
-	    });
-	  }
-	
-	$(function() {
-		initialize();
+function codeAddress(address) {
+
+	geocoder.geocode( { 'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location
+			});
+		} else {
+			alert("Geocode was not successful for the following reason: " + status);
+		}
 	});
-	
+}
+
+$(function() {
+	initialize();
+});
+
 </script>
 
 
 
 <% if notice %>
 <div class="alert-message info">
-<p id="notice"><%= notice %></p>
+	<p id="notice"><%= notice %></p>
 </div>
 <% end %>
 
 <div class="page-header">
-<h1><%= @park.name %></h1>
+	<h1><%= @park.name %></h1>
 </div>
 
 <div class="row">
-<div class="span8">
+	<div class="span8">
 
 
-<ul class="unstyled">
- <li> <b>Borough:</b>
-  <%= @park.borough %>
-</li
+		<ul class="unstyled">
+			<li> <b>Borough:</b>
+				<%= @park.borough %>
+				</li
 
-<li>
-  <b>Type:</b>
-  <%= @park.park_type %>
-</li>
+				<li>
+					<b>Type:</b>
+					<%= @park.park_type %>
+				</li>
 
-<li>
-  <b>address:</b>
-  <%= @park.address %>
-</li>
-</ul>
+				<li>
+					<b>address:</b>
+					<%= @park.address %>
+				</li>
+			</ul>
 
 
-<div>
+		
 
-<div id="map_canvas" style="width: 600px; height: 350px;"></div>
- 
+				<div id="map_canvas" style="width: 600px; height: 350px;"></div>
+
 <!-- <iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= @park.name %>,<%= @park.borough %>&amp;aq=&amp;vpsrc=0&amp;t=m&amp;ie=UTF8&amp;hq=<%= @park.name %>,<%= @park.borough %>&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe> -->
 <br/><br/>
 <p>
-  <%= @park.description %>
+	<%= @park.description %>
 </p>
 <hr/>
 
@@ -104,48 +104,54 @@
 
 <div class="span4">
 <% if current_user %>
-<% if @loved.count == 0 %>
-		
+	<% if @loved.count == 0 %>
+
 	<%= form_for(@park_love) do |f| %>
 
-		<%= f.hidden_field :park_id  %>
+	<%= f.hidden_field :park_id  %>
 
-		<%= f.submit "I love this park", :class=>"btn info" %>
-		<span class="help-block">You can schedule playdates at parks that you love</span>
+	<%= f.submit "I love this park", :class=>"btn info" %>
+	<span class="help-block">You can schedule playdates at parks that you love</span>
 	<% end %>
-	
-	
-<% else %>
+
+
+	<% else %>
 	<div class="well">
-	<% if @playdates.count > 0 %>
+		<% if @playdates.count > 0 %>
 		<h3>Join a playdate here:</h3>
 
-		<%= render @playdates %>
+		<% @playdates.each do |playdate| %>
+		<ul class="unstyled">
+			<li><a href="<%= playdate_path(playdate) %>" ><strong><i class="icon-calendar"></i> <%=l playdate.play_date, :format => :playdatetime  %></strong></a></li>
+			<li><p>(<%= playdate.playdate_guests.yes.count %> dogs coming)</p></li>
+		</ul>
+		<% end %>
+		
 		<p>
 			- or -
 		</p>
-	<% end %>
-	
-	<%= link_to "Schedule a new playdate", "/playdates/new", :class => "btn btn-primary"%>
+		<% end %>
+
+		<%= link_to "Schedule a new playdate", "/playdates/new", :class => "btn btn-primary"%>
 	</div>
-<% end %>
-<% end %>
+	<% end %>
+	<% end %>
 
-<div class="well">
-	<h3>Share <%= @park.name %></h3>
-<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
-<br/>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
-</div>
-<div class="well">
-<h3>Other dog parks in <%= @park.borough %></h3>
+	<div class="well">
+		<h3>Share <%= @park.name %></h3>
+		<div class="fb-like" data-layout="button_count" data-send="true" data-width="100" data-show-faces="false"></div>
+		<br/>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="matchpuppy" data-size="small">Tweet</a>
+	</div>
+	<div class="well">
+		<h3>Other dog parks in <%= @park.borough %></h3>
 
-<% @other_parks.each do |park| %>
-	<%= link_to park.name, park %><br/>
-<% end %><br/>
-<p>
-<%= link_to "« view all parks", parks_path(), :class=>"btn small" %>
-</p>
+		<% @other_parks.each do |park| %>
+		<%= link_to park.name, park %><br/>
+		<% end %><br/>
+		<p>
+		<%= link_to "« view all parks", parks_path(), :class=>"btn small" %>
+	</p>
 </div>
 
 </div>

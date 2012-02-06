@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201063246) do
+ActiveRecord::Schema.define(:version => 20120205222848) do
 
   create_table "comments", :force => true do |t|
     t.integer  "playdate_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120201063246) do
     t.date     "play_date"
     t.time     "play_time"
     t.text     "description"
+    t.datetime "play_at"
   end
 
   add_index "playdates", ["park_id"], :name => "index_playdates_on_park_id"

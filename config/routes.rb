@@ -6,6 +6,7 @@ Matchpuppy::Application.routes.draw do
   #static pages
   match 'privacy' => 'pages#privacy'
   match 'terms' => 'pages#terms'
+  match 'contact' => 'pages#contact'
   
   
   get "pages/terms"
@@ -99,6 +100,12 @@ Matchpuppy::Application.routes.draw do
   resources :users do
     resources :dogs
   end
+  
+  
+  resources :contact_us 
+  
+  match 'contact_us/send_email' => 'contact_us#send_email', :as => :send_email
+   
   
   match 'dogs' => 'dogs#index'
   

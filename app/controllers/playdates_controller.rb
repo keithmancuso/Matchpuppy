@@ -5,12 +5,8 @@ class PlaydatesController < ApplicationController
   
   def index
     @title = "Playdates"
-    @playdates = Playdate.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @playdates }
-    end
+    @playdates = Playdate.upcoming
+    
   end
 
   # GET /playdates/1
@@ -23,12 +19,13 @@ class PlaydatesController < ApplicationController
     @guests = Array.new
     @new_comment = @playdate.comments.new(:user_id => current_user.id)
 
+    @other_playdates = Playdate.where(:park_id => @park.id)
+    
     
     current_user.dogs.each do |dog|
       @active_guests = @playdate.playdate_guests.where(:dog_id => dog.id)
     end
     
-    #@active_guest = @playdate_guests.joins(:dogs).where("user.id" => current_user.id)
     
     if current_user == @playdate.user
       if @playdate.dogs.empty?
@@ -47,10 +44,6 @@ class PlaydatesController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @playdate }
-    end
   end
 
   # GET /playdates/new
@@ -83,7 +76,7 @@ class PlaydatesController < ApplicationController
       
     end
     
-    redirect_to @playdate, :notice => "You are not part of this playdate"
+    redirect_to @playdate, :notice => "You've successfully joined this playdate"
   end
   
   def rsvp
