@@ -2,7 +2,7 @@
 <li>
 <a href="<%= playdate_path(playdate) %>" ><strong><i class="icon-calendar"></i> <%=l playdate.play_date, :format => :playdatetime  %></strong></a></li>
 <li><i class="icon-leaf"></i> <%= link_to playdate.park.name, playdate.park %></li> 
-<li><p>(<%= playdate.playdate_guests.yes.count %> dogs coming)</p></li>
+<li><p>(<%= pluralize(playdate.playdate_guests.yes.count, 'dog') %> coming)</p></li>
 </ul>
 
  

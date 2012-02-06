@@ -3,7 +3,8 @@ class UserMailer < ActionMailer::Base
   default :from => "info@matchpuppy.com"
   
   def signup(user)
-    mail :to => user.email, :subject => 'Thanks for signing up for Matchpuppy'
+    @user = user
+    mail :to => user.email, :subject => 'Welcome to Matchpuppy'
     
   end
   def password_reset(user)  

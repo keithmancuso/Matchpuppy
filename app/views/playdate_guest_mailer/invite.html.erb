@@ -1,5 +1,11 @@
 
-<p>
-<%= @guest.dog.name %> was invited to a playdate at <%= @guest.park.name %> on  <%= l @guest.playdate.play_date, :format => :short %> by <%= @guest.playdate.user.name %>
-</p>
-<%= link_to "RSVP", playdate_url(@playdate, :host =>"matchpuppy.dev") %>
+<strong>Hi <%= @playdate_guest.user.name %>,
+
+<p>Congratulations! You were just invited to join a playdate at <%= @playdate.park.name %> on <%= l @playdate.play_date, :format => :playdatetime %>	
+	
+You can RSVP for the event and learn more on <%= link_to "Matchpuppy.com", playdate_url(@playdate, :host =>"matchpuppy.dev") %>. We hope you enjoy the event and be sure to take lots of pictures.
+	
+<a href="http://www.matchpuppy.com/contact">Contact us</a> if you have any questions or comments. 
+
+Have Fun!
+- The MatchPuppy Team

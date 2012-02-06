@@ -13,6 +13,11 @@ class Playdate < ActiveRecord::Base
   private 
   
   def invite_guests
+    if status = "sent"
+      @playdate.playdate_guests.each do |guest| 
+        PlaydateMailer.invite_guests(self, guest).deliver
+      end
+    end
     #PlaydateMailer.test.deliver
     #PlaydateMailer.invite_guests(self).deliver
     

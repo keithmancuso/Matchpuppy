@@ -68,7 +68,7 @@ class UsersController < ApplicationController
       @dog = @user.dogs.create(params[:dog])
       redirect_to edit_user_dog_path(@user, @dog), :notice => 'User successfully created'
     else
-      redirect_to new_user_path, :notice => 'Sign-up failed'
+      redirect_to new_user_path, :notice => 'Sign-up failed, please try again'
     end
     
   end

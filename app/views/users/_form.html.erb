@@ -1,7 +1,13 @@
 
+<% if notice %>
+<div class="alert">
+<%= notice %>
+</div>
+<% end %>
+
 
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
+ <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
@@ -12,6 +18,9 @@
       </ul>
     </div>
   <% end %>
+
+
+
 
  	<div class="control-group">
     <%= f.label "Your Name" %>
@@ -81,15 +90,14 @@
 			          <%= f.check_box(:subscribe) %> Keep me up to date on the latest MatchPuppy.com News
 			        </label>
   
-  <div class="actions">
+  <div class="form-actions">
 	
 	<% if f.object.new_record? %>
-    <%= f.submit("Sign-up" , :class=>'btn btn-primary') %>
-<%= link_to "Have an account? Login", :login %>
+    	<%= f.submit("Sign-up" , :class=>'btn btn-primary') %>
+		<%= link_to "Have an account? Login", :login %>
 	<% else %>
-		<%= link_to "Cancel", :account, :class =>"btn" %>
-		
-    	<%= f.submit("Edit Account" , :class=>'btn btn-primary') %>
+		<%= link_to "Cancel", :account%>
+    	<%= f.submit("Edit Account" , :class => "btn btn-primary") %>
 	<% end %>
 
   </div>

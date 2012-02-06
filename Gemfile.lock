@@ -57,6 +57,7 @@ GEM
     execjs (1.2.13)
       multi_json (~> 1.0)
     hike (1.2.1)
+    hominid (3.0.4)
     httparty (0.8.1)
       multi_json
       multi_xml
@@ -144,6 +145,7 @@ DEPENDENCIES
   aws-sdk
   carrierwave
   coffee-rails
+  hominid
   jquery-rails
   json
   paperclip (~> 2.0)

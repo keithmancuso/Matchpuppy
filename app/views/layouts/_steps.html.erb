@@ -2,13 +2,18 @@
 
 <ul class="nav nav-pills">
 	<li <% if current_step == 1 %>class="active"<% end %>> 
-		<a href="#">Step 1. Tell us About your Dog</a>
+		<a href="#">
+			<% if current_step > 1 %><del>Step 1. Tell us About your Dog</del><% else %> <strong>Step 1.</strong> Tell us About your Dog<% end %>
+		</a>
 	</li>
 	<li <% if current_step == 2 %>class="active"<% end %>>
-		<a href="#">Step 2. Find dog parks you love</a>
+		<a <% if current_step == 2 %>href="/park"<% else %>href="#"<% end %>>
+			<% if current_step > 2 %><del>Step 2. Find dog parks you love</del> <% else %><strong>Step 2.</strong> Find dog parks you love <% end %>
+		
+		</a>
 	</li>
 	<li <% if current_step == 3 %>class="active"<% end %>>
-		<a href="#">Step 3. Schedule or Join a Playdate</a>
+		<a <% if current_step == 3 %>href="/playdates/new"<% else %>href="#"<% end %>><strong>Step 3.</strong> Schedule or Join a Playdate</a>
 	</li>
 
 </ul>

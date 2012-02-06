@@ -47,3 +47,5 @@ gem 'aws-sdk'
 gem 'postmark-rails'
 
 gem 'will_paginate', '~> 3.0.beta'
+
+gem 'hominid'

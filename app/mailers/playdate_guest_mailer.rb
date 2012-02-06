@@ -3,8 +3,9 @@ class PlaydateGuestMailer < ActionMailer::Base
   
   
   def invite(guest)
-    @guest = guest
-    @playdate = guest.playdate
-      mail :to => guest.user.email, :subject => 'You are invited', :from => "info@matchpuppy.com"
+    @playdate = playdate
+    @playdate_guest = playdate_guest
+    mail :to => playdate_guest.user.email, :subject => 'You were invited to a playdate'
+   
   end
 end

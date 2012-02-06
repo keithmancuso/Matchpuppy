@@ -7,6 +7,7 @@ Matchpuppy::Application.routes.draw do
   match 'privacy' => 'pages#privacy'
   match 'terms' => 'pages#terms'
   match 'contact' => 'pages#contact'
+  match 'faq' => 'pages#faq'
   
   
   get "pages/terms"
