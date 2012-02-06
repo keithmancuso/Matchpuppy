@@ -2,8 +2,8 @@
 <html>
 <head>
   <title><% if @title  %><%= @title %> - <% end %>MatchPuppy.com</title>
-  <%= stylesheet_link_tag    "bootstrap.min" %>
-  <%= stylesheet_link_tag    "bootstrap-responsive.min" %>
+  <%= stylesheet_link_tag    "bootstrap.min.css" %>
+  <%= stylesheet_link_tag    "bootstrap-responsive.min.css" %>
 
   <%= stylesheet_link_tag    :matchpuppy %>
   <%= stylesheet_link_tag    "jquery-ui" %>
@@ -38,6 +38,8 @@ uploaders/
   	<script type="text/javascript"
 	  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDjgcUjbVzmm95Nbi7cROLI-0Q-OFKdn7Q&sensor=true">
 	</script>
+	
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 
 </head>
 <body>

@@ -46,12 +46,7 @@ footer {
 	
 }
 
-#fence {
-	margin-top:-360px;
-	z-index:30;
-	position:relative;
 
-}
 
 
 footer .container {
@@ -108,15 +103,20 @@ body#homepage {
 }
 
 .main-container {
-	padding:20px 20px 320px;
+	padding:20px 20px 225px;
 	padding-top:45px;
 	z-index:10px;
 	background-color:white;
-	background: url("/assets/translucent.png");
-
-	
-	
+	background: url("/assets/translucent.png");	
 }
+
+#fence {
+	margin-top:-275px;
+	z-index:30;
+	position:relative;
+
+}
+
 
 div#bottom-section {
 
@@ -163,6 +163,13 @@ hr {
 	clear:left;
 	
 }
+
+.thumbnail {
+	
+	background-color:white;
+	
+}
+
 
 
 /* Top Menu */
