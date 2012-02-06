@@ -37,9 +37,9 @@
 
 
 
-<div class="row">
+<div class="well">
 
-<div class="span12">
+
 <table class="table-striped table table-condensed">
 <thead>  
 <tr>
@@ -53,17 +53,23 @@
 <tbody>
 <% @parks.each do |park| %>
   <tr>
-    <td><%= link_to park.name, park %></td>
+    <td><h4><%= link_to park.name, park %></h4></td>
     <td><%= park.borough %></td>
 	<td><%= park.park_type %></td>
-    <td><%= park.park_loves.count %> dogs love this park</td>
+    <td><% if park.park_loves.count > 0 %>
+	 		<%= pluralize(park.park_loves.count, 'dog') %> love this park
+	
+		<% else %>
+			<div class="help-block">be the first to love this park</div>
+		<% end %>
+		</td>
 
 	<td>
-		<%= form_for(park.park_loves.new) do |f| %>
+		<%= form_for(park.park_loves.build, :html=>{:style=>"margin:0px;"}) do |f| %>
 
 			<%= f.hidden_field :park_id  %>
 
-			<%= f.submit "LOVE", :class=>"btn info small" %>
+			<%= f.submit "LOVE", :class=>"btn btn-info small" %>
 		<% end %>
 		
 		
@@ -74,7 +80,7 @@
 </table>
 
 
-</div>
+
 </div>
 
 
