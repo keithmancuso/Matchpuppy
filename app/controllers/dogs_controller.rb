@@ -1,6 +1,7 @@
 class DogsController < ApplicationController
   
   before_filter :get_user, :except => :index
+  before_filter :set_controller
   
   
   # GET /dogs
@@ -73,8 +74,15 @@ class DogsController < ApplicationController
   end
   
  
+ 
+  private
+  
   def get_user
     @user = User.find(params[:user_id])
+  end
+  
+  def set_controller
+    @controller = 'dogs'
   end
   
 end

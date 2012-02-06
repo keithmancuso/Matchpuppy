@@ -1,4 +1,8 @@
 class ParksController < ApplicationController
+  
+   before_filter :set_controller
+   
+   
   # GET /parks
   # GET /parks.json
   def index
@@ -106,4 +110,11 @@ class ParksController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  private
+  
+  def set_controller
+     @controller = 'parks'
+   end
+  
 end

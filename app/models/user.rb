@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :playdates
   has_many :park_loves
   has_many :comments
-  belongs_to :park
+  has_many :parks, :through => :park_loves
   
 
   

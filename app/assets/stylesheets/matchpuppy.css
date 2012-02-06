@@ -13,20 +13,46 @@ header {
 
 }
 
-header img {
-	padding-top:10px;
 
+
+.navbar-inner {
+	
+	background: url('/assets/header_background.png') repeat-x;
+	height: 65px;
+	box-shadow:none;
+	-webkit-box-shadow:none;
+}
+
+.navbar .nav > li > a, .navbar .nav > li > a:visited, .navbar .nav > li > a:link {
+	
+	padding: 5px 10px 6px;
+	margin:10px 10px;
+	color:white;
+}
+
+.navbar .nav > li > a:hover {
+	background:none;
 }
 
 footer {
-	background-color:#07324A;
-	position:fixed;
-	bottom:0px;
-	width:100% ;
-	z-index:20;
+	position:relative;
 	
+	background-color:#07324A;
+
+	width:100% ;
+
+	z-index:30;
+	margin-top:-10px;
 	
 }
+
+#fence {
+	margin-top:-360px;
+	z-index:30;
+	position:relative;
+
+}
+
 
 footer .container {
 	color: white;
@@ -36,16 +62,21 @@ footer .container {
 
 body {
 	margin-top:20px;
-	background-color:#66D3C5;
+	background-color:#86CEC2;
 	height:100%;
 	
-	background: #66D3C5 url("/assets/backgroundsimple.png");
+	background: #86CEC2 url("/assets/backgroundsimple.png");
 
 	background-position: center bottom;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+
 	
 	
+}
+
+input {
+	
+	width:95%;
 }
 
 body#homepage {
@@ -77,11 +108,12 @@ body#homepage {
 }
 
 .main-container {
-	padding:20px;
+	padding:20px 20px 325px;
 	padding-top:45px;
 	z-index:10px;
 	background-color:white;
 	background: url("/assets/translucent.png");
+
 	
 	
 }

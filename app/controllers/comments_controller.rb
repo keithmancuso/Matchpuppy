@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.new(params[:comment])
+    @playdate = Playdate.find(params[:playdate_id])
+    @comment = @playdate.comments.new(params[:comment])
     @comment.user_id = current_user.id
     
     if @comment.save

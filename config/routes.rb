@@ -28,6 +28,7 @@ Matchpuppy::Application.routes.draw do
   
   resources :playdates do
     resources :playdate_guests
+    resources :comments
   end
   
   match 'playdates/:id/join' => 'playdates#join'

@@ -1,4 +1,7 @@
 class ParkLovesController < ApplicationController
+  
+  before_filter :require_user
+  
   def create
     
     @park_love = ParkLove.new(params[:park_love])

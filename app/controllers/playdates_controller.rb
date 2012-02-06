@@ -2,6 +2,7 @@ class PlaydatesController < ApplicationController
   # GET /playdates
   # GET /playdates.json
   before_filter :require_user, :except => :index
+  before_filter :set_controller
   
   def index
     @title = "Playdates"
@@ -14,10 +15,9 @@ class PlaydatesController < ApplicationController
   def show
     @playdate = Playdate.find(params[:id])
     @playdate_guests = @playdate.playdate_guests
-    @comments = @playdate.comments
+
     @park = Park.find(@playdate.park_id)
     @guests = Array.new
-    @new_comment = @playdate.comments.new(:user_id => current_user.id)
 
     @other_playdates = Playdate.where(:park_id => @park.id)
     
@@ -53,6 +53,12 @@ class PlaydatesController < ApplicationController
     @playdate.user_id = current_user.id
     @playdate.park_id = current_user.park_id
     @parks = Park.joins(:users).where("users.id" => current_user.id)
+    
+    @other_playdates = Array.new
+    
+    current_user.parks.each do |park|
+      @other_playdates = Playdate.upcoming.where(:park_id => park.id)
+    end
     
     
     
@@ -106,7 +112,7 @@ class PlaydatesController < ApplicationController
 
     respond_to do |format|
       if @playdate.save
-        format.html { redirect_to @playdate, :notice => 'Playdate was successfully created.' }
+        format.html { redirect_to @playdate, :notice => 'Playdate was successfully created. Invite some dogs who love this park.' }
         format.json { render :json => @playdate, :status => :created, :location => @playdate }
       else
         format.html { render :action => "new" }
@@ -142,6 +148,13 @@ class PlaydatesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  
+  private
+  
+  def set_controller
+     @controller = 'playdates'
+   end
   
  
   

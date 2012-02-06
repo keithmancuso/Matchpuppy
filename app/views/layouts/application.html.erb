@@ -52,37 +52,85 @@ uploaders/
 	
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<header>
-		<div class="container">
-			<div class="row">
-				<div class="span3">
-					<a href="/"><img src="/assets/logo.png"></a>
-				</div>
-				<div class = "span4 menu-nav">
-					<div >
-							<A href = "/dogs" class="btn btn-info">
-								Dogs
-							</a>
-						
-							<A href = "/parks" class="btn btn-info">
-								Parks
-							</a>
-						
-							<a href = "/playdates" class="btn btn-info">
-								Playdates
-							</a>
-						</div>
-				</div>
-				<div class = "span5 menu-nav" id="account-menu"  align="right"  > 
-					<% if current_user %>
-				
-					 <%= link_to "Your Profile", account_path, :class =>"btn btn-small" %> 
-						<%= link_to "Logout", '/logout', :class=>"btn btn-small"%>
-					<% else %>
-						<a href = "/login" class="btn" >Login</a>
-					<% end %>
-				</div>
+		<!-- <div class="container">
+				<div class="row">
+					<div class="span3">
+						<a href="/"><img src="/assets/logo.png"></a>
+					</div>
+					<div class = "span4 menu-nav">
+						<div >
+								<A href = "/dogs" class="btn btn-info">
+									Dogs
+								</a>
+							
+								<A href = "/parks" class="btn btn-info">
+									Parks
+								</a>
+							
+								<a href = "/playdates" class="btn btn-info">
+									Playdates
+								</a>
+							</div>
+					</div>
+					<div class = "span5 menu-nav" id="account-menu"  align="right"  > 
+						<% if current_user %>
+					
+						 <%= link_to "Your Profile", account_path, :class =>"btn btn-small" %> 
+							<%= link_to "Logout", '/logout', :class=>"btn btn-small"%>
+						<% else %>
+							<a href = "/login" class="btn" >Login</a>
+						<% end %>
+					</div>
 
-		</div>
+			</div> -->
+			
+			<div class="navbar">
+			  <div class="navbar-inner">
+			    <div class="container">
+				
+				 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+				      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </a>
+				  <a class="brand" href="/"><img src="/assets/logo.png"></a>
+					
+					<div class="nav-collapse">
+					          <ul class="nav">
+					            <li ><a href="/dogs" <% if @controller == "dogs" %>class="btn btn-primary" <% end %> >Dogs</a></li>
+					            <li><a href="/parks" <% if @controller == "parks" %>class="btn btn-primary" <% end %>>Parks</a></li>
+					            <li><a href="/playdates" <% if @controller == "playdates" %>class="btn btn-primary" <% end %>>Playdates</a></li>
+
+					          </ul>
+					         
+					          <ul class="nav pull-right">
+					           
+					
+									<% if current_user %>
+
+									 
+										
+										
+										<li class="dropdown">
+							              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Account <b class="caret"></b></a>
+							              <ul class="dropdown-menu">
+							                <li><%= link_to "Your Profile", account_path %> </li>
+							                <li><%= link_to "Logout", '/logout'%></li>
+
+							              </ul>
+							            </li>
+									<% else %>
+										<li><a href = "/login"  >Sign In</a></li>
+									<% end %>
+					            
+					          </ul>
+					        </div>
+					
+					
+			    </div>
+			  </div>
+			</div>
 	</header>
 	
 
@@ -95,10 +143,15 @@ uploaders/
 
 	<%= yield %>
 
+	</div>
+	
+	<div id="fence">
+	<img src="/assets/fence.png" >
+	</div>
 
-</div>
 
 <footer class="footer">
+
         <div class="container">
 	<div class="row">
 		<div class="span10">
