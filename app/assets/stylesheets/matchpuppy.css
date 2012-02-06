@@ -229,3 +229,13 @@ textarea {
 	background-color:white;
 	
 }
+
+
+@media (max-width: 480px) { 
+	.fdbk_tab_right {
+		display:none;
+	
+	}
+
+}
+
