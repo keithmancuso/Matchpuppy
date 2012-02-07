@@ -12,3 +12,6 @@ en:
     formats:
       long:"%A, %B %d at %I:%M %p"
       short: "%I:%M %p"
+      playdatetime: "%A, %B %d at %I:%M %p"
+      playdate: "%A, %B %d"
+      playtime: "%I:%M %p"

@@ -1,0 +1,28 @@
+<img src="http://matchpuppy.herokuapp.com/assets/email_logo.png"><br/></br/>
+
+
+<strong>Hi <%= @comment.playdate.user.name %>,</strong>
+
+<p>Someone posted a new comment for your playdate at <%= @comment.playdate.park.name %> on <%= l @comment.playdate.play_date, :format => :playdatetime %></p>
+
+<p>The comment was:</p>
+<p><%= @comment.body %><br/>
+<small>by <%= link_to @comment.user.name, @comment.user %></small>
+</p>
+
+<p>	
+ <%= link_to "View the playdate on Matchpuppy.com", playdate_url(@comment.playdate, :host =>"matchpuppy.herokuapp.com") %>.'
+</p>
+
+<p> 
+	Have fun and take lots of pictures!
+</p>
+
+<p>
+<a href="http://www.matchpuppy.com/contact">Contact us</a> if you have any questions or comments. 
+</p>
+
+<p>
+Have Fun!<br/>
+- The MatchPuppy Team
+</p>

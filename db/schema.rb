@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205222848) do
+ActiveRecord::Schema.define(:version => 20120207212212) do
 
   create_table "comments", :force => true do |t|
     t.integer  "playdate_id"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20120205222848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.date     "play_date"
+    t.datetime "play_date"
     t.time     "play_time"
     t.text     "description"
     t.datetime "play_at"

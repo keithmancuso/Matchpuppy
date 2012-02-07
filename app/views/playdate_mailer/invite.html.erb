@@ -1,0 +1,22 @@
+<img src="http://matchpuppy.herokuapp.com/assets/email_logo.png"><br/></br/>
+
+
+<strong>Hi <%= @user.name %>,</strong>
+
+<p>Congratulations! You were just invited to join a playdate at <%= @playdate.park.name %> on <%= l @playdate.play_date, :format => :playdatetime %>	</p>
+
+<p>	
+ <%= link_to "View the playdate on Matchpuppy.com", playdate_url(@playdate, :host =>"matchpuppy.herokuapp.com") %>.'
+</p>
+<p> 
+	Have fun and take lots of pictures!
+</p>
+
+<p>
+<a href="http://www.matchpuppy.com/contact">Contact us</a> if you have any questions or comments. 
+</p>
+
+<p>
+Have Fun!<br/>
+- The MatchPuppy Team
+</p>

@@ -8,10 +8,6 @@ class PlaydateGuest < ActiveRecord::Base
   scope :no, where(:rsvp => 'No')
   scope :maybe, where(:rsvp => 'Maybe')
   
-  after_save :invite
-   
-  def invite
-    #PlaydateGuestMailer.invite(self).deliver
-    
-  end
+
+ 
 end

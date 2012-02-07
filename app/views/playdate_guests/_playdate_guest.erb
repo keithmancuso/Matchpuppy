@@ -8,11 +8,19 @@
 		<li><b>Gender:</b> <%= playdate_guest.dog.gender %></li>
 	  </ul>
 		" data-html="true">
-	<%= image_tag playdate_guest.dog.avatar.url(:medium) %>
+	<%= image_tag playdate_guest.dog.avatar.url(:thumb) %>
 	
 	</a>
 	
 	<h4><%= link_to playdate_guest.dog.name, playdate_playdate_guest_path(@playdate, playdate_guest) %></h4>
-	<p><% if playdate_guest.rsvp = "Yes" %><i class="icon-ok"></i> <% elsif playdate_guest.rsvp = "No"  %><i class="icon-remove"></i> <% end%> <%= playdate_guest.rsvp %></p>
+	<p>
+		<% if playdate_guest.rsvp == "Yes" %>
+			<i class="icon-ok"></i> Yes
+	   	<% elsif playdate_guest.rsvp == "No"  %>
+			<i class="icon-remove"></i> No
+	    <% end %>
+		
+		
+	</p>
 
 </li>

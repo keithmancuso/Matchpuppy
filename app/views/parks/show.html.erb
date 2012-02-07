@@ -72,7 +72,7 @@ $(function() {
 
 		
 
-				<div id="map_canvas" style="width: 725px; height: 350px;"></div>
+				<div id="map_canvas" style="width: 100%; height: 350px;"></div>
 				
 			<p> <span class="label label-important">Important</span> Map is a simple search for the park that has not been verified and may not be accurate</p>
 
@@ -106,13 +106,14 @@ $(function() {
 <div class="span4">
 <% if current_user %>
 	<% if @loved.count == 0 %>
-
+	<div class="well">
 	<%= form_for(@park_love) do |f| %>
 
 	<%= f.hidden_field :park_id  %>
 
-	<%= f.submit "I love this park", :class=>"btn info" %>
-	<span class="help-block">You can schedule playdates at parks that you love</span>
+	<%= f.submit "I love this park", :class=>"btn btn-primary btn-large" %>
+	<div class="help-block">You can schedule playdates at parks that you love</div>
+	</div>
 	<% end %>
 
 

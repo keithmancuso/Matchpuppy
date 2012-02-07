@@ -85,6 +85,8 @@ class PlaydatesController < ApplicationController
       
     end
     
+    PlaydateMailer.join(@playdate, current_user).deliver
+    
     redirect_to @playdate, :notice => "You've successfully joined this playdate"
   end
   

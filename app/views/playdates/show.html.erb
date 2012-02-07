@@ -29,8 +29,8 @@
 
 		</ul>
 		<% if @playdate.user == current_user %>
-		<%= link_to "Edit Playdate", edit_playdate_path(@playdate)%>
-
+		<!-- <%= link_to "Edit Playdate", edit_playdate_path(@playdate)%> -->
+	
 		<% end %>
 	</ul>
 
@@ -42,34 +42,37 @@
 <div class="span7">
 	<!-- if havent finalized playdate yet -->
 	<% if !@playdate.status && @playdate.user == current_user %>
-
+	<div class="well">
 		<h3>Invite dogs who love this park</h3>
-
+		<p>Select the dogs you want to invite from the list below.  When your finished click to finalize playdate to email and invite guests.</p>
 
 		<% if @guests.count > 0 %>
 			<ul class="thumbnails">
 				<% @guests.each do |playdate_guest| %>
-				<li id="invitee<%= playdate_guest.dog.id %>" >
-					<div class="thumbnail">
-						<%= image_tag playdate_guest.dog.avatar.url(:thumb) %>
+					<li id="invitee<%= playdate_guest.dog.id %>" >
+						<div class="thumbnail">
+							<%= image_tag playdate_guest.dog.avatar.url(:thumb) %>
 
 
-						<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
-
-						<%= f.hidden_field :dog_id  %>
-						<%= f.submit "Invite "+playdate_guest.dog.name, :class=>"btn btn-info" %>
-
-						<% end %>
-					</div>
-				</li>
+							<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
+								<%= f.hidden_field :dog_id  %>
+								<%= f.submit "Invite "+playdate_guest.dog.name, :class=>"btn btn-info" %>
+							<% end %>
+						</div>
+					</li>
 				<% end %>
 			</ul>
+			
+			
+		
 		<% else %>
 			<div class="help-block">
 				No other dogs love this park right now.  Help spread the word about matchpuppy, share it on facebook and twitter
 			</div>
 		<% end %>
-
+		
+		
+</div>
 		<div class="form-actions">
 
 			<%= form_for(@playdate) do |f| %>
@@ -104,18 +107,16 @@
 			<h4>Comments</h4>
 			<hr/>
 			<div >
-			<%= render @playdate.comments %>
+				<%= render @playdate.comments %>
 			</div>
-
 			<hr/>
 			<%= form_for([@playdate, @playdate.comments.build]) do |f| %>
-			<%= f.label "Your Comment" %>
-			<%= f.text_area :body  %>
+				<%= f.label "Your Comment" %>
+				<%= f.text_area :body  %>
 		
-			
-			<div class="actions">
-				<%= f.submit "Comment", :class=>"btn primary" %>
-			</div>
+				<div class="actions">
+					<%= f.submit "Comment", :class=>"btn primary" %>
+				</div>
 			<% end %>
 		</div>
 	<% end %>
@@ -130,9 +131,9 @@
 				<h3>Your RSVP?</h3>
 
 				<div class="btn-group">
-					<a class="btn info <% if @active_guests.first.rsvp =="Yes" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/Yes">Yes</a>
-					<a class="btn info <% if @active_guests.first.rsvp =="Maybe" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/Maybe">Maybe</a>
-					<a class="btn info <% if @active_guests.first.rsvp =="No" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/No">No</a>
+					<a class="btn btn-info btn-large <% if @active_guests.first.rsvp =="Yes" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/Yes">Yes</a>
+					<a class="btn btn-info btn-large <% if @active_guests.first.rsvp =="Maybe" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/Maybe">Maybe</a>
+					<a class="btn btn-info btn-large <% if @active_guests.first.rsvp =="No" %>active<% end %>" href="/playdates/<%= @playdate.id %>/rsvp/No">No</a>
 				</div>
 			</div>
 		<% elsif @playdate.user != current_user %>
@@ -162,7 +163,7 @@
 				</li>
 			</ul>
 		</div>
-		<% end %>
+		
 
 
 		<div class="well">
@@ -180,7 +181,7 @@
 <!-- AddThis Button END -->
 </div>
 
-
+<% end %>
 
 <div class="well">
 	<h3>Players</h3>

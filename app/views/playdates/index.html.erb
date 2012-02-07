@@ -4,7 +4,31 @@
 </div>
 
 <Div class="well">
-<%= render @playdates %>
+
+<table class="table-striped table table-condensed">
+<thead>  
+<tr>
+    <th>Date</th>
+    <th>Park</th>
+	<th>Dogs Coming</th>
+    <th></th>
+    
+  </tr>
+</thead>
+<tbody>
+	
+	<% @playdates.each do |playdate| %>
+		<tr>
+	    <td><a href="<%= playdate_path(playdate) %>" ><strong><i class="icon-calendar"></i> <%=l playdate.play_date, :format => :playdatetime  %></strong></a></td>
+	    <td><i class="icon-leaf"></i> <%= link_to playdate.park.name, playdate.park %></td>
+		<td>(<%= pluralize(playdate.playdate_guests.yes.count, 'dog') %> coming)</td>
+	    </tr>
+	
+	
+	<% end %>
+	
+</tbody>
+</table>
 </div>
 
 <div class="form-actions">

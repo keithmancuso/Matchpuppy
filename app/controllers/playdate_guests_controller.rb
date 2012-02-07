@@ -53,7 +53,8 @@ class PlaydateGuestsController < ApplicationController
     
     @playdate = Playdate.find(params[:playdate_id])
     @playdate_guest = @playdate.playdate_guests.new(params[:playdate_guest])
-
+    @playdate_guest.rsvp = "Maybe"
+    
     respond_to do |format|
       if @playdate_guest.save
         format.html { redirect_to @playdate, :notice => 'Playdate guest was successfully created.' }

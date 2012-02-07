@@ -8,7 +8,7 @@ class Playdate < ActiveRecord::Base
   
   validates :park_id, :description, :presence => true
   
-  #after_save :invite_guests
+  after_save :invite_guests
   
   scope :upcoming, where("playdates.play_date > ?", Time.now)
   
@@ -16,13 +16,14 @@ class Playdate < ActiveRecord::Base
   
   def invite_guests
     if status = "sent"
-      @playdate.playdate_guests.each do |guest| 
-        PlaydateMailer.invite_guests(self, guest).deliver
+      self.users.each do |user| 
+        PlaydateMailer.invite(self, user).deliver
       end
+      PlaydateMailer.create(self).deliver
     end
-    #PlaydateMailer.test.deliver
-    #PlaydateMailer.invite_guests(self).deliver
     
   end
+  
+  
   
 end
