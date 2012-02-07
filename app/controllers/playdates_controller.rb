@@ -21,6 +21,7 @@ class PlaydatesController < ApplicationController
 
     @other_playdates = Playdate.where(:park_id => @park.id)
     
+    @title = "Playdate for " + l(@playdate.play_date, :format => :playdate)
     
     current_user.dogs.each do |dog|
       @active_guests = @playdate.playdate_guests.where(:dog_id => dog.id)
@@ -55,6 +56,8 @@ class PlaydatesController < ApplicationController
     @parks = Park.joins(:users).where("users.id" => current_user.id)
     
     @other_playdates = Array.new
+    
+    @title = "New Playdate"
     
     current_user.parks.each do |park|
       @other_playdates = Playdate.upcoming.where(:park_id => park.id)

@@ -5,7 +5,9 @@ class Playdate < ActiveRecord::Base
   has_many :dogs, :through => :playdate_guests
   has_many :comments
   has_many :users, :through => :dogs
-
+  
+  validates :park_id, :description, :presence => true
+  
   #after_save :invite_guests
   
   scope :upcoming, where("playdates.play_date > ?", Time.now)
