@@ -5,12 +5,12 @@
 
 
 
-<a href="<%= user_dog_path(dog.user, dog) %>" rel="popover" data-placement="bottom" data-delayHide="5000" data-original-title="<%= dog.name %>" data-content="
+<a href="<%= user_dog_path(dog.user, dog) %>" rel="popover" data-placement="right" data-delayHide="5000" data-original-title="<%= dog.name %>" data-content="
 	<ul class='unstyled'>
     <li><b>Size:</b> <%= dog.size %></li>
 	<li><b>Breed:</b> <%= dog.breed %></li>
 	<li><b>Gender:</b> <%= dog.gender %></li>
-	<li><b>Favorite thing:</b> <%= dog.favorite %></li>
+	<li><b>What's special about me:</b> <%= dog.favorite %></li>
   </ul>
 	" data-html="true"><%= image_tag dog.avatar.url(:medium) %></a>
 

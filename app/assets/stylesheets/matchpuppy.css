@@ -257,6 +257,20 @@ textarea {
 	
 }
 
+/* popovers */
+
+.popover-title {
+	background-color:white;
+	border:none;
+	padding: 9px 15px 0px 15px;
+	
+}
+
+.popover-inner{
+	
+background: #07324A;
+}
+
 
 @media (max-width: 480px) { 
 	.fdbk_tab_right {

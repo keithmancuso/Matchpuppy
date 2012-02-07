@@ -20,7 +20,7 @@
 	<div class="span2" style=" ">
 		<h3>Instigator</h3>
 
-		<%= image_tag @playdate.user.dogs.first.avatar.url(:medium) %>
+		<a href="<%= user_dog_path(@playdate.user, @playdate.user.dogs.last) %>"><%= image_tag @playdate.user.dogs.first.avatar.url(:medium) %></a>
 		<h4><%= link_to @playdate.user.dogs.first.name, user_dog_path(@playdate.user, @playdate.user.dogs.last) %> </h4>
 		<ul class="unstyled">
 			<li>Breed: <%= @playdate.user.dogs.first.breed %> </li>
