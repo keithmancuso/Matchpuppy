@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
  
   acts_as_authentic do |c|
-          c.merge_validates_format_of_email_field_options :message => 'invalid email'
+      c.merge_validates_format_of_email_field_options :message => 'not valid'
   end
   
   

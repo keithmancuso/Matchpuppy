@@ -1,11 +1,19 @@
+<% if notice %>
+<div class      = "alert alert-info">
+<%= notice %>
+</div>
+<% end %>
+
+<div class="page-header">
 <h1>Change My Password</h1>
+</div>
 
 <%= form_for @user, :url => password_reset_path, :method => :put do |f| %>
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %><br />
-  <br />
-  <%= f.submit "Update my password and log me in" %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "Update my password and log me in", :class=>"btn btn-primary" %>
 <% end %>

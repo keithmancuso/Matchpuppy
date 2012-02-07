@@ -1,4 +1,17 @@
 <%= form_for([@user, @dog], :html => { :class=>"form-horizontal"}) do |f| %>
+
+<% if @dog.errors.any? %>
+   <div class="alert alert-error">
+     <strong>Whoops!</strong>
+
+     <ul class="unstyled">
+     <% @dog.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+     </ul>
+   </div>
+ <% end %>
+
 <div class="well">
 <div class="control-group">
 	<%= f.label "Your dog's name" %>
@@ -7,9 +20,10 @@
 	<%= f.text_field(:name) %>
 	</div>
 </div>
+
 <div class="control-group">
 	<label>How big?</label>
-	<div class="controls">
+	<div class="controls <% if @dog.errors[:size] != nil %>error<% end %>">
 		<div class="row" style="height:260px;" >
 			<div class="span2" style >
 				<label for="smalldog">
@@ -36,14 +50,14 @@
 	</div>
 </div>
 
-<div class="control-group">
+<div class="control-group ">
 	<%= f.label "What breed?" %>
 	<div class="controls">
 		<%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
 	</div>
 </div>
 
-<div class="control-group">
+<div class="control-group <% if @dog.errors[:gender] != nil %>error<% end %>">
 	<%= f.label :gender %>
 	<div class="controls">
 		<div class = "row">

@@ -27,6 +27,7 @@ class DogsController < ApplicationController
   # GET /dogs/new.json
   def new
     @dog = Dog.new
+    @dog.name = flash[:dog_name]
     @dog.user_id = current_user.id
 
   end
@@ -41,9 +42,17 @@ class DogsController < ApplicationController
   # POST /dogs.json
   def create
     @user = User.find(params[:user_id])
-    @dog = @user.dogs.create(params[:dog])
+    @dog = @user.dogs.new(params[:dog])
     
-    redirect_to parks_path
+    if @dog.save
+      if @user.dogs.count == 1
+        redirect_to parks_path
+      else
+        redirect_to account_path
+      end
+    else
+      render :action => "new"
+    end
   end
 
   # PUT /dogs/1

@@ -106,6 +106,9 @@ class PlaydatesController < ApplicationController
   def create
     @playdate = Playdate.new(params[:playdate])
     @playdate.user_id = current_user.id
+    
+    @parks = Park.joins(:users).where("users.id" => current_user.id)
+    
     current_user.dogs.each do |dog|
       @playdate.playdate_guests.new(:dog_id => dog.id, :rsvp=>"Yes") 
      

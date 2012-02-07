@@ -8,37 +8,39 @@
 <h1>Dog parks</h1>
 
 <% end %>
+
+
 </div>
 
 
-<form class="filter_form">
-	
-		<select name="borough">
-			<option value="%">All Boroughs</option>
-			<option value="Manhattan" <% if @borough == "Manhattan"%>selected<% end %>>Manhattan</option>
-			<option value="Brooklyn" <% if @borough == "Brooklyn"%>selected<% end %>>Brooklyn</option>
-			<option value="Queens" <% if @borough == "Queens"%>selected<% end %>>Queens</option>
-			<option value="Staten Island" <% if @borough == "Staten Island"%>selected<% end %>>Staten Island</option>
-			<option value="Bronx" <% if @borough == "Bronx"%>selected<% end %>>Bronx</option>
-			
-			
-		</select>
-		
-		<select name="park_type">
-			<option value="%">All Types</option>
-			<option value="Off-Leash" <% if @borough == "Off-Leash"%>selected<% end %>>Off-Leash</option>
-			<option value="Run" <% if @borough == "Run"%>selected<% end %>>Run</option>
 
-			
-		</select>
-
-    <input type="submit" value="Filter" />
-  </form>
 
 
 
 <div class="well">
+	<form class="filter_form">
 
+			<select name="borough">
+				<option value="%">All Boroughs</option>
+				<option value="Manhattan" <% if @borough == "Manhattan"%>selected<% end %>>Manhattan</option>
+				<option value="Brooklyn" <% if @borough == "Brooklyn"%>selected<% end %>>Brooklyn</option>
+				<option value="Queens" <% if @borough == "Queens"%>selected<% end %>>Queens</option>
+				<option value="Staten Island" <% if @borough == "Staten Island"%>selected<% end %>>Staten Island</option>
+				<option value="Bronx" <% if @borough == "Bronx"%>selected<% end %>>Bronx</option>
+
+
+			</select>
+
+			<select name="park_type">
+				<option value="%">All Types</option>
+				<option value="Off-Leash" <% if @borough == "Off-Leash"%>selected<% end %>>Off-Leash</option>
+				<option value="Run" <% if @borough == "Run"%>selected<% end %>>Run</option>
+
+
+			</select>
+
+	    <input type="submit" value="Filter" class="btn" />
+	  </form>
 
 <table class="table-striped table table-condensed">
 <thead>  
@@ -65,11 +67,17 @@
 		</td>
 
 	<td>
+		<% if !park.current_love %>
 		<%= form_for(park.park_loves.build, :html=>{:style=>"margin:0px;"}) do |f| %>
 
 			<%= f.hidden_field :park_id  %>
 
-			<%= f.submit "LOVE", :class=>"btn btn-info small" %>
+			<%= f.submit "Love this park", :class=>"btn btn-danger btn-small" %>
+			
+			<% link_to "Love", :class=>"btn btn-danger btn-small" %>
+		<% end %>
+		<% else %>
+			<a href="#" class="btn btn-danger disabled btn-small">LOVED!</a>
 		<% end %>
 		
 		

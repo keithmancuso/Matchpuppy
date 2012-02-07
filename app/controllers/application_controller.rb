@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
      def current_step
        
        if current_user
-         if current_user.dogs.first.size == nil
+         if current_user.dogs.count == 0
            return 1
          elsif current_user.park_loves.count == 0
            return 2

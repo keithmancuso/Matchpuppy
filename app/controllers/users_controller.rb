@@ -63,12 +63,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @dogs = Dog.where('avatar_file_name IS NOT NULL').limit(8).order("random()")
     
     if @user.save
-      @dog = @user.dogs.create(params[:dog])
-      redirect_to edit_user_dog_path(@user, @dog), :notice => 'User successfully created'
+      #@dog = @user.dogs.create(params[:dog])
+      flash[:dog_name] = params[:dog][:name]
+      redirect_to new_user_dog_path(@user), :notice => 'User successfully created'
     else
-      redirect_to new_user_path, :notice => 'Sign-up failed, please try again'
+      render new_user_path, :notice => 'Sign-up failed, please try again'
     end
     
   end

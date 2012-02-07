@@ -8,4 +8,18 @@ class Park < ActiveRecord::Base
   
   
   
+  def current_love
+    if UserSession.find
+      @park_love = ParkLove.where(:park_id => self.id, :user_id => UserSession.find.user.id)
+      if @park_love.any?
+        return true
+      else
+        return false
+      end
+    else 
+      return false
+    end
+    
+  end
+  
 end

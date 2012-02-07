@@ -15,8 +15,8 @@
 
 <%= form_for(@playdate, :html => {:class=> "form-horizontal"}) do |f| %>
   <% if @playdate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@playdate.errors.count, "error") %> prohibited this playdate from being saved:</h2>
+  <div class="alert alert-error">
+      <strong>Whoops!</strong>
 
       <ul>
       <% @playdate.errors.full_messages.each do |msg| %>
