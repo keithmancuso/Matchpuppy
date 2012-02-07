@@ -8,7 +8,7 @@ function initialize() {
 	geocoder = new google.maps.Geocoder();
 	var latlng = new google.maps.LatLng(-34.397, 150.644);
 	var myOptions = {
-		zoom: 15,
+		zoom: 16,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
@@ -72,7 +72,9 @@ $(function() {
 
 		
 
-				<div id="map_canvas" style="width: 600px; height: 350px;"></div>
+				<div id="map_canvas" style="width: 725px; height: 350px;"></div>
+				
+			<p> <span class="label label-important">Important</span> Map is a simple search for the park that has not been verified and may not be accurate</p>
 
 <!-- <iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%= @park.name %>,<%= @park.borough %>&amp;aq=&amp;vpsrc=0&amp;t=m&amp;ie=UTF8&amp;hq=<%= @park.name %>,<%= @park.borough %>&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe> -->
 <br/><br/>
@@ -89,14 +91,13 @@ $(function() {
 </ul>
 
 <% else %>
+<div class="well">
+<h3>No dogs love this park, yet!</h3>
 
-<h3>No dogs love this park, yet</h3>
-
-<div class="help-block">No other dogs love this park right now.  Help spread the word about Matchpuppy, <A href="#">share it on facebook and twitter</a></div>
-
+<div class="help-block">No other dogs love this park right now.  Help spread the word about Matchpuppy, share it on facebook and twitter</div>
+</div>
 <% end %>
 
-<hr class="clearfix" style="clear:left;"/>
 
 
 

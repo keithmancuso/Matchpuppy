@@ -53,11 +53,37 @@
 <div class="control-group ">
 	<%= f.label "What breed?" %>
 	<div class="controls">
-		<%= f.select(:breed, options_for_select([['Beagle'], ['Boxer'], ['Boxer'], ['Bulldog'], ['Chihuahua'], ['German Shepherd'], ['Golden Retriever']])) %>
+		<%= f.select(:breed, options_for_select([
+			['Beagle'],
+			['Bulldog'],
+			['Chihuahua'],
+			['Cocker Spaniel'],
+			['Collie'],
+			['Dachshund'],
+			['German Shepherd'],
+			['Golden Retriever'],
+			['Great Dane'],
+			['Labrador Retriever'],
+			['Maltese'],
+			['Miniature Schnauzer'],
+			['Pinscher'],
+			['Pitt Bull'],
+			['Pomeranian'],
+			['Poodle'],
+			['Pug'],
+			['Rottweiler'],
+			['Saint Bernard'],
+			['Siberian Husky'],
+			['Shiba Inu'],
+			['Shih Tzu'],
+			['Yorkshire Terrier'],
+			['Mixed'],
+			['Other']
+			])) %>
 	</div>
 </div>
 
-<div class="control-group <% if @dog.errors[:gender] != nil %>error<% end %>">
+<div class="control-group">
 	<%= f.label :gender %>
 	<div class="controls">
 		<div class = "row">

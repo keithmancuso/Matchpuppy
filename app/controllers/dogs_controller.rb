@@ -62,7 +62,9 @@ class DogsController < ApplicationController
     @dog = Dog.find(params[:id])
 
     if @dog.update_attributes(params[:dog])
-      redirect_to parks_path, :notice => 'Dog was successfully updated.' 
+    
+          redirect_to account_path, :notice => 'Dog was successfully updated.'
+      
     else
       render :action => "edit" 
     end
