@@ -1,5 +1,7 @@
 <%= form_for(@park, :html=>{:class=>"form-horizontal"}) do |f| %>
-  <% if @park.errors.any? %>
+<div class="well">  
+
+<% if @park.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@park.errors.count, "error") %> prohibited this park from being saved:</h2>
 
@@ -47,8 +49,9 @@
 	    	<%= f.text_area :description, :style=>"height:50px" %>
 		</div>
 	</div>
-
- 	<div class="actions">
-    	<%= f.submit %>
+</div>
+ 	<div class="form-actions">
+    	<%= f.submit "Create Park", :class=> "btn btn-primary" %>
+    	
   	</div>
 <% end %>

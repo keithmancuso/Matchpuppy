@@ -74,7 +74,7 @@ class ParksController < ApplicationController
 
     respond_to do |format|
       if @park.save
-        format.html { redirect_to @park, :notice => 'Park was successfully created.' }
+        format.html { redirect_to new_park_path, :notice => 'Park was successfully created.' }
         format.json { render :json => @park, :status => :created, :location => @park }
       else
         format.html { render :action => "new" }
