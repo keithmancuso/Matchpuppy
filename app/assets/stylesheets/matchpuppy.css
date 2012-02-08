@@ -48,11 +48,15 @@ footer {
 	background-color:#07324A;
 
 	width:100%;
-	height:100px;
+	height:50px;
 
 	z-index:30;
 	margin-top:-0.1%;
 	
+}
+
+footer a, footer a:hover, footer a:link, footer a:visited {
+	color:white;
 }
 
 
@@ -126,6 +130,8 @@ body#homepage {
 }
 
 
+
+
 .navbar .nav-collapse  {
 	
 	background-color:#0A324A;
@@ -191,7 +197,8 @@ h1 {
 }
 
 .well {
-	background-color:white;
+	
+	background: url('/assets/translucent.png');
 	
 	
 }

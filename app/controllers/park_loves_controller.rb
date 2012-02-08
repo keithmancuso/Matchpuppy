@@ -8,7 +8,7 @@ class ParkLovesController < ApplicationController
     @park_love.user_id = current_user.id
     
     if @park_love.save
-      redirect_to @park_love.park, :notice => 'Love successfully created.' 
+      redirect_to @park_love.park, :notice => 'Now you love this park.' 
       
     else
       redirect_to @park_love.park, :notice => 'Problem creating love.' 
