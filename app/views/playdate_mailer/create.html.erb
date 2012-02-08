@@ -3,7 +3,7 @@
 
 <strong>Hi <%= @playdate.user.name %>,</strong>
 
-<p>Congratulations! You were just created a playdate at <%= @playdate.park.name %> on <%= l @playdate.play_date, :format => :playdatetime %></p>
+<p>Congratulations! You have just created a playdate at <%= @playdate.park.name %> on <%= l @playdate.play_date, :format => :playdatetime %></p>
 
 <p>	
  <%= link_to "View the playdate on Matchpuppy.com", playdate_url(@playdate, :host =>"matchpuppy.herokuapp.com") %>.'
