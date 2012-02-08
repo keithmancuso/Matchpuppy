@@ -1,6 +1,6 @@
 
 <% if notice %>
-<div class="alert">
+<div class="alert alert-success">
 <%= notice %>
 </div>
 <% end %>
@@ -89,7 +89,7 @@
   			<label class="checkbox" style="font-weight:normal">
 			          <%= f.check_box(:subscribe) %> Keep me up to date on the latest MatchPuppy.com News
 			        </label>
-  
+  					
   <div class="form-actions">
 	
 	<% if f.object.new_record? %>
@@ -99,6 +99,10 @@
 		<%= link_to "Cancel", :account%>
     	<%= f.submit("Edit Account" , :class => "btn btn-primary") %>
 	<% end %>
+	<div class="help-block">
+		By clicking Sign Up, your agreeing to our <a href="/terms">Terms of Use</a> 
+	</div>
 
   </div>
+	
 <% end %>

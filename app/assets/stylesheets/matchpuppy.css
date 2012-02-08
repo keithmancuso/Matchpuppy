@@ -14,7 +14,9 @@ header {
 }
 
 #main {
-	background: #86CEC2 url("/assets/background.png");
+	background: rgb(115, 197, 182) url("/assets/background.png");
+
+
 
 	background-position: bottom center;
   background-repeat: no-repeat;
@@ -48,7 +50,6 @@ footer {
 	background-color:#07324A;
 
 	width:100%;
-	height:50px;
 
 	z-index:30;
 	margin-top:-0.1%;
@@ -57,6 +58,7 @@ footer {
 
 footer a, footer a:hover, footer a:link, footer a:visited {
 	color:white;
+	font-weight:bold;
 }
 
 
@@ -70,7 +72,7 @@ footer .container {
 
 body {
 	margin-top:20px;
-	background-color:#86CEC2;
+	background-color:rgb(115, 197, 182)
 	height:100%;
 	
 	
@@ -140,7 +142,7 @@ body#homepage {
 
 .spacer {
 	position:relative;
-	height:200px; 
+	height:400px; 
 }
 
 
@@ -295,7 +297,6 @@ background: #07324A;
 	}
 	
 	footer {
-		height:150px;
 		
 	}
 }
@@ -314,7 +315,6 @@ background: #07324A;
 	}
 	
 	footer {
-		height:100px;
 		
 	}
 }
