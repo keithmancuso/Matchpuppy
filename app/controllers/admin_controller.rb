@@ -6,6 +6,10 @@ class AdminController < ApplicationController
     @parks = Park.all
   end
   
+  def parks
+    @park_loves = ParkLove.all
+  end
+  
   def dogs
     @dogs = Dog.all
   end

@@ -1,0 +1,48 @@
+<% if notice %>
+<div class="alert alert-info">
+<%= notice %>
+</div>
+<% end %>
+
+<div class="page-header">
+
+<h1>Park Loves</h1>
+
+</div>
+
+<div class="well">
+<table class="table-striped table table-condensed">
+<thead>  
+<tr>
+    <th>Name</th>
+    <th>Borough</th>
+	<th>Type</th>
+    <th></th>
+    
+  </tr>
+</thead>
+<tbody>
+<% @park_loves.each do |park_love| %>
+  <tr>
+    <td><%= park_love.park_id %></td>
+  
+    <td><%= park_love.user_id %></td>
+
+	
+	
+	<td>
+		
+		
+		<%= link_to "Delete", park_love, :method=>'delete', :confirm => 'Are you sure?', :class=>"btn btn-danger"%>
+		
+		
+	</td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+
+
+
+

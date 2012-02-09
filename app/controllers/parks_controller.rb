@@ -9,6 +9,12 @@ class ParksController < ApplicationController
      @title = "Parks"
      
     
+    if current_user
+      if current_user.dogs.count == 0
+        redirect_to new_user_dog_path(current_user), :notice => "You have to put in information about your dogs before loving parks"
+      end
+    end
+    
     params[:borough] ||= "%"
     params[:park_type] ||= "%"
     
