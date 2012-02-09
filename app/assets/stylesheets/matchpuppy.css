@@ -200,6 +200,18 @@ form.invite {
 
 }
 
+.signup {
+	
+	background: url(/assets/sign_up_ribbon.png);
+	color: white;
+	height:48px;
+	padding:12px 0px 10px 45px;
+	position:relative;
+	left:-46px;
+	width:350px;
+	
+}
+
 /* Forms */
 
 label {
