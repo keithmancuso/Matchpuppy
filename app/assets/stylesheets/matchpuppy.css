@@ -14,23 +14,16 @@ header {
 }
 
 #main {
-	background: #65d3c6 url("/assets/background.png");
 
-
-
-	background-position: bottom center;
-  background-repeat: no-repeat;
-height:100%;
-min-height:700px;
 	
 }
 
 .navbar-inner {
 	
 	background: url('/assets/header_background.png') repeat-x;
-	height: 65px;
+
 	box-shadow:none;
-	-webkit-box-shadow:none;
+	-webkit-box-shadow:none;*/
 }
 
 .navbar .nav > li > a, .navbar .nav > li > a:visited, .navbar .nav > li > a:link {
@@ -75,7 +68,14 @@ body {
 	background-color:#65d3c6
 	height:100%;
 	
-	
+		background: #65d3c6 url("/assets/background.png");
+
+
+
+		background-position: bottom center;
+	  background-repeat: no-repeat;
+	height:100%;
+	min-height:700px;
 
 	
 	
@@ -125,7 +125,7 @@ body#homepage {
 	
 	height:auto !important; /* real browsers */
 	height:100%; /* IE6: treaded as min-height*/
-	min-height:100%; /* real browsers */
+	min-height:600px; /* real browsers */
 	
 	/* background: url('/assets/translucent.png'); */
 	
@@ -140,10 +140,7 @@ body#homepage {
 }
 
 
-.spacer {
-	position:relative;
-	height:400px; 
-}
+
 
 
 #fence {
