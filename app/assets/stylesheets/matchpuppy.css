@@ -40,12 +40,13 @@ header {
 .navbar, navbar-inner {
 	
 	margin-top:0px;
+	padding-top:0px;
 }
 
 footer {
 	position:relative;
 	
-	background-color:#07324A;
+	background:#07324A;
 
 	width:100%;
 
@@ -55,7 +56,8 @@ footer {
 }
 
 .footer {
-	background-color:#07324A;
+	background:#07324A;
+	
 }
 
 footer a, footer a:hover, footer a:link, footer a:visited {
@@ -152,24 +154,6 @@ body#homepage {
 
 
 
-#fence {
-margin-top:-250px;
-	z-index:30;
-	position:relative;
-	margin-left: auto;
-  margin-right: auto;
-width:100%;
-display:none;
-
-}
-
-#fence img {
-	
-	margin-left: auto;
-  margin-right: auto;
-}
-
-
 div#bottom-section {
 
 	display: block;
@@ -232,10 +216,6 @@ form.invite {
 
 /* Top Menu */
 
-.menu-nav {
-	
-	margin-top:15px;
-}
 
 .navbar .nav {
 	
