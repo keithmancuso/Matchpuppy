@@ -37,6 +37,11 @@ header {
 	background:none;
 }
 
+.navbar, navbar-inner {
+	
+	margin-top:0px;
+}
+
 footer {
 	position:relative;
 	
@@ -47,6 +52,10 @@ footer {
 	z-index:30;
 	margin-top:-0.1%;
 	
+}
+
+.footer {
+	background-color:#07324A;
 }
 
 footer a, footer a:hover, footer a:link, footer a:visited {
