@@ -18,6 +18,10 @@ class ParkLovesController < ApplicationController
   end
 
   def destroy
+    
+    @park_love = ParkLove.find(params[:id])
+    @park_love.destroy
+    redirect_to 'admin/park_loves', :notice => "Park love deleted"
   end
 
 end
