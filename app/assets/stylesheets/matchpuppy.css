@@ -169,6 +169,18 @@ form.invite {
 	margin:7px 0 0;
 }
 
+/* Dogs form */
+
+#smalldog-image {
+	
+	margin-top:135px
+}
+
+#mediumdog-image {
+	margin-top:80px
+}
+
+
 
 /* Top Menu */
 
@@ -243,17 +255,23 @@ background: #07324A;
 	
 	}
 	
-	#fence {
-	margin-top:-100px;
+	
+	#smalldog-image {
+
+		margin-top:0px;
+		width:75px;
+	}
+
+	#mediumdog-image {
+		margin-top:0px;
+	width:100px;
 	}
 	
-	.spacer {
-		height: 50px;
+	#largedog-image {
+		width:150px;
 	}
-	
-	footer {
-		
-	}
+
+
 }
 
 
@@ -261,15 +279,5 @@ background: #07324A;
 @media (min-width: 1200px) {
 	
 	
-	#fence {
-	margin-top:-350px;
-	}
-	
-	.spacer {
-		height: 300px;
-	}
-	
-	footer {
-		
-	}
+
 }
