@@ -47,7 +47,7 @@ module Matchpuppy
     
     #postmark mailer
     config.action_mailer.delivery_method   = :postmark
-    config.action_mailer.postmark_settings = { :api_key => "278619f1-f816-45ff-a272-63a55a1ea3e8" }
+    config.action_mailer.postmark_settings = { :api_key => "d2c7080a-6961-4389-9218-9381e22a299a" }
     
   end
 end

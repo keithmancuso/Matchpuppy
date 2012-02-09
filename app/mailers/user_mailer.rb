@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
-  default_url_options[:host] = "matchpuppy.dev"  
-  default :from => "info@matchpuppy.com"
+  default_url_options[:host] = "matchpuppy.com"  
+  default :from => "woof@matchpuppy.com"
   
   def signup(user)
     @user = user

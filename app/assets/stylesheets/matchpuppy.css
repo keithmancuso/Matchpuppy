@@ -14,14 +14,14 @@ header {
 }
 
 #main {
-	background: rgb(115, 197, 182) url("/assets/background.png");
+	background: #65d3c6 url("/assets/background.png");
 
 
 
 	background-position: bottom center;
   background-repeat: no-repeat;
 height:100%;
-min-height:100%;
+min-height:700px;
 	
 }
 
@@ -72,7 +72,7 @@ footer .container {
 
 body {
 	margin-top:20px;
-	background-color:rgb(115, 197, 182)
+	background-color:#65d3c6
 	height:100%;
 	
 	
@@ -218,6 +218,11 @@ hr {
 }
 
 
+form.invite {
+	
+	margin:7px 0 0;
+}
+
 
 /* Top Menu */
 
@@ -261,11 +266,19 @@ textarea {
 
 
 
-.nav-pills li a {
-	border:1px solid #ddd;
-	background-color:white;
+.nav-pills li a, .nav-pills li a:hover {
+	
+	background-color:#D9E3E2;
+	color:#AFAFAF;
 	
 }
+
+.nav-pills {
+	
+	margin-top:8px;
+}
+
+
 
 /* popovers */
 

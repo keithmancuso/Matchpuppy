@@ -1,3 +1,10 @@
+<% content_for :head do %>
+  	<meta property="og:image" content="http://www.matchpuppy.com/assets/logo_beta.png"/>
+	<meta property="og:url" content="<%= playdate_url(@playdate) %>"/>
+	<link rel="canonical" href="<%=  playdate_url(@playdate) %>" />
+<% end %>
+
+
 <% if notice %>
 <div class="alert alert-success">
 <%= notice %>
@@ -51,10 +58,20 @@
 				<% @guests.each do |playdate_guest| %>
 					<li id="invitee<%= playdate_guest.dog.id %>" >
 						<div class="thumbnail">
-							<%= image_tag playdate_guest.dog.avatar.url(:thumb) %>
+							<a href="#" rel="popover" data-placement="right" data-delayHide="5000" data-original-title="<%= dog.name %>" data-content="
+								<ul class='unstyled''>
+							    <li><b>Size:</b> <%= dog.size %></li>
+								<li><b>Breed:</b> <%= dog.breed %></li>
+								<li><b>Gender:</b> <%= dog.gender %></li>
+								<li><b>Energy:</b> <%= dog.energy %></li>
+
+								<li>&ldquo;<%= dog.favorite %>&rdquo;</li>
+							  </ul>
+								" data-html="true">
+							<%= image_tag playdate_guest.dog.avatar.url(:thumb) %></a>
 
 
-							<%= form_for([@playdate,playdate_guest], :remote => true) do |f| %>
+							<%= form_for([@playdate,playdate_guest], :remote => true, :html=>{:class=>"invite"}) do |f| %>
 								<%= f.hidden_field :dog_id  %>
 								<%= f.submit "Invite "+playdate_guest.dog.name, :class=>"btn btn-info" %>
 							<% end %>

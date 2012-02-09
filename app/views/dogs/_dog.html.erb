@@ -6,11 +6,13 @@
 
 
 <a href="<%= user_dog_path(dog.user, dog) %>" rel="popover" data-placement="right" data-delayHide="5000" data-original-title="<%= dog.name %>" data-content="
-	<ul class='unstyled'>
+	<ul class='unstyled''>
     <li><b>Size:</b> <%= dog.size %></li>
 	<li><b>Breed:</b> <%= dog.breed %></li>
 	<li><b>Gender:</b> <%= dog.gender %></li>
-	<li><b>What's special about me:</b> <%= dog.favorite %></li>
+	<li><b>Energy:</b> <%= dog.energy %></li>
+	
+	<li>&ldquo;<%= dog.favorite %>&rdquo;</li>
   </ul>
 	" data-html="true"><%= image_tag dog.avatar.url(:medium) %></a>
 

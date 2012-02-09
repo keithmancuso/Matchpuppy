@@ -1,4 +1,13 @@
 
+
+
+<% content_for :head do %>
+  	<meta property="og:image" content="<%= @dog.avatar.url(:thumb) %>"/>
+	<meta property="og:url" content="<%= user_dog_url(@dog.user, @dog) %>"/>
+	<link rel="canonical" href="<%= user_dog_url(@dog.user, @dog) %>" />
+<% end %>
+
+
 <% if notice %>
 <div class      = "alert alert-success">
 <%= notice %>
@@ -38,12 +47,14 @@
 						<li><b>Breed:</b> <%= @dog.breed %></li>
 
 						<li><b>Gender:</b> <%= @dog.gender %></li>
+						<li><b>Energy Level:</b> <%= @dog.energy %></li>
+						
 						<li><b>Owner:</b> <%= link_to @dog.user.name, @dog.user %></li>
 					</ul>
 					<p>
-						<b>What's special about me:</b>
-
-						<%= @dog.favorite %>
+					
+					&ldquo;<%= @dog.favorite %>&rdquo;
+							
 					</p>
 					</div>
 					

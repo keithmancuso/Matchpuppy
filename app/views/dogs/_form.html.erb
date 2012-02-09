@@ -54,7 +54,8 @@
 	<%= f.label "What breed?" %>
 	<div class="controls">
 		<%= f.select(:breed, options_for_select([
-			['Beagle'],
+			['Beagle', 'Beagle'],
+			['Boxer', 'Boxer'],
 			['Bulldog'],
 			['Chihuahua'],
 			['Cocker Spaniel'],
@@ -79,7 +80,7 @@
 			['Yorkshire Terrier'],
 			['Mixed'],
 			['Other']
-			])) %>
+			], @dog.breed)) %>
 	</div>
 </div>
 
@@ -112,20 +113,20 @@
 		<div class = "row">
 			<div class = "span2">
 				<label for = "Low">
-					<%= f.radio_button( :energy, "Low", :id => "Low") %>
-					Low
+					<%= f.radio_button( :energy, "Couch potato", :id => "Low") %>
+					Couch potato
 				</label>
 			</div>
 			<div class = "span2">
 				<label for = "Medium">
-					<%= f.radio_button( :energy, "Medium", :id => "Medium") %>
-					Medium
+					<%= f.radio_button( :energy, "Happy-go-lucky", :id => "Medium") %>
+					Happy-go-lucky
 				</label>
 			</div>
 			<div class = "span2">
 				<label for = "High">
-					<%= f.radio_button( :energy, "High", :id => "High") %>
-					High
+					<%= f.radio_button( :energy, "Life of the party", :id => "High") %>
+					Life of the party
 				</label>
 			</div>
 		</div>
