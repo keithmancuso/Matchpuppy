@@ -58,12 +58,12 @@
 				<% @guests.each do |playdate_guest| %>
 					<li id="invitee<%= playdate_guest.dog.id %>" >
 						<div class="thumbnail">
-							<a href="#" rel="popover" data-placement="right" data-delayHide="5000" data-original-title="<%= dog.name %>" data-content="
+							<a href="#" rel="popover" data-placement="right" data-delayHide="5000" data-original-title="<%= playdate_guest.dog.name %>" data-content="
 								<ul class='unstyled''>
-							    <li><b>Size:</b> <%= dog.size %></li>
-								<li><b>Breed:</b> <%= dog.breed %></li>
-								<li><b>Gender:</b> <%= dog.gender %></li>
-								<li><b>Energy:</b> <%= dog.energy %></li>
+							    <li><b>Size:</b> <%= playdate_guest.dog.size %></li>
+								<li><b>Breed:</b> <%= playdate_guest.dog.breed %></li>
+								<li><b>Gender:</b> <%= playdate_guest.dog.gender %></li>
+								<li><b>Energy:</b> <%= playdate_guest.dog.energy %></li>
 
 								<li>&ldquo;<%= dog.favorite %>&rdquo;</li>
 							  </ul>
@@ -84,7 +84,8 @@
 		
 		<% else %>
 			<div class="help-block">
-				No other dogs love this park right now.  Help spread the word about matchpuppy, share it on facebook and twitter
+					<p>No other dogs love this park right now, but you can schedule the playdate and others can sign up and join later.</p>
+				<p>  Help spread the word about matchpuppy, share it on facebook and twitter</p>
 			</div>
 		<% end %>
 		
