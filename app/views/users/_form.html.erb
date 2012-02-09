@@ -55,7 +55,7 @@
  <% end %>
   	 
 <% if current_user %>
-
+<% if current_user.user_type == "admin" %>
 	<div class="control-group">
 <%= f.label :user_type %>
 <div class="controls">
@@ -64,6 +64,7 @@
 		</div>
 		</div>
 
+<% end %>
 <% end %>
 
 	<div class="control-group">
