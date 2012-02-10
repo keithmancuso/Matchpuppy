@@ -10,7 +10,7 @@ class Playdate < ActiveRecord::Base
   
   after_save :invite_guests
   
-  scope :upcoming, where("playdates.play_date > ?", Time.now)
+  scope :upcoming, where("playdates.play_date > ?", Time.now).order("play_date ASC")
   
   private 
   

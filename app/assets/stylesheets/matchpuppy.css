@@ -207,8 +207,8 @@ form.invite {
 	height:48px;
 	padding:12px 0px 10px 45px;
 	position:relative;
-	left:-46px;
-	width:350px;
+	left:-47px;
+	width:352px;
 	
 }
 
@@ -231,6 +231,10 @@ textarea {
 }
 
 
+#dogs-container {
+position: relative
+
+}
 
 .nav-pills li a, .nav-pills li a:hover {
 	
