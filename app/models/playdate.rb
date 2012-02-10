@@ -15,7 +15,7 @@ class Playdate < ActiveRecord::Base
   private 
   
   def invite_guests
-    if status = "sent"
+    if status == "sent"
       self.users.each do |user| 
         if user != self.user
           PlaydateMailer.invite(self, user).deliver

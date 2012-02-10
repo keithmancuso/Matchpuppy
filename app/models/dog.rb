@@ -15,7 +15,7 @@ class Dog < ActiveRecord::Base
   has_many :playdates, :through => :playdate_guests
   has_many :park_loves, :through => :user
   
-  validates :name, :size, :breed, :gender, :energy, :favorite, :presence => true
+  validates :name, :size, :breed, :gender, :energy, :age, :favorite, :presence => true
   
   self.per_page = 30
   
