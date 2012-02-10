@@ -29,8 +29,12 @@
 
 	<div class     = "span5">
 		<a href       = "#" class="thumbnail">
-			<%= image_tag @dog.avatar.url(:large), :options =>  
-			{:align      =>"right", :style=>"padding-right: 10px; padding-top: 5px;"} %>
+			
+			<% if @dog.avatar_file_name == nil && @dog.gender == "Female" %>
+				<%= image_tag "/assets/default_dog_large_female.png" %>
+			<% else %>
+				<%= image_tag @dog.avatar.url(:large) %>
+			<% end %>
 		</a>
 
 		<p><A href    = "mailto:michael@matchpuppy.com?subject=report profile&body=please take down the dog at <%= user_dog_url(@dog.user, @dog) %>" class="small">Report this profile</a></p>

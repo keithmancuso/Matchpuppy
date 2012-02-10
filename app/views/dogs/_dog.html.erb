@@ -15,7 +15,15 @@
 	
 	<li>&ldquo;<%= dog.favorite %>&rdquo;</li>
   </ul>
-	" data-html="true"><%= image_tag dog.avatar.url(:medium) %></a>
+	" data-html="true">
+	
+	<% if dog.avatar_file_name == nil && dog.gender == "Female" %>
+		<%= image_tag "/assets/default_dog_medium_female.png" %>
+	<% else %>
+		<%= image_tag dog.avatar.url(:medium) %>
+	<% end %>	
+		
+</a>
 
 
 </div>

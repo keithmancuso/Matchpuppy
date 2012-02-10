@@ -70,7 +70,14 @@
 								<li>&ldquo;<%= playdate_guest.dog.favorite %>&rdquo;</li>
 							  </ul>
 								" data-html="true">
-							<%= image_tag playdate_guest.dog.avatar.url(:thumb) %></a>
+							
+							
+							 <% if playdate_guest.dog.avatar_file_name == nil && playdate_guest.dog.gender == "Female" %>
+								<%= image_tag "/assets/default_dog_thumb_female.png" %>
+							<% else %>
+								<%= image_tag playdate_guest.dog.avatar.url(:large) %>
+							<% end %>
+							</a>
 
 
 							<%= form_for([@playdate,playdate_guest], :remote => true, :html=>{:class=>"invite"}) do |f| %>
