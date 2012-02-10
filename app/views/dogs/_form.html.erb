@@ -106,6 +106,19 @@
 	</div>
 </div>
 
+<div class="control-group ">
+	<%= f.label "How old?" %>
+	<div class="controls">
+		<%= f.select(:age, options_for_select([
+			['0-12 months'],
+			['1-2 years'],
+			['3-5 years'],
+			['6-9 years'],
+			['10+ years']
+			], @dog.age)) %>
+	</div>
+</div>
+
 
 <div class="control-group">
 <%= f.label :energy, "Energy Level?"%>

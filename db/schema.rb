@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207212212) do
+ActiveRecord::Schema.define(:version => 20120210042036) do
 
   create_table "comments", :force => true do |t|
     t.integer  "playdate_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120207212212) do
     t.text     "favorite"
     t.string   "energy"
     t.string   "modivation"
+    t.string   "age"
   end
 
   create_table "park_loves", :force => true do |t|
