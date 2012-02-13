@@ -18,7 +18,9 @@
 
   <%= stylesheet_link_tag    :matchpuppy %>
   <%= stylesheet_link_tag    "jquery-ui" %>
-  <%= javascript_include_tag   "woodmark" %>
+  <%= javascript_include_tag   "imagesloaded" %>
+
+  <%= javascript_include_tag   "masonry" %>
 
 
 <script type="text/javascript">$('#dogs-container li').wookmark({offset: 0});</script>
@@ -39,6 +41,16 @@
 	$().ready(function() {
 		$('a[rel="popover"]').popover();
 		$('.date_select').datepicker();
+		
+	
+		 var $container = $('#dogs-container');
+		$container.imagesLoaded(function(){
+		  $container.masonry({
+		    itemSelector : '.span2'
+		  });
+		});
+		
+		
 	});
 	
 	</script>
