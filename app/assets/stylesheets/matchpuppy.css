@@ -1,4 +1,4 @@
-header {
+.header {
 	background: url('/assets/header_background.png') repeat-x;
 	height: 65px;
 	position: fixed;
@@ -99,9 +99,9 @@ input {
 	overflow:hidden;
 	width:100%;
 		min-height:900px;
-		
-	
-		background-image: url("/assets/background.png");
+	background-image: url("/assets/background.png");
+	position:relative;
+	top:0px;
 }
 
 .main-container {
@@ -235,7 +235,7 @@ form.invite {
 	padding:12px 0px 10px 45px;
 	position:relative;
 	left:-47px;
-	width:352px;
+	width:108%;
 	
 }
 

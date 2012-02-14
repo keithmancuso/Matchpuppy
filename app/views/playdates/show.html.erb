@@ -133,9 +133,15 @@
 	
 			<h4>Comments</h4>
 			<hr/>
-			<div >
+				<div >
+			<% if @playdate.comments.size > 0 %>
+		
 				<%= render @playdate.comments %>
-			</div>
+		
+			<% else %>
+				<div class="help-block">No comments yet, use this space to discuss meeting place and plans for the playdate </div>
+			<% end %>
+				</div>
 			<hr/>
 			<%= form_for([@playdate, @playdate.comments.build]) do |f| %>
 				<%= f.label "Your Comment" %>
